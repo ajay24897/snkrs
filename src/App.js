@@ -1,3 +1,4 @@
+import { async } from "@firebase/util";
 import { useEffect, useState } from "react";
 import "./App.css";
 import mensApi from "./firebase/services/snkrs.services";
@@ -7,26 +8,7 @@ function App() {
   useEffect(() => {
     console.log("snkr", snkr);
   }, [snkr]);
-  let obj = [
-    {
-      brand: "Jordan",
-      colorway: "White/Worn Blue-Metallic Gold",
-      gender: "women",
-      id: "e5352103-71dc-4b8a-bdca-b561aa924143",
-      media: {
-        imageUrl:
-          "https://images.stockx.com/images/Air-Jordan-Point-Lane-Cool-Grey.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1648701232",
-      },
-      name: "Denim (W)",
-      releaseDate: "2022-09-23",
-      retailPrice: 170,
-      shoe: "Jordan 1 High OG",
-      styleId: "DM9036-104",
-      title: "Jordan 1 High OG Denim (W)",
-      year: 2022,
-    },
-  ];
-
+  let obj = [];
   function convertFileToBase64(url) {
     return new Promise(async (resolve, reject) => {
       const data = await fetch(url);
@@ -40,14 +22,36 @@ function App() {
 
   const addData = async () => {
     console.log(obj);
-    obj.filter(async (item, index) => {
+    obj.map(async (item, index) => {
+      let {
+        id,
+        brand,
+        colorway,
+        gender,
+        name,
+        year,
+        styleId,
+        releaseDate,
+        retailPrice,
+        title,
+      } = item;
       console.log(item.media.imageUrl);
       if (item.media.imageUrl) {
         let res = await convertFileToBase64(item.media.imageUrl);
         console.log("res", res);
         if (res) {
           mensApi.addSnkr({
-            ...item,
+            id,
+            brand,
+            colorway,
+            gender,
+            name,
+            year,
+            styleId,
+            releaseDate,
+            retailPrice,
+            title,
+
             media: res,
           });
         }
@@ -56,13 +60,19 @@ function App() {
   };
 
   const mensSnkrs = async () => {
-    try {
-      let res = await mensApi.getAllSnkrs();
+    let arr = [];
 
+    try {
+      // let res = await mensApi.getAllSnkrs();
+      let res = await mensApi.getAllSnkrs();
       res.docs.map((doc) => {
         console.log(doc.data());
-        setSnkrs([...snkr, doc.data()]);
+        arr.push({ ...doc.data(), id: doc.id });
+
+        // console.log("doc.id", doc.id);
+        // setSnkrs([...snkr, { ...doc.data(), Did: doc.id }]);
       });
+      setSnkrs([...arr]);
     } catch (err) {
       console.log(err);
     }
@@ -70,15 +80,58 @@ function App() {
   useEffect(() => {
     async function callApi() {
       // await addData();
-      await mensSnkrs();
+      // await mensSnkrs();
     }
     callApi();
   }, []);
 
+  const getSelectedSnkr = async (brand) => {
+    let arr = [];
+
+    try {
+      setSnkrs([]);
+      // let res = await mensApi.getAllSnkrs();
+      let res = await mensApi.getAllBrandSnkrs(brand);
+      res.docs.map((doc) => {
+        console.log(doc.data());
+        arr.push({ ...doc.data(), id: doc.id });
+
+        // console.log("doc.id", doc.id);
+        // setSnkrs([...snkr, { ...doc.data(), Did: doc.id }]);
+      });
+      setSnkrs([...arr]);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleDelete = async (data) => {
+    console.log("data", data);
+    try {
+      let res = await mensApi.deleteSnkr(data.id);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
-    <div className="App">
+    <div>
+      <button onClick={() => getSelectedSnkr("Jordan")}>Jordan</button>
+      <button onClick={() => getSelectedSnkr("Nike")}>Nike</button>
+      <button onClick={() => getSelectedSnkr("adidas")}>Adidas</button>
+      <button onClick={() => getSelectedSnkr("Puma")}>Puma</button>
+      <button onClick={() => getSelectedSnkr("New Balance")}>
+        New Balance
+      </button>
+      <button onClick={() => getSelectedSnkr("Reebok")}>Reebok</button>
+
+      <br />
+
       {snkr?.map((data) => (
-        <img src={data.media} />
+        <>
+          <img src={data.media} width="100px" height="100px" />
+          <h1 onClick={async () => await handleDelete(data)}>Delete </h1>
+        </>
       ))}
     </div>
   );
