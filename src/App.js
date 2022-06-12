@@ -1,4 +1,3 @@
-import { async } from "@firebase/util";
 import { useEffect, useState } from "react";
 import "./App.css";
 import mensApi from "./firebase/services/snkrs.services";
