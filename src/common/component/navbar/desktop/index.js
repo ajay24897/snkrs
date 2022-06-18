@@ -34,7 +34,7 @@ function DesktopNav() {
                 isActive ? "navlink active-navlink" : "navlink"
               }
             >
-              <p>{nav.route}</p>
+              <text>{nav.route}</text>
             </NavLink>
           );
         })}

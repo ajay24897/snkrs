@@ -1,5 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from "react-query";
 
 import Navbar from "./common/component/navbar";
 import route from "./common/constant/string/route.string";
@@ -11,22 +18,26 @@ import Unisex from "./screens/unisex";
 import Women from "./screens/women";
 
 function App() {
+  const queryClient = new QueryClient();
+
   return (
     <>
       <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path={route.home} element={<Home />} />
-          <Route path={route.men}>
-            <Route index element={<Men />} />
-            <Route path=":id" element={<Men />} />
-            <Route path=":id/:hd" element={<Men />} />
-          </Route>
-          <Route path={route.women} element={<Women />} />
-          <Route path={route.unisex} element={<Unisex />} />
-          <Route path={route.cart} element={<Cart />} />
-          <Route path={route[404]} element={<NotFound />} />
-        </Routes>
+        <QueryClientProvider client={queryClient}>
+          <Navbar />
+          <Routes>
+            <Route path={route.home} element={<Home />} />
+            <Route path={route.men}>
+              <Route index element={<Men />} />
+              <Route path=":id" element={<Men />} />
+              <Route path=":id/:hd" element={<Men />} />
+            </Route>
+            <Route path={route.women} element={<Women />} />
+            <Route path={route.unisex} element={<Unisex />} />
+            <Route path={route.cart} element={<Cart />} />
+            <Route path={route[404]} element={<NotFound />} />
+          </Routes>
+        </QueryClientProvider>
       </BrowserRouter>
     </>
   );
