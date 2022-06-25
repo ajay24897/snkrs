@@ -14,7 +14,7 @@
           align-items: center;
   padding: 0rem 4rem;
   width: 100%;
-  height: 4.5rem;
+  height: 4rem;
   position: relative;
   -ms-flex-item-align: center;
       align-self: center;
@@ -63,31 +63,20 @@
   text-decoration: none;
   color: #000;
   position: relative;
+  -webkit-transition: all .2s;
+  transition: all .2s;
 }
 
-#container .cart:hover::before {
-  position: absolute;
-  border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  height: 100%;
-  width: 100%;
-  content: "";
-  background-color: grey;
-  z-index: -1;
-  opacity: 0.2;
-  padding: 0.2rem;
-  -webkit-animation: sheen 0.5 ease-in;
-          animation: sheen 0.5 ease-in;
+#container .cart:hover {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
 }
 
 #container .active-cart {
   color: grey;
 }
 
-@media (max-width: 765px) {
+@media (max-width: 768px) {
   #container {
     display: none;
   }

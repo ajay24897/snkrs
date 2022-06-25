@@ -43,7 +43,7 @@ function DesktopNav() {
         to="cart"
         className={({ isActive }) => (isActive ? "cart active-cart" : "cart")}
       >
-        <BsBag size={"2.5rem"} />
+        <BsBag size={"2rem"} />
       </NavLink>
     </div>
   );

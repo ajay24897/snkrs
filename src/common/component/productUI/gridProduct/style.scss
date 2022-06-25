@@ -236,12 +236,12 @@
     z-index: 40;
   }
   
-  @media (min-width: 767px) {
+  @media (min-width: 768px) {
     .mobileNav {
       display: none;
     }
   }
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     .navbarCnt {
       display: none;
       /* clip-path: circle(1000px at 90% -10%); */
@@ -434,7 +434,7 @@
       padding: 10px 20px;
     }
   }
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     .single-productImg {
       height: 400px;
       max-width: 400px;
