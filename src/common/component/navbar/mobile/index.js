@@ -54,7 +54,7 @@ function MobileNavigation() {
           />
         </NavLink>
 
-        <div style={{ display: "flex" }}>
+        <div className="container">
           <NavLink
             to="cart"
             onClick={() => setMenuOpen(false)}
@@ -62,16 +62,18 @@ function MobileNavigation() {
               isActive ? "cart active-cart" : "cart"
             }
           >
-            <BsBag size={"2.5rem"} />
+            <BsBag size={"2rem"} />
           </NavLink>
           {isMenuOpen ? (
-            <div className={`navlink zIndex ${isRotateCross ? "rotate" : ""}`}>
-              <GrClose size={"2.5rem"} onClick={() => handelRotateHam()} />
+            <div
+              className={`navlink zIndex ${isRotateCross ? "rotate" : "menu"}`}
+            >
+              <GrClose size={"2.2rem"} onClick={() => handelRotateHam()} />
             </div>
           ) : (
-            <div className={`navlink zIndex ${isRotate ? "rotate" : ""}`}>
+            <div className={`navlink zIndex ${isRotate ? "rotate" : "menu"}`}>
               <GiHamburgerMenu
-                size={"2.5rem"}
+                size={"2.2rem"}
                 onClick={() => handelRotateBar()}
               />
             </div>
@@ -83,8 +85,9 @@ function MobileNavigation() {
           return (
             <NavLink
               to={item.to}
-              activeClassName="active"
-              className="navlink"
+              className={({ isActive }) =>
+                isActive ? "navlink active" : "navlink"
+              }
               key={index}
               onClick={() => setMenuOpen(!isMenuOpen)}
             >
@@ -102,7 +105,7 @@ export default MobileNavigation;
 export const SideMenu = styled.div`
   display: none;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     display: flex;
     height: 100%;
     width: 100%;
@@ -113,25 +116,24 @@ export const SideMenu = styled.div`
     position: absolute;
     right: 0;
     top: 0;
+    overflow: hidden;
     /* left: ${(props) => (props.isOpen === true ? 0 : "100%")};
     right: ${(props) => (props.isOpen === true ? 0 : "-100%")}; */
     clip-path: ${(props) =>
       props.isOpen === true
-        ? "circle(2000px at 90% -25%)"
-        : "circle(0px at 90% -25%)"};
-    position: fixed;
+        ? "circle(150vh at 100% -0%)"
+        : "circle(0px at 100% -0%)"};
     transition: ${(props) =>
-      props.isOpen === true ? "all .5s ease-in-out" : "all 0.7s ease-in-out"};
+      props.isOpen === true ? "all 1s ease-in-out" : "all 1s ease-in-out"};
 
     .navlink {
-      font-size: 3rem;
+      font-size: 1.5rem;
+      font-weight: 600;
       text-decoration: none;
       color: #000;
-      padding: 0rem 2rem;
-      height: 100%;
       transition: all 0.5s ease-in;
     }
-    .active-navlink {
+    .active {
       text-decoration: underline;
       text-decoration-color: grey;
       text-underline-offset: 1rem;
