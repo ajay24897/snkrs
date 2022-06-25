@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import GridProductUI from "../../common/component/productUI/gridProduct";
+import { GetProductUI } from "../../common/component/productUI/SingleProduct";
 import mensApi from "../../firebase/services/snkrs.services";
 
 function Men() {
@@ -11,14 +12,12 @@ function Men() {
 
   let [start, setStart] = useState(0);
   const [last, setLast] = useState();
-  let param = useParams();
-  console.log(param);
 
   useEffect(() => {
-    if (param.id) {
-      getSnk(param.id);
+    if (id) {
+      getSnk(id);
     }
-  }, [param]);
+  }, [id]);
 
   let getSnk = async (id) => {
     try {
@@ -29,7 +28,7 @@ function Men() {
     }
   };
 
-  let fun = async (start) => {
+  let fetchSnkr = async (start) => {
     console.log(start);
     let arr = [];
     try {
@@ -46,82 +45,30 @@ function Men() {
     }
   };
 
-  const { isLoading, isError, error, data, isFetching, isPreviousData } =
-    useQuery(["users", start], () => fun(start), {
+  const { isLoading, data, isFetching } = useQuery(
+    ["users", start],
+    () => fetchSnkr(start),
+    {
       keepPreviousData: true,
-    });
+    }
+  );
 
   useEffect(() => {
     if (data) setAllData([...allData, ...data]);
   }, [data]);
 
-  return !param.id && !isLoading ? (
-    <GridProductUI
-      fetchNextPage={() => setStart(last)}
-      data={allData}
-      page={"men"}
-    />
-  ) : (
-    <GetProductUI product={singleSnkr} />
+  return (
+    <>
+      {!id && !isLoading && (
+        <GridProductUI
+          fetchNextPage={() => setStart(last)}
+          data={allData}
+          page={"men"}
+        />
+      )}
+      {id && <GetProductUI product={singleSnkr} />}
+    </>
   );
 }
-
-export const GetProductUI = ({ product }) => {
-  const [coords, setCoords] = useState();
-
-  const [globalCoords, setGlobalCoords] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    // 👇️ get global mouse coordinates
-    const handleWindowMouseMove = (event) => {
-      setGlobalCoords({
-        x: event.screenX,
-        y: event.screenY,
-      });
-    };
-    window.addEventListener("mousemove", handleWindowMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleWindowMouseMove);
-    };
-  }, []);
-
-  const handleMouseMove = (event) => {
-    console.log(
-      event.clientX - event.target.offsetLeft,
-      event.clientY - event.target.offsetTop
-    );
-    setCoords({
-      x: (event.clientX - event.target.offsetLeft) * 0.4 + "%",
-      y: (event.clientY - event.target.offsetTop) * 0.4 + "%",
-    });
-  };
-  return (
-    <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
-      <img
-        onMouseMove={handleMouseMove}
-        src={product?.media}
-        width={300}
-        height={300}
-        style={{
-          display: "block",
-        }}
-        id={"image"}
-      />
-
-      <img
-        src={product?.media}
-        width={800}
-        height={600}
-        style={{
-          display: "block",
-
-          objectFit: "none",
-          objectPosition: `${coords?.x} ${coords?.y}`,
-        }}
-      />
-    </div>
-  );
-};
 
 export default Men;
