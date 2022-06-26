@@ -2,16 +2,26 @@ import React, { useState, useEffect } from "react";
 import { Auth } from "../../firebase/services/auth.services";
 import { auth } from "../../firebase/firebase-config";
 import { onAuthStateChanged } from "firebase/auth";
+import { useDispatch, useSelector } from "react-redux";
 
 function Authentication() {
-  let [user, setUser] = useState({ email: "" });
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
+  let state = useSelector((state) => state.userAuthReducer.userDetails);
+
+  useEffect(() => {
+    console.log("state", state);
+  }, [state]);
+
+  let dispatch = useDispatch();
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      console.log("in 14356");
+      if (currentUser)
+        dispatch({
+          type: "LOGIN_REQUEST",
+          data: currentUser,
+        });
     });
   }, []);
 
@@ -25,18 +35,11 @@ function Authentication() {
   };
 
   const handleClickLogIn = async () => {
-    console.log("in");
-    try {
-      let res = await Auth.signIn(email, password);
-      console.log(res);
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch({ type: "LOGIN_REQUEST", data: { email, password } });
   };
   const signOut = async () => {
-    console.log("in");
     Auth.signOut();
-    setUser({ email: "" });
+    dispatch({ type: "LOG_OUT_REQUEST" });
   };
 
   return (
@@ -47,7 +50,7 @@ function Authentication() {
         flexDirection: "column",
       }}
     >
-      {user?.email ?? "no user found"} looged in
+      {state?.email ?? "no user found"} looged in
       <h4>sign up</h4>
       <label>Email</label>
       <input
