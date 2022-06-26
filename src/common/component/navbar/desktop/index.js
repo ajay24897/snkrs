@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { BsBag } from "react-icons/bs";
 import "./style.css";
 
@@ -19,6 +19,7 @@ const navList = [
 ];
 
 function DesktopNav() {
+  const navigate = useNavigate();
   return (
     <div id="container">
       <NavLink to={"/"}>
@@ -39,12 +40,29 @@ function DesktopNav() {
           );
         })}
       </div>
-      <NavLink
-        to="cart"
-        className={({ isActive }) => (isActive ? "cart active-cart" : "cart")}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
       >
-        <BsBag size={"2rem"} />
-      </NavLink>
+        <NavLink
+          to="authentication"
+          className={({ isActive }) =>
+            isActive ? "navlink active-navlink" : "navlink"
+          }
+        >
+          <text onClick={() => navigate("/authentication")}>Sign up</text>
+        </NavLink>
+
+        <NavLink
+          to="cart"
+          className={({ isActive }) => (isActive ? "cart active-cart" : "cart")}
+        >
+          <BsBag size={"2rem"} />
+        </NavLink>
+      </div>
     </div>
   );
 }
