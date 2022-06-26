@@ -5,6 +5,7 @@ const route = {
   unisex: "unisex",
   cart: "cart",
   404: "*",
+  authentication: "authentication",
 };
 
 export default route;

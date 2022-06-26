@@ -1,12 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  QueryClient,
-  QueryClientProvider,
-} from "react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 import Navbar from "./common/component/navbar";
 import route from "./common/constant/string/route.string";
@@ -16,6 +10,7 @@ import Home from "./screens/home";
 import Men from "./screens/men";
 import Unisex from "./screens/unisex";
 import Women from "./screens/women";
+import Authentication from "./screens/auth";
 
 function App() {
   const queryClient = new QueryClient();
@@ -34,6 +29,7 @@ function App() {
             </Route>
             <Route path={route.women} element={<Women />} />
             <Route path={route.unisex} element={<Unisex />} />
+            <Route path={route.authentication} element={<Authentication />} />
             <Route path={route.cart} element={<Cart />} />
             <Route path={route[404]} element={<NotFound />} />
           </Routes>
