@@ -1,9 +1,9 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
 import { BsBag } from "react-icons/bs";
 import "./style.css";
+
 import { Auth } from "../../../../firebase/services/auth.services";
 
 const navList = [
@@ -23,9 +23,7 @@ const navList = [
 
 function DesktopNav() {
   let { hasLoggedIn } = useSelector((state) => state.userAuthReducer);
-
-  const navigate = useNavigate();
-  let dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const logOut = () => {
     Auth.signOut();

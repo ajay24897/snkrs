@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Auth } from "../../firebase/services/auth.services";
-import { auth } from "../../firebase/firebase-config";
-import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 
 function Authentication() {
@@ -14,16 +12,6 @@ function Authentication() {
   }, [state]);
 
   let dispatch = useDispatch();
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser)
-        dispatch({
-          type: "LOGIN_REQUEST",
-          data: currentUser,
-        });
-    });
-  }, []);
 
   const handleClick = async () => {
     try {
