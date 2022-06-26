@@ -12,29 +12,34 @@ import Unisex from "./screens/unisex";
 import Women from "./screens/women";
 import Authentication from "./screens/auth";
 
+import { Provider } from "react-redux";
+import store from "./redux";
+
 function App() {
   const queryClient = new QueryClient();
 
   return (
     <>
-      <BrowserRouter>
-        <QueryClientProvider client={queryClient}>
-          <Navbar />
-          <Routes>
-            <Route path={route.home} element={<Home />} />
-            <Route path={route.men}>
-              <Route index element={<Men />} />
-              <Route path=":id" element={<Men />} />
-              <Route path=":id/:hd" element={<Men />} />
-            </Route>
-            <Route path={route.women} element={<Women />} />
-            <Route path={route.unisex} element={<Unisex />} />
-            <Route path={route.authentication} element={<Authentication />} />
-            <Route path={route.cart} element={<Cart />} />
-            <Route path={route[404]} element={<NotFound />} />
-          </Routes>
-        </QueryClientProvider>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <QueryClientProvider client={queryClient}>
+            <Navbar />
+            <Routes>
+              <Route path={route.home} element={<Home />} />
+              <Route path={route.men}>
+                <Route index element={<Men />} />
+                <Route path=":id" element={<Men />} />
+                <Route path=":id/:hd" element={<Men />} />
+              </Route>
+              <Route path={route.women} element={<Women />} />
+              <Route path={route.unisex} element={<Unisex />} />
+              <Route path={route.authentication} element={<Authentication />} />
+              <Route path={route.cart} element={<Cart />} />
+              <Route path={route[404]} element={<NotFound />} />
+            </Routes>
+          </QueryClientProvider>
+        </BrowserRouter>
+      </Provider>
     </>
   );
 }

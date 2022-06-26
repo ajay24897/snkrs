@@ -1,7 +1,10 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
 import { BsBag } from "react-icons/bs";
 import "./style.css";
+import { Auth } from "../../../../firebase/services/auth.services";
 
 const navList = [
   {
@@ -19,7 +22,16 @@ const navList = [
 ];
 
 function DesktopNav() {
+  let { hasLoggedIn } = useSelector((state) => state.userAuthReducer);
+
   const navigate = useNavigate();
+  let dispatch = useDispatch();
+
+  const logOut = () => {
+    Auth.signOut();
+    dispatch({ type: "LOG_OUT_REQUEST" });
+  };
+
   return (
     <div id="container">
       <NavLink to={"/"}>
@@ -47,14 +59,26 @@ function DesktopNav() {
           justifyContent: "space-between",
         }}
       >
-        <NavLink
-          to="authentication"
-          className={({ isActive }) =>
-            isActive ? "navlink active-navlink" : "navlink"
-          }
-        >
-          <text onClick={() => navigate("/authentication")}>Sign up</text>
-        </NavLink>
+        {!hasLoggedIn ? (
+          <NavLink
+            to="authentication"
+            className={({ isActive }) =>
+              isActive ? "navlink active-navlink" : "navlink"
+            }
+          >
+            <text>Sign up</text>
+          </NavLink>
+        ) : (
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "navlink active-navlink" : "navlink"
+            }
+            to="/"
+            onClick={logOut}
+          >
+            <text>Log out</text>
+          </NavLink>
+        )}
 
         <NavLink
           to="cart"
