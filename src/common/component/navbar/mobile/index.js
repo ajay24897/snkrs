@@ -107,7 +107,7 @@ export const SideMenu = styled.div`
 
   @media screen and (max-width: 768px) {
     display: flex;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     background: #f2f2f2;
     z-index: 30;
@@ -123,8 +123,7 @@ export const SideMenu = styled.div`
       props.isOpen === true
         ? "circle(150vh at 100% -0%)"
         : "circle(0px at 100% -0%)"};
-    transition: ${(props) =>
-      props.isOpen === true ? "all 1s ease-in-out" : "all 1s ease-in-out"};
+    transition: all 1s ease-in-out;
 
     .navlink {
       font-size: 1.5rem;

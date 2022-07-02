@@ -36,21 +36,35 @@ function App() {
     <div>
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
-          <Navbar />
-          {showSignupForm && <Authentication />}
+          <div
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              zIndex: 20,
+              background: "#fff",
+            }}
+          >
+            <Navbar />
+          </div>
+
           {userDetails?.email && <h2>{userDetails?.email}</h2>}
-          <Routes>
-            <Route path={route.home} element={<Home />} />
-            <Route path={route.men}>
-              <Route index element={<Men />} />
-              <Route path=":id" element={<Men />} />
-              <Route path=":id/:hd" element={<Men />} />
-            </Route>
-            <Route path={route.women} element={<Women />} />
-            <Route path={route.unisex} element={<Unisex />} />
-            <Route path={route.cart} element={<Cart />} />
-            <Route path={route[404]} element={<NotFound />} />
-          </Routes>
+          <div style={{ marginTop: "4rem" }}>
+            {showSignupForm && <Authentication />}
+            <Routes>
+              <Route path={route.home} element={<Home />} />
+              <Route path={route.men}>
+                <Route index element={<Men />} />
+                <Route path=":id" element={<Men />} />
+                <Route path=":id/:hd" element={<Men />} />
+              </Route>
+              <Route path={route.women} element={<Women />} />
+              <Route path={route.unisex} element={<Unisex />} />
+              <Route path={route.cart} element={<Cart />} />
+              <Route path={route[404]} element={<NotFound />} />
+            </Routes>
+          </div>
         </QueryClientProvider>
       </BrowserRouter>
     </div>
