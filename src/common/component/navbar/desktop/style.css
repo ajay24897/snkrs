@@ -38,10 +38,10 @@
 #container .navlink {
   text-decoration: none;
   color: #000;
-  padding: 0rem 2rem;
   height: 100%;
   -webkit-transition: all .5s ease-in;
   transition: all .5s ease-in;
+  margin: 0rem 1.5rem;
 }
 
 #container .navlink:hover {
