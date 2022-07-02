@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase/firebase-config";
 import "./App.css";
@@ -18,6 +18,9 @@ import Authentication from "./screens/auth";
 
 function App() {
   const dispatch = useDispatch();
+  const { showSignupForm, userDetails } = useSelector(
+    (state) => state.userAuthReducer
+  );
   const queryClient = new QueryClient();
 
   useEffect(() => {
@@ -34,6 +37,8 @@ function App() {
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
           <Navbar />
+          {showSignupForm && <Authentication />}
+          {userDetails?.email && <h2>{userDetails?.email}</h2>}
           <Routes>
             <Route path={route.home} element={<Home />} />
             <Route path={route.men}>
@@ -43,7 +48,6 @@ function App() {
             </Route>
             <Route path={route.women} element={<Women />} />
             <Route path={route.unisex} element={<Unisex />} />
-            <Route path={route.authentication} element={<Authentication />} />
             <Route path={route.cart} element={<Cart />} />
             <Route path={route[404]} element={<NotFound />} />
           </Routes>

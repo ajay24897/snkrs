@@ -13,7 +13,7 @@ align-self: center;
     width: 8rem;
     height: 3rem;
 }
-#links {
+#middle_navelink {
     display: flex;
     flex-direction: row;  
 }
@@ -31,6 +31,12 @@ align-self: center;
         text-underline-offset: 1rem;
     
     }
+}
+
+.right_navelink{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .active-navlink{
     text-decoration: underline;

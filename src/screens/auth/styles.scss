@@ -1,0 +1,55 @@
+@import "../../common/sass/colors";
+
+.container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: $white;
+    width: 30rem;
+    min-height: 25rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    z-index: 27;
+    text-align: center;
+
+    @media (max-width: 609px) {
+        width: 90vw;
+        height: 50vh;
+        
+    }
+
+    .form_title{
+     margin: 0rem auto 2rem auto;
+    }
+    .form_content{
+        margin: 0 4rem;
+        text-align: start;
+    }
+    input {
+        width: 95%;
+    }
+    .errorText{
+        color: $error;  
+        margin-top: 1rem;
+    }
+    text #link{
+        color: $link;
+        cursor: pointer
+    }
+    button{
+         background: $black;
+          width: 100% 
+    }
+}
+.overlay{
+    background-color: rgba($color: $black, $alpha: 0.3);
+    position: absolute;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: 0; 
+    z-index: 25;
+
+}

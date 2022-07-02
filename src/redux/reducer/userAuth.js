@@ -3,6 +3,7 @@ let initialState = {
   hasLoggedIn: false,
   isLoading: false,
   hasError: false,
+  showSignupForm: false,
 };
 
 export const userAuthReducer = (state = initialState, action) => {
@@ -27,7 +28,7 @@ export const userAuthReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        hasError: true,
+        hasError: action.data,
         userDetails: null,
       };
 
@@ -36,6 +37,42 @@ export const userAuthReducer = (state = initialState, action) => {
         ...state,
         userDetails: null,
         hasLoggedIn: false,
+      };
+
+    case "SIGN_UP_REQUEST":
+      return {
+        ...state,
+        isLoading: true,
+        hasError: false,
+      };
+
+    case "SIGN_UP_SUCCESS":
+      return {
+        ...state,
+        isLoading: false,
+        hasError: false,
+        userDetails: action.data,
+        hasLoggedIn: true,
+      };
+
+    case "SIGN_UP_FAILED":
+      return {
+        ...state,
+        isLoading: false,
+        hasError: action.data,
+        userDetails: null,
+      };
+
+    case "OPEN_SIGN_UP_FORM":
+      return {
+        ...state,
+        showSignupForm: true,
+      };
+    case "CLOSE_SIGN_UP_FORM":
+      return {
+        ...state,
+        showSignupForm: false,
+        hasError: false,
       };
     default:
       return state;
