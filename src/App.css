@@ -6,6 +6,10 @@
   font-size: calc(14px + 0.1vw);
 }
 
+.page {
+  height: calc(10vh - 4rem);
+}
+
 h1 {
   font-size: 3em;
 }

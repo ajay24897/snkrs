@@ -428,10 +428,8 @@ textarea {
 
 /*normal image product  */
 .productImg {
-  height: 280px;
   -o-object-fit: contain;
      object-fit: contain;
-  max-width: 280px;
   width: 100%;
 }
 
@@ -481,10 +479,19 @@ textarea {
   }
 }
 
+.flex-r-center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 @media (min-width: 1224px) {
   .product-grid {
-    -ms-grid-columns: auto auto auto auto;
-        grid-template-columns: auto auto auto auto;
+    -ms-grid-columns: (minmax(300px, 400px))[auto-fit];
+        grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
   }
 }
 
@@ -868,9 +875,9 @@ textarea {
 }
 
 ::-webkit-scrollbar {
-  height: 6px;
+  height: .2rem;
   /* height of horizontal scrollbar ← You're missing this */
-  width: 6px;
+  width: .2rem;
   border-radius: 5px;
 }
 
@@ -880,7 +887,7 @@ textarea {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--orange);
+  background-color: #000000;
   border-radius: 5px;
 }
 /*# sourceMappingURL=style.css.map */

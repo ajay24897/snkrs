@@ -1,0 +1,66 @@
+.auth_container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  width: 30rem;
+  min-height: 25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-radius: 1rem;
+  z-index: 27;
+  text-align: center;
+}
+
+@media (max-width: 609px) {
+  .auth_container {
+    width: 90vw;
+    height: 50vh;
+  }
+}
+
+.auth_container .form_title {
+  margin: 0rem auto 2rem auto;
+}
+
+.auth_container .form_content {
+  margin: 0 4rem;
+  text-align: start;
+}
+
+.auth_container input {
+  width: 95%;
+}
+
+.auth_container .errorText {
+  color: #cc0000;
+  margin-top: 1rem;
+}
+
+.auth_container text #link {
+  color: #0588BC;
+  cursor: pointer;
+}
+
+.auth_container button {
+  background: #000000;
+  width: 100%;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 25;
+}
+/*# sourceMappingURL=styles.css.map */

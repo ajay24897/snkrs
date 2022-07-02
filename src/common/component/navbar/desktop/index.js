@@ -2,9 +2,10 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { BsBag } from "react-icons/bs";
-import "./style.css";
 
 import { Auth } from "../../../../firebase/services/auth.services";
+import { LOG_OUT, SIGN_UP } from "../../../constant/string/common.string";
+import "./style.css";
 
 const navList = [
   {
@@ -36,7 +37,7 @@ function DesktopNav() {
         <img id="logo" src={require("../../../image/logo.png")} alt={"logo"} />
       </NavLink>
 
-      <div id="links">
+      <div id="middle_navelink">
         {navList.map((nav) => {
           return (
             <NavLink
@@ -50,32 +51,18 @@ function DesktopNav() {
           );
         })}
       </div>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
+      <div className="right_navelink">
         {!hasLoggedIn ? (
-          <NavLink
-            to="authentication"
-            className={({ isActive }) =>
-              isActive ? "navlink active-navlink" : "navlink"
-            }
+          <div
+            className={"navlink"}
+            onClick={() => dispatch({ type: "OPEN_SIGN_UP_FORM" })}
           >
-            <text>Sign up</text>
-          </NavLink>
+            <text>{SIGN_UP}</text>
+          </div>
         ) : (
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? "navlink active-navlink" : "navlink"
-            }
-            to="/"
-            onClick={logOut}
-          >
-            <text>Log out</text>
-          </NavLink>
+          <text className="navlink" onClick={logOut}>
+            {LOG_OUT}
+          </text>
         )}
 
         <NavLink

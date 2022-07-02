@@ -1,80 +1,116 @@
 import React, { useState, useEffect } from "react";
-import { Auth } from "../../firebase/services/auth.services";
 import { useDispatch, useSelector } from "react-redux";
+import { GrClose } from "react-icons/gr";
+
+import "./styles.css";
+import {
+  ALREADY_HAVE_ACCOUNT,
+  DONT_HAVE_ACCOUNT,
+  Email,
+  ENTER_EMAIL,
+  ENTER_PASSWORD,
+  LOG_IN,
+  PASSWORD,
+  SIGN_UP,
+} from "../../common/constant/string/common.string";
 
 function Authentication() {
-  let [email, setEmail] = useState("");
-  let [password, setPassword] = useState("");
-  let state = useSelector((state) => state.userAuthReducer.userDetails);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [hasSignUpForm, setHasSignUpForm] = useState(true);
 
-  useEffect(() => {
-    console.log("state", state);
-  }, [state]);
+  const { userDetails, hasError } = useSelector(
+    (state) => state.userAuthReducer
+  );
 
   let dispatch = useDispatch();
 
+  useEffect(() => {
+    if (userDetails?.email) {
+      dispatch({ type: "CLOSE_SIGN_UP_FORM" });
+    }
+  }, [dispatch, userDetails]);
+
+  useEffect(() => {
+    if (hasError) {
+      setError(hasError);
+    }
+  }, [hasError]);
+
   const handleClick = async () => {
-    try {
-      let res = await Auth.createUser(email, password);
-      console.log(res);
-    } catch (error) {
-      console.log(error);
+    setError("");
+    if (email.trim() === "" && password.trim() === "") {
+      setError("Please enter Email and Password");
+    } else if (password.trim() === "") {
+      setError("Please enter Password");
+    } else if (email.trim() === "") {
+      setError("Please enter Email");
+    } else if (email && password) {
+      if (hasSignUpForm) {
+        dispatch({ type: "SIGN_UP_REQUEST", data: { email, password } });
+      } else {
+        dispatch({ type: "LOGIN_REQUEST", data: { email, password } });
+      }
     }
   };
 
-  const handleClickLogIn = async () => {
-    dispatch({ type: "LOGIN_REQUEST", data: { email, password } });
-  };
-  const signOut = async () => {
-    Auth.signOut();
-    dispatch({ type: "LOG_OUT_REQUEST" });
+  const handleFormChange = () => {
+    setError("");
+    setEmail("");
+    setPassword("");
+    setHasSignUpForm((prev) => !prev);
   };
 
   return (
-    <div
-      style={{
-        width: "80%",
-        margin: "0 20%",
-        flexDirection: "column",
-      }}
-    >
-      {state?.email ?? "no user found"} looged in
-      <h4>sign up</h4>
-      <label>Email</label>
-      <input
-        type={"text"}
-        style={{ width: "50%" }}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <label>password</label>
-      <input
-        type={"password"}
-        style={{ width: "50%" }}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleClick} style={{ background: "black" }}>
-        Sign up
-      </button>
-      <h4>Log in</h4>
-      <label>Email</label>
-      <input
-        type={"text"}
-        style={{ width: "50%" }}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <label>password</label>
-      <input
-        type={"password"}
-        style={{ width: "50%" }}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleClickLogIn} style={{ background: "black" }}>
-        Log in
-      </button>
-      <h4>Log out</h4>
-      <button style={{ background: "black" }} onClick={signOut}>
-        log out
-      </button>
+    <div className="overlay">
+      <div className="auth_container">
+        <GrClose
+          style={{ margin: "1rem 2rem 0 auto" }}
+          onClick={() => dispatch({ type: "CLOSE_SIGN_UP_FORM" })}
+        />
+        {/* {state?.email ?? "no user found"} looged in */}
+
+        <h4 className="form_title">{hasSignUpForm ? "Sign Up" : "Log In"}</h4>
+        <div className="form_content">
+          <label className="label">{Email}</label>
+          <input
+            placeholder={ENTER_EMAIL}
+            type={"text"}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <label className="label">{PASSWORD}</label>
+          <input
+            type={"password"}
+            placeholder={ENTER_PASSWORD}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {hasSignUpForm ? (
+            <button onClick={handleClick}>{SIGN_UP}</button>
+          ) : (
+            <button onClick={handleClick}>{LOG_IN}</button>
+          )}
+        </div>
+        {hasSignUpForm ? (
+          <text>
+            {ALREADY_HAVE_ACCOUNT}
+            <text id={"link"} onClick={handleFormChange}>
+              {LOG_IN}
+            </text>
+          </text>
+        ) : (
+          <text>
+            {DONT_HAVE_ACCOUNT}
+            <text id={"link"} onClick={handleFormChange}>
+              {SIGN_UP}
+            </text>
+          </text>
+        )}
+
+        {error && <text className="errorText">{error}</text>}
+      </div>
     </div>
   );
 }
