@@ -1,4 +1,4 @@
-.container {
+.auth_container {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -20,36 +20,36 @@
 }
 
 @media (max-width: 609px) {
-  .container {
+  .auth_container {
     width: 90vw;
     height: 50vh;
   }
 }
 
-.container .form_title {
+.auth_container .form_title {
   margin: 0rem auto 2rem auto;
 }
 
-.container .form_content {
+.auth_container .form_content {
   margin: 0 4rem;
   text-align: start;
 }
 
-.container input {
+.auth_container input {
   width: 95%;
 }
 
-.container .errorText {
+.auth_container .errorText {
   color: #cc0000;
   margin-top: 1rem;
 }
 
-.container text #link {
+.auth_container text #link {
   color: #0588BC;
   cursor: pointer;
 }
 
-.container button {
+.auth_container button {
   background: #000000;
   width: 100%;
 }

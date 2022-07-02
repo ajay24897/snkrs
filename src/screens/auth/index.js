@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Auth } from "../../firebase/services/auth.services";
 import { useDispatch, useSelector } from "react-redux";
 import { GrClose } from "react-icons/gr";
 
@@ -65,7 +64,7 @@ function Authentication() {
 
   return (
     <div className="overlay">
-      <div className="container">
+      <div className="auth_container">
         <GrClose
           style={{ margin: "1rem 2rem 0 auto" }}
           onClick={() => dispatch({ type: "CLOSE_SIGN_UP_FORM" })}

@@ -31,9 +31,9 @@ function App() {
           data: currentUser,
         });
     });
-  }, []);
+  }, [dispatch]);
   return (
-    <>
+    <div>
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
           <Navbar />
@@ -53,7 +53,7 @@ function App() {
           </Routes>
         </QueryClientProvider>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 
