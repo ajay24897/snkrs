@@ -79,6 +79,7 @@ function Authentication() {
             type={"text"}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            id="input"
           />
           <label className="label">{PASSWORD}</label>
           <input
@@ -86,6 +87,7 @@ function Authentication() {
             placeholder={ENTER_PASSWORD}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            id="input"
           />
           {hasSignUpForm ? (
             <button onClick={handleClick}>{SIGN_UP}</button>

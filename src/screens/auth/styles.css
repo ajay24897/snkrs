@@ -35,7 +35,7 @@
   text-align: start;
 }
 
-.auth_container input {
+.auth_container #input {
   width: 95%;
 }
 
