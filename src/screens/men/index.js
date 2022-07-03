@@ -23,8 +23,9 @@ function Men() {
     try {
       let doc = await mensApi.getSnkr(id);
       setSingleSnkr({ ...doc.data(), id: doc.id });
+      console.log({ ...doc.data(), id: doc.id });
     } catch (err) {
-      console.log(err);
+      console.log("ededdede", err);
     }
   };
 

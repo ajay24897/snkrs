@@ -9,3 +9,10 @@ export const Email = "Email";
 
 export const ENTER_EMAIL = "Enter email";
 export const ENTER_PASSWORD = "Enter password";
+
+export const SELECT_QUANTITY = "Select Quantity";
+export const SELECT_SIZE = "Select Size";
+
+export const UK = "UK";
+
+export const ADD_TO_CART = "Add To Cart";

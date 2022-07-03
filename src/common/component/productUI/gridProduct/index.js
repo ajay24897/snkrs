@@ -19,7 +19,7 @@ function GridProductUI({ data = [], fetchNextPage = () => {}, page = "" }) {
       className="product-grid overflow-hidden"
     >
       {data?.map((product, index) => (
-        <SingleProduct product={product} page={page} />
+        <SingleProduct key={product.name} product={product} page={page} />
       ))}
     </InfiniteScroll>
   );
