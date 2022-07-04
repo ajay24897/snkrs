@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
+import Loader from "../../common/component/loader";
 import GridProductUI from "../../common/component/productUI/gridProduct";
 import { GetProductUI } from "../../common/component/productUI/SingleProduct";
 import mensApi from "../../firebase/services/snkrs.services";
@@ -67,6 +68,7 @@ function Men() {
           page={"men"}
         />
       )}
+      {(isLoading || isFetching) && <Loader showOverlay={!start} />}
       {id && <GetProductUI product={singleSnkr} />}
     </>
   );
