@@ -80,8 +80,8 @@
 }
 
 #container .cart:hover {
-  -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg);
+  -webkit-transform: translateY(0.2rem);
+          transform: translateY(0.2rem);
 }
 
 #container .active-cart {

@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase/firebase-config";
+
 import "./App.css";
 
 import Navbar from "./common/component/navbar";
@@ -48,8 +49,6 @@ function App() {
           >
             <Navbar />
           </div>
-
-          {userDetails?.email && <h2>{userDetails?.email}</h2>}
           <div style={{ marginTop: "4rem" }}>
             {showSignupForm && <Authentication />}
             <Routes>

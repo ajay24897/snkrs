@@ -7,7 +7,6 @@ export const GetProductUI = ({ product }) => {
   const [showZoomImage, setShowZoomImage] = useState(false);
 
   const [windowSize, setWindowSize] = useState(window.innerWidth);
-  console.log(windowSize);
 
   useEffect(() => {
     if (windowSize < 1024 && showZoomImage) setShowZoomImage(false);
@@ -15,7 +14,7 @@ export const GetProductUI = ({ product }) => {
 
   useEffect(() => {
     const handleResize = () => {
-      setWindowSize(window.innerWidth);
+      if (windowSize > 1023) setWindowSize(window.innerWidth);
     };
     window.addEventListener("resize", handleResize);
 
