@@ -52,7 +52,7 @@ function MobileNavigation() {
   return (
     <>
       <div id="mob-container">
-        <NavLink to={"/"} onClick={() => setMenuOpen(false)}>
+        <NavLink to={"/snkrs"} onClick={() => setMenuOpen(false)}>
           <img
             id="logo"
             src={require("../../../image/logo.png")}

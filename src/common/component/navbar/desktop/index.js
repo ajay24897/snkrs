@@ -38,7 +38,7 @@ function DesktopNav() {
 
   return (
     <div id="container">
-      <NavLink to={"/"}>
+      <NavLink to={"/snkrs"}>
         <img id="logo" src={require("../../../image/logo.png")} alt={"logo"} />
       </NavLink>
 
