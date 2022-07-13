@@ -33,6 +33,7 @@
                 text-decoration-color: grey;
                 text-underline-offset: 1rem;}
             .cart{
+                position: relative;
                 align-self: center;
                 text-decoration: none;
                 color: #000;
@@ -43,6 +44,7 @@
 
             .container { 
                 display: flex; 
+                position: relative;
                 align-items: center }
           }
           .zIndex {

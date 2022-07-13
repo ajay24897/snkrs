@@ -4,6 +4,8 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { GrClose } from "react-icons/gr";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+
 import "./style.css";
 
 const navList = [
@@ -24,7 +26,11 @@ function MobileNavigation() {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isRotate, setRotate] = useState(false);
   const [isRotateCross, setRotateCross] = useState(false);
+  const { totalItems } = useSelector((state) => state.cartDetailsReducer);
 
+  useEffect(() => {
+    console.log("totalItems");
+  }, [totalItems]);
   useEffect(() => {
     setRotate(false);
   }, [isRotateCross]);
@@ -46,7 +52,7 @@ function MobileNavigation() {
   return (
     <>
       <div id="mob-container">
-        <NavLink to={"/"} onClick={() => setMenuOpen(false)}>
+        <NavLink to={"/snkrs"} onClick={() => setMenuOpen(false)}>
           <img
             id="logo"
             src={require("../../../image/logo.png")}
@@ -62,6 +68,17 @@ function MobileNavigation() {
               isActive ? "cart active-cart" : "cart"
             }
           >
+            <text
+              style={{
+                display: "flex",
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+              }}
+            >
+              {totalItems}
+            </text>
             <BsBag size={"2rem"} />
           </NavLink>
           {isMenuOpen ? (

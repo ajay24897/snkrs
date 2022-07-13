@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { BsBag } from "react-icons/bs";
@@ -24,16 +24,21 @@ const navList = [
 
 function DesktopNav() {
   let { hasLoggedIn } = useSelector((state) => state.userAuthReducer);
+  let { totalItems } = useSelector((state) => state.cartDetailsReducer);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    console.log("totalItems", totalItems);
+  }, [totalItems]);
   const logOut = () => {
     Auth.signOut();
     dispatch({ type: "LOG_OUT_REQUEST" });
+    dispatch({ type: "CLEAR_CART_ITEM" });
   };
 
   return (
     <div id="container">
-      <NavLink to={"/"}>
+      <NavLink to={"/snkrs"}>
         <img id="logo" src={require("../../../image/logo.png")} alt={"logo"} />
       </NavLink>
 
@@ -45,6 +50,7 @@ function DesktopNav() {
               className={({ isActive }) =>
                 isActive ? "navlink active-navlink" : "navlink"
               }
+              key={nav.to}
             >
               <text>{nav.route}</text>
             </NavLink>
@@ -69,6 +75,17 @@ function DesktopNav() {
           to="cart"
           className={({ isActive }) => (isActive ? "cart active-cart" : "cart")}
         >
+          <text
+            style={{
+              display: "flex",
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+            }}
+          >
+            {totalItems}
+          </text>
           <BsBag size={"2rem"} />
         </NavLink>
       </div>

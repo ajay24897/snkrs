@@ -1,5 +1,5 @@
 const route = {
-  home: "/",
+  home: "/snkrs",
   men: "men",
   women: "women",
   unisex: "unisex",

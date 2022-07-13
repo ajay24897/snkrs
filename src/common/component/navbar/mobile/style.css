@@ -47,6 +47,7 @@
     text-underline-offset: 1rem;
   }
   #mob-container .cart {
+    position: relative;
     -ms-flex-item-align: center;
         -ms-grid-row-align: center;
         align-self: center;
@@ -60,6 +61,7 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    position: relative;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;

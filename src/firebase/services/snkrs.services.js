@@ -16,8 +16,9 @@ import { db } from "../firebase-config";
 // https://firebase.google.com/docs/firestore/manage-data/add-data
 
 const mensSnkrs = collection(db, "mens-snkrs");
+const cart = collection(db, "cart");
 
-let mensApi = {
+export const mensApi = {
   addSnkr: (snkr) => addDoc(mensSnkrs, snkr),
   getAllSnkrs: () => getDocs(mensSnkrs),
   getSnkrs: async () =>
@@ -42,4 +43,12 @@ let mensApi = {
     getDocs(query(mensSnkrs, orderBy("id"), startAfter(d), limit(12))),
 };
 
-export default mensApi;
+export const cartApi = {
+  addSnkr: (snkr) => addDoc(cart, snkr),
+  deleteSnkr: () => {},
+  getSnkr: async (email) => {
+    if (email) {
+      return await getDocs(query(cart, where("user", "==", email)));
+    }
+  },
+};

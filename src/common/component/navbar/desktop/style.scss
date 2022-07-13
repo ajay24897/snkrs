@@ -49,7 +49,7 @@ align-self: center;
     transition: all .2s;
 
     &:hover{
-        transform: rotateY(180deg);        
+    transform: translateY(.2rem);        
     }
 }
 .active-cart {

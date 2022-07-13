@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import Loader from "../../common/component/loader";
 import GridProductUI from "../../common/component/productUI/gridProduct";
 import { GetProductUI } from "../../common/component/productUI/SingleProduct";
-import mensApi from "../../firebase/services/snkrs.services";
+import { mensApi } from "../../firebase/services/snkrs.services";
 
 function Men() {
   let { id } = useParams();
@@ -24,14 +24,12 @@ function Men() {
     try {
       let doc = await mensApi.getSnkr(id);
       setSingleSnkr({ ...doc.data(), id: doc.id });
-      console.log({ ...doc.data(), id: doc.id });
     } catch (err) {
       console.log("ededdede", err);
     }
   };
 
   let fetchSnkr = async (start) => {
-    console.log(start);
     let arr = [];
     try {
       let res = await mensApi.getPaginatedSnkrs(start);
