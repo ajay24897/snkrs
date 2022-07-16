@@ -54,6 +54,16 @@
     text-decoration: none;
     color: #000;
   }
+  #mob-container #cart-value {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+  }
   #mob-container .active-cart {
     color: grey;
   }

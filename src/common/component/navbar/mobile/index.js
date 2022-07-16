@@ -4,9 +4,11 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { GrClose } from "react-icons/gr";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import "./style.css";
+import { LOG_OUT, SIGN_UP } from "../../../constant/string/common.string";
+import { Auth } from "../../../../firebase/services/auth.services";
 
 const navList = [
   {
@@ -27,10 +29,9 @@ function MobileNavigation() {
   const [isRotate, setRotate] = useState(false);
   const [isRotateCross, setRotateCross] = useState(false);
   const { totalItems } = useSelector((state) => state.cartDetailsReducer);
+  let { hasLoggedIn } = useSelector((state) => state.userAuthReducer);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log("totalItems");
-  }, [totalItems]);
   useEffect(() => {
     setRotate(false);
   }, [isRotateCross]);
@@ -49,6 +50,12 @@ function MobileNavigation() {
     setRotateCross(true);
   };
 
+  const logOut = () => {
+    Auth.signOut();
+    dispatch({ type: "LOG_OUT_REQUEST" });
+    dispatch({ type: "CLEAR_CART_ITEM" });
+  };
+
   return (
     <>
       <div id="mob-container">
@@ -61,6 +68,18 @@ function MobileNavigation() {
         </NavLink>
 
         <div className="container">
+          {!hasLoggedIn ? (
+            <div
+              className={"navlink"}
+              onClick={() => dispatch({ type: "OPEN_SIGN_UP_FORM" })}
+            >
+              <text>{SIGN_UP}</text>
+            </div>
+          ) : (
+            <text className="navlink" onClick={logOut}>
+              {LOG_OUT}
+            </text>
+          )}
           <NavLink
             to="cart"
             onClick={() => setMenuOpen(false)}
@@ -68,17 +87,7 @@ function MobileNavigation() {
               isActive ? "cart active-cart" : "cart"
             }
           >
-            <text
-              style={{
-                display: "flex",
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-              }}
-            >
-              {totalItems}
-            </text>
+            <text id="cart-value">{totalItems}</text>
             <BsBag size={"2rem"} />
           </NavLink>
           {isMenuOpen ? (
