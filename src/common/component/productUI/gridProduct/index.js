@@ -1,16 +1,16 @@
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import SingleProduct from "../utils";
+import PropTypes from "prop-types";
 
+import SingleProduct from "../utils";
 import "./style.css";
 
-function GridProductUI({ data = [], fetchNextPage = () => {}, page = "" }) {
+function GridProductUI({ data, fetchNextPage = () => {}, page }) {
   return (
     <InfiniteScroll
-      dataLength={data?.length} //This is important field to render the next data
+      dataLength={data?.length}
       next={fetchNextPage}
       hasMore={true}
-      // loader={<h4>Loading...</h4>}
       endMessage={
         <p style={{ textAlign: "center" }}>
           <b>Yay! You have seen it all</b>
@@ -18,7 +18,7 @@ function GridProductUI({ data = [], fetchNextPage = () => {}, page = "" }) {
       }
       className="product-grid overflow-hidden"
     >
-      {data?.map((product, index) => (
+      {data?.map((product) => (
         <SingleProduct key={product.name} product={product} page={page} />
       ))}
     </InfiniteScroll>
@@ -26,3 +26,13 @@ function GridProductUI({ data = [], fetchNextPage = () => {}, page = "" }) {
 }
 
 export default GridProductUI;
+
+GridProductUI.defaultProps = {
+  data: [],
+  fetchNextPage: () => {},
+};
+GridProductUI.propTypes = {
+  data: PropTypes.array,
+  fetchNextPage: PropTypes.func,
+  page: PropTypes.string.isRequired,
+};

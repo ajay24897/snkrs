@@ -1,3 +1,6 @@
+@import "../../../sass/common";
+@import "../../../sass/colors";
+
 #container {
 display: flex;
 flex-direction: row;
@@ -19,15 +22,15 @@ align-self: center;
 }
 .navlink{
     text-decoration: none;
-    color: #000;
+    color: $black;
     height: 100%;
     transition: all .5s ease-in;
     margin: 0rem 1.5rem;
 
     &:hover{
         text-decoration: underline; 
-        color: grey;
-        text-decoration-color: grey;
+        color: $grey;
+        text-decoration-color: $grey;
         text-underline-offset: 1rem;
     
     }
@@ -40,11 +43,11 @@ align-self: center;
 }
 .active-navlink{
     text-decoration: underline;
-    text-decoration-color: grey;
+    text-decoration-color: $grey;
     text-underline-offset: 1rem;}
 .cart{
     text-decoration: none;
-    color: #000;
+    color: $black;
     position: relative;
     transition: all .2s;
 
@@ -54,13 +57,10 @@ align-self: center;
 }
 #cart-value{
     display: flex;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    @include absolouteCenter();
 }
 .active-cart {
-    color: grey;        
+    color: $grey;        
     }
     @media (max-width: 768px) {
         display: none;

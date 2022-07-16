@@ -1,10 +1,12 @@
+@import "../src/common/sass/colors";
+
 * {
     padding: 0rem;
     margin: 0rem;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     font-size: calc(14px + 0.1vw);
-   
+
   }
   .page{
     height: calc(10vh - 4rem);
@@ -33,4 +35,56 @@
   }
   p {
     font-size: 1.2em;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  input[type="password"],
+  select {
+    width: -webkit-fill-available;
+    height: 35px;
+    padding: 0 10px;
+    margin: 10px 0;
+    border: 1px solid $blackShadow;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    border-radius: 5px;
+    display: flex;
+    transition: all 0.5s linear;
+  }
+  input:focus,
+  input:hover,
+  textarea:focus,
+  textarea:hover,
+  section:active {
+    border: .1rem solid $blue300;
+  }
+  input[type="file"]:focus,
+  input[type="file"]:hover {
+    border: none;
+  }
+  button {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    color: $white;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    transition: all 0.25s linear;
+  }
+
+  ::-webkit-scrollbar {
+    height: .2rem; /* height of horizontal scrollbar ← You're missing this */
+    width: .2rem;
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: $grey;
+    border-radius: .5rem;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: $black;
+    border-radius: .5rem;
   }

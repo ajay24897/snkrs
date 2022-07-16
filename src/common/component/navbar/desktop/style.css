@@ -37,7 +37,7 @@
 
 #container .navlink {
   text-decoration: none;
-  color: #000;
+  color: #000000;
   height: 100%;
   -webkit-transition: all .5s ease-in;
   transition: all .5s ease-in;
@@ -46,9 +46,9 @@
 
 #container .navlink:hover {
   text-decoration: underline;
-  color: grey;
-  -webkit-text-decoration-color: grey;
-          text-decoration-color: grey;
+  color: #808080;
+  -webkit-text-decoration-color: #808080;
+          text-decoration-color: #808080;
   text-underline-offset: 1rem;
 }
 
@@ -66,14 +66,14 @@
 
 #container .active-navlink {
   text-decoration: underline;
-  -webkit-text-decoration-color: grey;
-          text-decoration-color: grey;
+  -webkit-text-decoration-color: #808080;
+          text-decoration-color: #808080;
   text-underline-offset: 1rem;
 }
 
 #container .cart {
   text-decoration: none;
-  color: #000;
+  color: #000000;
   position: relative;
   -webkit-transition: all .2s;
   transition: all .2s;
@@ -96,7 +96,7 @@
 }
 
 #container .active-cart {
-  color: grey;
+  color: #808080;
 }
 
 @media (max-width: 768px) {

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { BsBag } from "react-icons/bs";
@@ -7,34 +7,18 @@ import { Auth } from "../../../../firebase/services/auth.services";
 import { LOG_OUT, SIGN_UP } from "../../../constant/string/common.string";
 import "./style.css";
 
-const navList = [
-  {
-    route: "Men",
-    to: "men",
-  },
-  {
-    route: "Women",
-    to: "women",
-  },
-  {
-    route: "Unisex",
-    to: "unisex",
-  },
-];
-
-function DesktopNav() {
+function DesktopNavigation() {
   let { hasLoggedIn } = useSelector((state) => state.userAuthReducer);
   let { totalItems } = useSelector((state) => state.cartDetailsReducer);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log("totalItems", totalItems);
-  }, [totalItems]);
-  const logOut = () => {
+  const handleLogOut = () => {
     Auth.signOut();
     dispatch({ type: "LOG_OUT_REQUEST" });
     dispatch({ type: "CLEAR_CART_ITEM" });
   };
+
+  const handleSignUpClick = () => dispatch({ type: "OPEN_SIGN_UP_FORM" });
 
   return (
     <div id="container">
@@ -43,30 +27,27 @@ function DesktopNav() {
       </NavLink>
 
       <div id="middle_navelink">
-        {navList.map((nav) => {
+        {navbarItems.map((navigate) => {
           return (
             <NavLink
-              to={nav.to}
+              to={navigate.to}
               className={({ isActive }) =>
                 isActive ? "navlink active-navlink" : "navlink"
               }
-              key={nav.to}
+              key={navigate.to}
             >
-              <text>{nav.route}</text>
+              <text>{navigate.route}</text>
             </NavLink>
           );
         })}
       </div>
       <div className="right_navelink">
         {!hasLoggedIn ? (
-          <div
-            className={"navlink"}
-            onClick={() => dispatch({ type: "OPEN_SIGN_UP_FORM" })}
-          >
+          <div className={"navlink"} onClick={handleSignUpClick}>
             <text>{SIGN_UP}</text>
           </div>
         ) : (
-          <text className="navlink" onClick={logOut}>
+          <text className="navlink" onClick={handleLogOut}>
             {LOG_OUT}
           </text>
         )}
@@ -83,4 +64,21 @@ function DesktopNav() {
   );
 }
 
-export default DesktopNav;
+export default DesktopNavigation;
+DesktopNavigation.defaultProps = {};
+DesktopNavigation.propTypes = {};
+
+const navbarItems = [
+  {
+    route: "Men",
+    to: "men",
+  },
+  {
+    route: "Women",
+    to: "women",
+  },
+  {
+    route: "Unisex",
+    to: "unisex",
+  },
+];

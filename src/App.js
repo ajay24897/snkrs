@@ -3,10 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
+
 import { auth } from "./firebase/firebase-config";
-
-import "./App.css";
-
 import Navbar from "./common/component/navbar";
 import route from "./common/constant/string/route.string";
 import NotFound from "./screens/404";
@@ -16,12 +14,11 @@ import Men from "./screens/men";
 import Unisex from "./screens/unisex";
 import Women from "./screens/women";
 import Authentication from "./screens/auth";
+import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
-  const { showSignupForm, userDetails } = useSelector(
-    (state) => state.userAuthReducer
-  );
+  const { showSignupForm } = useSelector((state) => state.userAuthReducer);
   const queryClient = new QueryClient();
 
   useEffect(() => {
@@ -37,18 +34,7 @@ function App() {
     <div>
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
-          <div
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              right: 0,
-              zIndex: 20,
-              background: "#fff",
-            }}
-          >
-            <Navbar />
-          </div>
+          <Navbar />
           <div style={{ marginTop: "4rem" }}>
             {showSignupForm && <Authentication />}
             <Routes>
