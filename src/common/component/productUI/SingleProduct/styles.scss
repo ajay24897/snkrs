@@ -9,7 +9,6 @@
     #image {
         width: 600px;
         height: 500px;
-        margin: 0 auto;
 
         @media (max-width: 667px) {
             width: 90vw;
@@ -17,10 +16,15 @@
         }
     }
     #product-info-wrapper {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        margin-right: auto;
+        flex:1;
+        min-width: 300px;
+        max-width: 500px;
+        margin-left: 20px;
+  
+        @media (max-width: 667px) {
+            min-width: 200px;
+            width: 90vw;
+        }
         .short-product-details {
             display: flex;
             flex-direction: column;

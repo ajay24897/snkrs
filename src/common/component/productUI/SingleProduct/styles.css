@@ -20,7 +20,6 @@
 #wrapper #image {
   width: 600px;
   height: 500px;
-  margin: 0 auto;
 }
 
 @media (max-width: 667px) {
@@ -31,16 +30,19 @@
 }
 
 #wrapper #product-info-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  margin-right: auto;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+  margin-left: 20px;
+}
+
+@media (max-width: 667px) {
+  #wrapper #product-info-wrapper {
+    min-width: 200px;
+    width: 90vw;
+  }
 }
 
 #wrapper #product-info-wrapper .short-product-details {
