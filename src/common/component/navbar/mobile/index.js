@@ -10,7 +10,7 @@ import "./style.css";
 import { LOG_OUT, SIGN_UP } from "../../../constant/string/common.string";
 import { Auth } from "../../../../firebase/services/auth.services";
 
-const navList = [
+const navbarItems = [
   {
     route: "Men",
     to: "men",
@@ -29,7 +29,7 @@ function MobileNavigation() {
   const [isRotate, setRotate] = useState(false);
   const [isRotateCross, setRotateCross] = useState(false);
   const { totalItems } = useSelector((state) => state.cartDetailsReducer);
-  let { hasLoggedIn } = useSelector((state) => state.userAuthReducer);
+  const { hasLoggedIn } = useSelector((state) => state.userAuthReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -50,11 +50,13 @@ function MobileNavigation() {
     setRotateCross(true);
   };
 
-  const logOut = () => {
+  const handleLogOut = () => {
     Auth.signOut();
     dispatch({ type: "LOG_OUT_REQUEST" });
     dispatch({ type: "CLEAR_CART_ITEM" });
   };
+
+  const handleSignUpClick = () => dispatch({ type: "OPEN_SIGN_UP_FORM" });
 
   return (
     <>
@@ -69,14 +71,11 @@ function MobileNavigation() {
 
         <div className="container">
           {!hasLoggedIn ? (
-            <div
-              className={"navlink"}
-              onClick={() => dispatch({ type: "OPEN_SIGN_UP_FORM" })}
-            >
+            <div className={"navlink"} onClick={handleSignUpClick}>
               <text>{SIGN_UP}</text>
             </div>
           ) : (
-            <text className="navlink" onClick={logOut}>
+            <text className="navlink" onClick={handleLogOut}>
               {LOG_OUT}
             </text>
           )}
@@ -90,24 +89,19 @@ function MobileNavigation() {
             <text id="cart-value">{totalItems}</text>
             <BsBag size={"2rem"} />
           </NavLink>
-          {isMenuOpen ? (
-            <div
-              className={`navlink zIndex ${isRotateCross ? "rotate" : "menu"}`}
-            >
-              <GrClose size={"2.2rem"} onClick={() => handelRotateHam()} />
-            </div>
-          ) : (
-            <div className={`navlink zIndex ${isRotate ? "rotate" : "menu"}`}>
-              <GiHamburgerMenu
-                size={"2.2rem"}
-                onClick={() => handelRotateBar()}
-              />
-            </div>
-          )}
+          <div
+            className={`navlink zIndex ${isRotateCross ? "rotate" : "menu"}`}
+          >
+            {isMenuOpen ? (
+              <GrClose size={"2.2rem"} onClick={handelRotateHam} />
+            ) : (
+              <GiHamburgerMenu size={"2.2rem"} onClick={handelRotateBar} />
+            )}
+          </div>
         </div>
       </div>
       <SideMenu isOpen={isMenuOpen}>
-        {navList.map((item, index) => {
+        {navbarItems.map((item, index) => {
           return (
             <NavLink
               to={item.to}
@@ -127,6 +121,8 @@ function MobileNavigation() {
 }
 
 export default MobileNavigation;
+MobileNavigation.defaultProps = {};
+MobileNavigation.propTypes = {};
 
 export const SideMenu = styled.div`
   display: none;
@@ -143,8 +139,6 @@ export const SideMenu = styled.div`
     right: 0;
     top: 0;
     overflow: hidden;
-    /* left: ${(props) => (props.isOpen === true ? 0 : "100%")};
-    right: ${(props) => (props.isOpen === true ? 0 : "-100%")}; */
     clip-path: ${(props) =>
       props.isOpen === true
         ? "circle(150vh at 100% -0%)"

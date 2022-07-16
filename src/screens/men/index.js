@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
+
 import Loader from "../../common/component/loader";
 import GridProductUI from "../../common/component/productUI/gridProduct";
-import { GetProductUI } from "../../common/component/productUI/SingleProduct";
+import { GetProductUI } from "../../common/component/productUI/singleProduct";
+import { firebaseData } from "../../common/function";
 import { mensApi } from "../../firebase/services/snkrs.services";
 
 function Men() {
@@ -11,8 +13,6 @@ function Men() {
   let [allData, setAllData] = useState([]);
   let [start, setStart] = useState(0);
   const [last, setLast] = useState();
-  const queryClient = useQueryClient();
-  const [allSnkrKey] = useState("allSnkr");
 
   let getSnk = async (id) => {
     if (id)
@@ -26,17 +26,11 @@ function Men() {
 
   let fetchSnkr = async (start) => {
     if (!id) {
-      console.log("in");
-      let arr = [];
       try {
         let res = await mensApi.getPaginatedSnkrs(start);
-        res.docs.map((doc) => {
-          arr.push({ ...doc.data(), id: doc.id });
-        });
         const lastVisible = res.docs[res.docs.length - 1];
         setLast(lastVisible);
-
-        return arr;
+        return firebaseData(res);
       } catch (err) {
         console.log(err);
       }
@@ -48,7 +42,7 @@ function Men() {
     data,
     isFetching,
     refetch: allRefetch,
-  } = useQuery([allSnkrKey, start], () => fetchSnkr(start), {
+  } = useQuery(["allSnkr", start], () => fetchSnkr(start), {
     keepPreviousData: true,
     enabled: false,
   });
@@ -65,6 +59,7 @@ function Men() {
   useEffect(() => {
     if (data) setAllData([...allData, ...data]);
   }, [data]);
+
   useEffect(() => {
     if (id) refetch();
   }, [refetch, id]);

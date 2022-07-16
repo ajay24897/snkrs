@@ -16,3 +16,5 @@ export const SELECT_SIZE = "Select Size";
 export const UK = "UK";
 
 export const ADD_TO_CART = "Add To Cart";
+
+export const LOADING = "loading";
