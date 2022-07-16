@@ -75,17 +75,7 @@ function DesktopNav() {
           to="cart"
           className={({ isActive }) => (isActive ? "cart active-cart" : "cart")}
         >
-          <text
-            style={{
-              display: "flex",
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-            }}
-          >
-            {totalItems}
-          </text>
+          <text id={"cart-value"}>{totalItems}</text>
           <BsBag size={"2rem"} />
         </NavLink>
       </div>
