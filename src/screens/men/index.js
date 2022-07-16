@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
 import Loader from "../../common/component/loader";
 import GridProductUI from "../../common/component/productUI/gridProduct";
@@ -9,53 +9,68 @@ import { mensApi } from "../../firebase/services/snkrs.services";
 function Men() {
   let { id } = useParams();
   let [allData, setAllData] = useState([]);
-  let [singleSnkr, setSingleSnkr] = useState();
-
   let [start, setStart] = useState(0);
   const [last, setLast] = useState();
-
-  useEffect(() => {
-    if (id) {
-      getSnk(id);
-    }
-  }, [id]);
+  const queryClient = useQueryClient();
+  const [allSnkrKey] = useState("allSnkr");
 
   let getSnk = async (id) => {
-    try {
-      let doc = await mensApi.getSnkr(id);
-      setSingleSnkr({ ...doc.data(), id: doc.id });
-    } catch (err) {
-      console.log("ededdede", err);
-    }
+    if (id)
+      try {
+        let doc = await mensApi.getSnkr(id);
+        return { ...doc.data(), id: doc.id };
+      } catch (err) {
+        console.log("ededdede", err);
+      }
   };
 
   let fetchSnkr = async (start) => {
-    let arr = [];
-    try {
-      let res = await mensApi.getPaginatedSnkrs(start);
-      res.docs.map((doc) => {
-        arr.push({ ...doc.data(), id: doc.id });
-      });
-      const lastVisible = res.docs[res.docs.length - 1];
-      setLast(lastVisible);
+    if (!id) {
+      console.log("in");
+      let arr = [];
+      try {
+        let res = await mensApi.getPaginatedSnkrs(start);
+        res.docs.map((doc) => {
+          arr.push({ ...doc.data(), id: doc.id });
+        });
+        const lastVisible = res.docs[res.docs.length - 1];
+        setLast(lastVisible);
 
-      return arr;
-    } catch (err) {
-      console.log(err);
+        return arr;
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
-  const { isLoading, data, isFetching } = useQuery(
-    ["users", start],
-    () => fetchSnkr(start),
-    {
-      keepPreviousData: true,
-    }
-  );
+  const {
+    isLoading,
+    data,
+    isFetching,
+    refetch: allRefetch,
+  } = useQuery([allSnkrKey, start], () => fetchSnkr(start), {
+    keepPreviousData: true,
+    enabled: false,
+  });
+
+  const {
+    isLoading: ssLoading,
+    data: ssData,
+    isFetching: ssIsFetching,
+    refetch,
+  } = useQuery("singleSnkr", () => getSnk(id), {
+    enabled: false,
+  });
 
   useEffect(() => {
     if (data) setAllData([...allData, ...data]);
   }, [data]);
+  useEffect(() => {
+    if (id) refetch();
+  }, [refetch, id]);
+  useEffect(() => {
+    if (!id) allRefetch();
+  }, [refetch, start, id]);
 
   return (
     <>
@@ -66,8 +81,9 @@ function Men() {
           page={"men"}
         />
       )}
-      {(isLoading || isFetching) && <Loader showOverlay={!start} />}
-      {id && <GetProductUI product={singleSnkr} />}
+      {(isLoading || isFetching) && !id && <Loader showOverlay={!start} />}
+      {id && <GetProductUI product={ssData} />}
+      {(ssLoading || ssIsFetching) && id && <Loader showOverlay={true} />}
     </>
   );
 }

@@ -113,7 +113,11 @@ function ProductInfo({ product }) {
               {SELECT_QUANTITY}
             </option>
             {[1, 2, 3].map((data) => {
-              return <option value={data}>{data}</option>;
+              return (
+                <option value={data} key={data}>
+                  {data}
+                </option>
+              );
             })}
           </select>
 
