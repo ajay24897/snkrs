@@ -17,3 +17,14 @@ export const firebaseData = (res) => {
 export const isLoading = (status) => {
   return status.toLocaleLowerCase() === LOADING;
 };
+
+export const getShoeGenderTitle = (title) => {
+  if (title === "men") return "Men's Shoe";
+  if (title === "women") return "Womens's Shoe";
+  return "Unisex Shoe";
+};
+
+export const ammountInDecimal = (value) => {
+  if (!value) return value;
+  return parseFloat(value).toFixed(2);
+};

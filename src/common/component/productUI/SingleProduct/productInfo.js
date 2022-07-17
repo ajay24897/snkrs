@@ -11,6 +11,7 @@ import {
 } from "../../../constant/string/common.string";
 import {
   capitalizeFirstLetter,
+  getShoeGenderTitle,
   removeRrandNameFromTitle,
 } from "../../../function";
 import { cartApi } from "../../../../firebase/services/snkrs.services";
@@ -20,6 +21,7 @@ const womens = [3, 4, 5, 6, 7, 8];
 const mens = [6, 7, 8, 9, 10];
 
 function ProductInfo({ product }) {
+  console.log("product", product);
   let { brand, title, retailPrice, gender, colorway } = product;
   const [size, setSize] = useState();
   const [quantity, setQuantity] = useState();
@@ -32,9 +34,15 @@ function ProductInfo({ product }) {
     async () =>
       await addSnkrInCart({
         user: userDetails?.email,
-        id,
+        shoeId: id,
         size: +size,
         quantity: +quantity,
+        media: product?.media,
+        retailPrice,
+        title,
+        colorway,
+        brand,
+        gender,
       }),
     {
       enabled: false,
@@ -83,7 +91,7 @@ function ProductInfo({ product }) {
             {capitalizeFirstLetter(removeRrandNameFromTitle(title, brand))}
           </h6>
           <p className="text-ellipsis product-name">
-            {gender === "men" ? "MENS" : "WMNS"}
+            {getShoeGenderTitle(gender)}
           </p>
           <p className=" product-color">Color : {colorway}</p>
           {gender === "men" && (
