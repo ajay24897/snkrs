@@ -1,7 +1,6 @@
-import { async } from "@firebase/util";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import Loader from "../../common/component/loader";
 import {
@@ -45,7 +44,8 @@ function Cart() {
     if (data?.length) {
       const initialValue = 0;
       const sumWithInitial = data?.reduce(
-        (previousValue, data) => previousValue + data.retailPrice,
+        (previousValue, data) =>
+          previousValue + data.retailPrice * data.quantity,
         initialValue
       );
       setSubtotal(sumWithInitial);
@@ -92,7 +92,10 @@ function Cart() {
                           Size : {shoe.size} UK
                         </text>
 
-                        <text className="cart_text info_margin">
+                        <text
+                          className="cart_text info_margin"
+                          id="shoe_quantity"
+                        >
                           Quantity : {shoe.quantity}
                         </text>
                       </div>
@@ -102,7 +105,7 @@ function Cart() {
                         className="cart_text info_margin"
                         id="shoe_price_text"
                       >
-                        ${shoe.retailPrice}
+                        ${shoe.retailPrice * shoe.quantity}
                       </text>
                       <RiDeleteBin5Line
                         size={"1.5rem"}
@@ -112,6 +115,8 @@ function Cart() {
                     </div>
                   </div>
                 </div>
+
+                <div className="bottom_border" />
               </>
             ))}
         </div>

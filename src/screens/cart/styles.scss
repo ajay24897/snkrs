@@ -1,4 +1,4 @@
-
+@import "../../common/sass/colors"; 
 
 #cart_main_wrapper{
     display: flex;
@@ -69,12 +69,16 @@
             min-height: 1px;
             font-size: 1.2rem !important;
             // line-height: 1.75;
-            font-weight: 600;
-            word-break: break-all;
+            font-weight: 500;
+            word-break: normal;
             margin-bottom: .2rem;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+
+           
         }
         #shoe_Size{
             margin-right: 2rem;
+            color:$text_grey
         }
         .info_margin{
             margin: .2rem;
@@ -84,8 +88,9 @@
             min-height: 1px;
             font-size: 1.2rem !important;
             font-weight: 400;
-            word-break: break-all;
+            word-break: normal;
             margin-bottom: .2rem;
+            color:$text_grey;
          
             @media (min-width: 1025px) {
                 word-break:normal;
@@ -98,7 +103,11 @@
         #shoe_gender_type{
             font-size: 1rem ;
             font-weight: 400;
-            word-break: break-all;
+            word-break: normal;
+            color:$text_grey
+        }
+        #shoe_quantity{
+            color:$text_grey
         }
         #shoe_price {
             display: flex;
@@ -113,6 +122,10 @@
 
                   #delete_item_icon{
                     align-self: flex-end;
+                    @media (max-width: 500px) {
+                        align-self: center;
+        
+                          }
                   }
 
             #shoe_price_text{
@@ -156,21 +169,26 @@
         min-height: 1px;
         font-size: 1.2rem !important;
         line-height: 1.75;
-        font-weight: 400;
-        word-break: break-all;
+        font-weight: 500;
+        word-break: normal;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     }
-    .bottom_border{
-        border-bottom: .1rem solid grey;
-    }
+
     .total_cart_value{
         padding: .5rem 0;
     }
     #summury_header{
         font-size: 1.8rem !important;
         line-height: 1.75;
-        font-weight: 600;
+        font-weight: 500;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+
     }
 
 
 }
 
+
+.bottom_border{
+    border-bottom: 1px solid $light_grey;
+}
