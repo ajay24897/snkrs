@@ -117,13 +117,15 @@
   position: relative;
   min-height: 1px;
   font-size: 1.2rem !important;
-  font-weight: 600;
-  word-break: break-all;
+  font-weight: 500;
+  word-break: normal;
   margin-bottom: .2rem;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 #cart_shoe_info_cnt #cart_shoe_info #shoe_Size {
   margin-right: 2rem;
+  color: #757575;
 }
 
 #cart_shoe_info_cnt #cart_shoe_info .info_margin {
@@ -135,8 +137,9 @@
   min-height: 1px;
   font-size: 1.2rem !important;
   font-weight: 400;
-  word-break: break-all;
+  word-break: normal;
   margin-bottom: .2rem;
+  color: #757575;
 }
 
 @media (min-width: 1025px) {
@@ -149,7 +152,12 @@
 #cart_shoe_info_cnt #cart_shoe_info #shoe_gender_type {
   font-size: 1rem;
   font-weight: 400;
-  word-break: break-all;
+  word-break: normal;
+  color: #757575;
+}
+
+#cart_shoe_info_cnt #cart_shoe_info #shoe_quantity {
+  color: #757575;
 }
 
 #cart_shoe_info_cnt #cart_shoe_info #shoe_price {
@@ -179,6 +187,14 @@
 #cart_shoe_info_cnt #cart_shoe_info #shoe_price #delete_item_icon {
   -ms-flex-item-align: end;
       align-self: flex-end;
+}
+
+@media (max-width: 500px) {
+  #cart_shoe_info_cnt #cart_shoe_info #shoe_price #delete_item_icon {
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+  }
 }
 
 #cart_shoe_info_cnt #cart_shoe_info #shoe_price #shoe_price_text {
@@ -234,12 +250,9 @@
   min-height: 1px;
   font-size: 1.2rem !important;
   line-height: 1.75;
-  font-weight: 400;
-  word-break: break-all;
-}
-
-#summary_details .bottom_border {
-  border-bottom: .1rem solid grey;
+  font-weight: 500;
+  word-break: normal;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 #summary_details .total_cart_value {
@@ -249,6 +262,11 @@
 #summary_details #summury_header {
   font-size: 1.8rem !important;
   line-height: 1.75;
-  font-weight: 600;
+  font-weight: 500;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.bottom_border {
+  border-bottom: 1px solid #e5e5e5;
 }
 /*# sourceMappingURL=styles.css.map */
