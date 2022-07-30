@@ -15,7 +15,6 @@
 @media (max-width: 609px) {
   .auth_container {
     width: 90vw;
-    height: 50vh;
   }
 }
 .auth_container .form_title {

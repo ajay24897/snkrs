@@ -35,7 +35,11 @@ function App() {
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
           <Navbar />
-          <div style={{ marginTop: "4rem" }}>
+          <div
+            style={{
+              marginTop: "4rem",
+            }}
+          >
             {showSignupForm && <Authentication />}
             <Routes>
               <Route path={route.home} element={<Home />} />

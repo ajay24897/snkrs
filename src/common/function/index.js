@@ -1,4 +1,4 @@
-import { LOADING } from "../constant/string/common.string";
+import { ERROR, LOADING, SUCCESS } from "../constant/string/common.string";
 
 export const capitalizeFirstLetter = (str = "") => {
   return `${str[0]?.toUpperCase()}${str?.slice(1).toLowerCase()}` ?? "";
@@ -16,6 +16,14 @@ export const firebaseData = (res) => {
 
 export const isLoading = (status) => {
   return status.toLocaleLowerCase() === LOADING;
+};
+
+export const isSuccess = (status) => {
+  return status.toLocaleLowerCase() === SUCCESS;
+};
+
+export const isError = (status) => {
+  return status.toLocaleLowerCase() === ERROR;
 };
 
 export const getShoeGenderTitle = (title) => {

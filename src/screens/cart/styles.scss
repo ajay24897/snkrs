@@ -204,3 +204,31 @@
 .bottom_border{
     border-bottom: 1px solid $light_grey;
 }
+
+#empty_cart{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 10vh 2rem;
+    #empty_cart_image{
+        width: 15rem;
+        height: 15rem;
+        object-fit: contain;
+    }
+    #empty_header{
+        margin-top: 1rem;
+        margin-bottom: .5rem;
+        font-size: 1.6rem;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+
+    #empty_message{
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        color: $grey
+
+    }
+
+  }
