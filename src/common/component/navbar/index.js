@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 import { cartApi } from "../../../firebase/services/snkrs.services";
+import route from "../../constant/string/route.string";
 import { firebaseData, isLoading } from "../../function";
 import Loader from "../loader";
 import { FETCHING_CART_DETAILS } from "../loader/messages";
@@ -13,7 +15,10 @@ import "./styles.css";
 
 function Navbar() {
   const { userDetails } = useSelector((state) => state.userAuthReducer);
+  let { totalItems } = useSelector((state) => state.cartDetailsReducer);
+
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
 
   const { data, status, refetch } = useQuery(
     "cart",
@@ -24,7 +29,8 @@ function Navbar() {
   );
 
   useEffect(() => {
-    if (userDetails?.email) refetch();
+    if (userDetails?.email && !pathname.includes(route.cart) && !totalItems)
+      refetch();
   }, [refetch, userDetails]);
 
   useEffect(() => {

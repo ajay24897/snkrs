@@ -17,13 +17,11 @@ export const cartDetailsReducer = (state = initialState, action) => {
       };
 
     case "INITIAL_CART_ITEM":
-      console.log(" action.data", action.data);
       return {
         ...state,
         totalItems: action.data?.length,
       };
     case "CLEAR_CART_ITEM":
-      console.log(" action.data", action.data);
       return {
         ...state,
         totalItems: 0,

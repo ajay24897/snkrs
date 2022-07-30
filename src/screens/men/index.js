@@ -84,5 +84,3 @@ function Men() {
 }
 
 export default Men;
-
-// jygy7gyvyygygyu

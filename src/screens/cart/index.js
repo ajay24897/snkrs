@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import Loader from "../../common/component/loader";
 import {
@@ -14,8 +14,19 @@ import {
 import { cartApi } from "../../firebase/services/snkrs.services";
 
 import "./styles.css";
+import {
+  CHECKOUT,
+  ESTIMATED_DELIVERY,
+  QUANTITY,
+  SIZE,
+  SUMMARY,
+  TOTAL,
+  UK,
+} from "../../common/constant/string/common.string";
 
 function Cart() {
+  const dispatch = useDispatch();
+
   const { userDetails } = useSelector((state) => state.userAuthReducer);
 
   const { data, status, refetch } = useQuery(
@@ -28,18 +39,20 @@ function Cart() {
   let [subtotal, setSubtotal] = useState(null);
 
   useEffect(() => {
-    refetch();
-  }, [userDetails?.email]);
+    if (userDetails?.email) refetch();
+  }, [refetch, userDetails]);
 
   const getCartItems = async () => {
     try {
-      let res = await cartApi.getSnkr(userDetails.email);
-      console.log("res", res);
-      return firebaseData(res);
+      const res = await cartApi.getSnkr(userDetails.email);
+      const data = firebaseData(res);
+
+      return data;
     } catch (error) {
       return error;
     }
   };
+
   useEffect(() => {
     if (data?.length) {
       const initialValue = 0;
@@ -49,7 +62,7 @@ function Cart() {
         initialValue
       );
       setSubtotal(sumWithInitial);
-      console.log(sumWithInitial);
+      dispatch({ type: "INITIAL_CART_ITEM", data });
     }
   }, [data]);
 
@@ -81,22 +94,16 @@ function Cart() {
                       >
                         {getShoeGenderTitle(shoe.gender)}
                       </text>
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          flexWrap: "wrap",
-                        }}
-                      >
+                      <div className="flex_wrap">
                         <text className="cart_text info_margin" id="shoe_Size">
-                          Size : {shoe.size} UK
+                          {SIZE} : {shoe.size} {UK}
                         </text>
 
                         <text
                           className="cart_text info_margin"
                           id="shoe_quantity"
                         >
-                          Quantity : {shoe.quantity}
+                          {QUANTITY} : {shoe.quantity}
                         </text>
                       </div>
                     </div>
@@ -123,12 +130,8 @@ function Cart() {
 
         {data && (
           <div id="summary_details">
-            <h3
-              style={{ fontWeight: "lighter" }}
-              className="flexRow total_cart_value"
-              id="summury_header"
-            >
-              Summary
+            <h3 className="flexRow total_cart_value" id="summury_header">
+              {SUMMARY}
             </h3>
             <div className="bottom_border" />
             <div className="flexRow spacing">
@@ -136,33 +139,21 @@ function Cart() {
               <text className="cart_text">${ammountInDecimal(subtotal)}</text>
             </div>
             <div className="flexRow spacing">
-              <text className="cart_text">Estimated Delivery</text>
+              <text className="cart_text">{ESTIMATED_DELIVERY}</text>
               <text className="cart_text">
                 ${ammountInDecimal(subtotal < 50 ? 20 : 0)}
               </text>
             </div>
             <div className="bottom_border" />
             <div className="flexRow total_cart_value">
-              <h6 className={"cart_text"}>Total</h6>
+              <h6 className={"cart_text"}>{TOTAL}</h6>
               <h6 className={"cart_text"}>
                 ${ammountInDecimal(subtotal < 50 ? subtotal + 20 : subtotal)}
               </h6>
             </div>
             <div className="bottom_border" />
 
-            <button
-              style={{
-                background: "black",
-                paddingTop: "1.4rem",
-                paddingBottom: "1.4rem",
-                borderRadius: "3rem",
-                marginTop: "2rem",
-                fontSize: "1.4rem",
-                width: "100%",
-              }}
-            >
-              Checkout
-            </button>
+            <button id="checkout_button">{CHECKOUT}</button>
           </div>
         )}
       </div>
