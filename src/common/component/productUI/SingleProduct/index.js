@@ -52,7 +52,7 @@ export const GetProductUI = ({ product }) => {
           height={600}
           style={{
             position: "absolute",
-            left: 850,
+            left: 700,
             top: 100,
             objectFit: "none",
             objectPosition: `${coords?.x} ${coords?.y}`,
