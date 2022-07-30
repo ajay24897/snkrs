@@ -1,45 +1,66 @@
-import React, { useEffect, useState } from "react";
-import { useQuery } from "react-query";
-import { useSelector } from "react-redux";
-import { RiDeleteBin5Line } from "react-icons/ri";
+import React, { useEffect, useMemo, useState } from "react";
+import { isError, useQuery } from "react-query";
+import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../common/component/loader";
-import {
-  ammountInDecimal,
-  capitalizeFirstLetter,
-  firebaseData,
-  getShoeGenderTitle,
-  isLoading,
-  removeRrandNameFromTitle,
-} from "../../common/function";
+import { firebaseData, isLoading, isSuccess } from "../../common/function";
 import { cartApi } from "../../firebase/services/snkrs.services";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 import "./styles.css";
+import {
+  CHECKOUT,
+  DELET_CART_ITEM_MESSAGE,
+  DELET_CART_ITEM_TITLE,
+  PRODUCT_REMOVED_FROM_CART,
+} from "../../common/constant/string/common.string";
+import WarrningModal from "../../common/component/warningModal";
+import CartProduct from "./cartProduct";
+import TotalEstimate from "./totalEstimate";
+import { BsBag } from "react-icons/bs";
 
 function Cart() {
+  const dispatch = useDispatch();
+  const [showWarrning, setShowWarrning] = useState(false);
+  const [deleteShoeId, setDeleteShoeId] = useState();
+  const [subtotal, setSubtotal] = useState(null);
+
   const { userDetails } = useSelector((state) => state.userAuthReducer);
 
-  const { data, status, refetch } = useQuery(
-    "cart",
-    async () => await getCartItems(),
-    {
-      enabled: false,
-    }
-  );
-  let [subtotal, setSubtotal] = useState(null);
+  const { data, status, refetch } = useQuery("cart", () => getCartItems(), {
+    enabled: false,
+  });
+
+  const {
+    dataUpdatedAt,
+    status: deleteStatus,
+    refetch: deleteCartItemApi,
+  } = useQuery("delete-cart-item", () => cartApi.deleteSnkr(deleteShoeId), {
+    enabled: false,
+  });
 
   useEffect(() => {
-    refetch();
-  }, [userDetails?.email]);
+    if (userDetails?.email) refetch();
+  }, [refetch, userDetails]);
+
+  useMemo(() => {
+    if (isSuccess(deleteStatus) && deleteShoeId && dataUpdatedAt) {
+      closeWarningMoadel();
+      setDeleteShoeId();
+      toast.success(PRODUCT_REMOVED_FROM_CART);
+      refetch();
+    }
+  }, [dataUpdatedAt]);
 
   const getCartItems = async () => {
     try {
-      let res = await cartApi.getSnkr(userDetails.email);
-      console.log("res", res);
+      const res = await cartApi.getSnkr(userDetails.email);
       return firebaseData(res);
     } catch (error) {
       return error;
     }
   };
+
   useEffect(() => {
     if (data?.length) {
       const initialValue = 0;
@@ -49,123 +70,75 @@ function Cart() {
         initialValue
       );
       setSubtotal(sumWithInitial);
-      console.log(sumWithInitial);
+      dispatch({ type: "INITIAL_CART_ITEM", data });
+    } else {
+      dispatch({ type: "INITIAL_CART_ITEM", data: [] });
     }
   }, [data]);
 
-  console.log("data", data, userDetails?.email);
+  const handleDelete = (id) => {
+    setShowWarrning(true);
+    setDeleteShoeId(id);
+  };
+  const deleteItemFromCart = () => {
+    deleteCartItemApi();
+  };
 
+  function closeWarningMoadel() {
+    setShowWarrning(false);
+  }
   return (
     <>
-      {isLoading(status) && <Loader showOverlay />}
+      <ToastContainer
+        position="top-center"
+        closeButton={true}
+        closeOnClick
+        pauseOnHover
+        autoClose={2000}
+        limit={3}
+      />
+
+      {(isLoading(status) || isLoading(deleteStatus)) && <Loader showOverlay />}
+      {showWarrning && (
+        <WarrningModal
+          onCancle={closeWarningMoadel}
+          title={DELET_CART_ITEM_TITLE}
+          message={DELET_CART_ITEM_MESSAGE}
+          onConfirm={deleteItemFromCart}
+        />
+      )}
       <div id="cart_main_wrapper">
         <div id="cart_container">
-          {data?.length &&
-            data?.map((shoe, index) => (
-              <>
-                <div id="cart_shoe_info_cnt">
-                  <img src={shoe.media} id="cart_shoe_image" alt="ww" />
-                  <div id="cart_shoe_info">
-                    <div id="card_shoe_info">
-                      <text className="cart_text info_margin" id="brand_name">
-                        {capitalizeFirstLetter(shoe.brand)}
-                      </text>
-                      <text className="cart_text info_margin" id="shoe_title">
-                        {capitalizeFirstLetter(
-                          removeRrandNameFromTitle(shoe.title, shoe.brand)
-                        )}
-                      </text>
-                      <text
-                        className="cart_text info_margin"
-                        id="shoe_gender_type"
-                      >
-                        {getShoeGenderTitle(shoe.gender)}
-                      </text>
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          flexWrap: "wrap",
-                        }}
-                      >
-                        <text className="cart_text info_margin" id="shoe_Size">
-                          Size : {shoe.size} UK
-                        </text>
-
-                        <text
-                          className="cart_text info_margin"
-                          id="shoe_quantity"
-                        >
-                          Quantity : {shoe.quantity}
-                        </text>
-                      </div>
-                    </div>
-                    <div id="shoe_price">
-                      <text
-                        className="cart_text info_margin"
-                        id="shoe_price_text"
-                      >
-                        ${shoe.retailPrice * shoe.quantity}
-                      </text>
-                      <RiDeleteBin5Line
-                        size={"1.5rem"}
-                        color="grey"
-                        id="delete_item_icon"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bottom_border" />
-              </>
+          {!!data?.length &&
+            data?.map((shoe) => (
+              <CartProduct
+                shoe={shoe}
+                onClick={() => handleDelete(shoe.id)}
+                key={shoe.id}
+              />
             ))}
         </div>
 
-        {data && (
+        {!!data?.length && (
           <div id="summary_details">
-            <h3
-              style={{ fontWeight: "lighter" }}
-              className="flexRow total_cart_value"
-              id="summury_header"
-            >
-              Summary
-            </h3>
-            <div className="bottom_border" />
-            <div className="flexRow spacing">
-              <text className="cart_text">Subtotal</text>
-              <text className="cart_text">${ammountInDecimal(subtotal)}</text>
-            </div>
-            <div className="flexRow spacing">
-              <text className="cart_text">Estimated Delivery</text>
-              <text className="cart_text">
-                ${ammountInDecimal(subtotal < 50 ? 20 : 0)}
-              </text>
-            </div>
-            <div className="bottom_border" />
-            <div className="flexRow total_cart_value">
-              <h6 className={"cart_text"}>Total</h6>
-              <h6 className={"cart_text"}>
-                ${ammountInDecimal(subtotal < 50 ? subtotal + 20 : subtotal)}
-              </h6>
-            </div>
-            <div className="bottom_border" />
-
-            <button
-              style={{
-                background: "black",
-                paddingTop: "1.4rem",
-                paddingBottom: "1.4rem",
-                borderRadius: "3rem",
-                marginTop: "2rem",
-                fontSize: "1.4rem",
-                width: "100%",
-              }}
-            >
-              Checkout
-            </button>
+            <TotalEstimate subtotal={subtotal} />
+            <button id="checkout_button">{CHECKOUT}</button>
           </div>
         )}
       </div>
+      {!data?.length && (
+        <div id="empty_cart">
+          <img
+            id="empty_cart_image"
+            src={require("../../common/image/empty cart.png")}
+            alt={"logo"}
+          />
+          <p id="empty_header">Your cart is empty !</p>
+          <p id="empty_message">
+            Looks like you heavn't added anything to your cart
+          </p>
+        </div>
+      )}
     </>
   );
 }

@@ -1,49 +1,29 @@
 #container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   padding: 0rem 4rem;
   width: 100%;
   height: 4rem;
   position: relative;
-  -ms-flex-item-align: center;
-      align-self: center;
+  align-self: center;
 }
-
 #container #logo {
   width: 8rem;
   height: 3rem;
 }
-
 #container #middle_navelink {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
 }
-
 #container .navlink {
   text-decoration: none;
   color: #000000;
   height: 100%;
-  -webkit-transition: all .5s ease-in;
-  transition: all .5s ease-in;
+  transition: all 0.5s ease-in;
   margin: 0rem 1.5rem;
 }
-
 #container .navlink:hover {
   text-decoration: underline;
   color: #808080;
@@ -51,57 +31,38 @@
           text-decoration-color: #808080;
   text-underline-offset: 1rem;
 }
-
 #container .right_navelink {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
 }
-
 #container .active-navlink {
   text-decoration: underline;
   -webkit-text-decoration-color: #808080;
           text-decoration-color: #808080;
   text-underline-offset: 1rem;
 }
-
 #container .cart {
   text-decoration: none;
   color: #000000;
   position: relative;
-  -webkit-transition: all .2s;
-  transition: all .2s;
+  transition: all 0.2s;
 }
-
 #container .cart:hover {
-  -webkit-transform: translateY(0.2rem);
-          transform: translateY(0.2rem);
+  transform: translateY(0.2rem);
 }
-
 #container #cart-value {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
-
 #container .active-cart {
   color: #808080;
 }
-
 @media (max-width: 768px) {
   #container {
     display: none;
   }
-}
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

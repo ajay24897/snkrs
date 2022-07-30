@@ -1,22 +1,12 @@
 #mob-container {
   display: none;
 }
-
 @media (max-width: 768px) {
   #mob-container {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     padding: 0rem 1rem;
     width: 100%;
     height: 4rem;
@@ -30,8 +20,7 @@
     text-decoration: none;
     color: #000;
     height: 100%;
-    -webkit-transition: all .5s ease-in;
-    transition: all .5s ease-in;
+    transition: all 0.5s ease-in;
   }
   #mob-container .navlink:hover {
     text-decoration: underline;
@@ -48,46 +37,32 @@
   }
   #mob-container .cart {
     position: relative;
-    -ms-flex-item-align: center;
-        -ms-grid-row-align: center;
-        align-self: center;
+    align-self: center;
     text-decoration: none;
     color: #000;
   }
   #mob-container #cart-value {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     position: absolute;
     top: 50%;
     left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
   }
   #mob-container .active-cart {
     color: grey;
   }
   #mob-container .container {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     position: relative;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    align-items: center;
   }
 }
-
 #mob-container .zIndex {
   z-index: 40;
 }
-
 #mob-container .navlink.rotate {
-  -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
+  transform: rotate(90deg);
 }
-
 #mob-container .menu {
   margin-left: 1rem;
-}
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

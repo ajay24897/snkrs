@@ -2,10 +2,9 @@
 * {
   padding: 0rem;
   margin: 0rem;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-size: calc(14px + 0.1vw);
-  font-family: 'Times New Roman';
+  font-family: "Times New Roman";
 }
 
 .page {
@@ -44,9 +43,9 @@ p {
   font-size: 1.2em;
 }
 
-input[type="text"],
-input[type="number"],
-input[type="password"],
+input[type=text],
+input[type=number],
+input[type=password],
 select {
   width: -webkit-fill-available;
   height: 35px;
@@ -57,10 +56,7 @@ select {
   background: transparent;
   font-size: 16px;
   border-radius: 5px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-transition: all 0.5s linear;
   transition: all 0.5s linear;
 }
 
@@ -72,8 +68,8 @@ section:active {
   border: 0.1rem solid #006ee5;
 }
 
-input[type="file"]:focus,
-input[type="file"]:hover {
+input[type=file]:focus,
+input[type=file]:hover {
   border: none;
 }
 
@@ -85,24 +81,21 @@ button {
   padding: 10px 20px;
   margin: 10px 0;
   border-radius: 5px;
-  -webkit-transition: all 0.25s linear;
   transition: all 0.25s linear;
 }
 
 ::-webkit-scrollbar {
-  height: .2rem;
-  /* height of horizontal scrollbar ← You're missing this */
-  width: .2rem;
+  height: 0.2rem; /* height of horizontal scrollbar ← You're missing this */
+  width: 0.2rem;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-track {
   background-color: #808080;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: #000000;
-  border-radius: .5rem;
-}
-/*# sourceMappingURL=App.css.map */
+  border-radius: 0.5rem;
+}/*# sourceMappingURL=App.css.map */

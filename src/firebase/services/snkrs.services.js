@@ -45,7 +45,10 @@ export const mensApi = {
 
 export const cartApi = {
   addSnkr: (snkr) => addDoc(cart, snkr),
-  deleteSnkr: () => {},
+  deleteSnkr: (snkrId) => {
+    const snkr = doc(db, "cart", snkrId);
+    return deleteDoc(snkr);
+  },
   getSnkr: async (email) => {
     if (email) {
       return await getDocs(query(cart, where("user", "==", email)));
