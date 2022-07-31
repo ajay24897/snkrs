@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { isError, useQuery } from "react-query";
+import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../common/component/loader";
 import { firebaseData, isLoading, isSuccess } from "../../common/function";
@@ -12,18 +12,20 @@ import {
   CHECKOUT,
   DELET_CART_ITEM_MESSAGE,
   DELET_CART_ITEM_TITLE,
+  LOOKS_HAVENOT_ADDED_ANYTING,
   PRODUCT_REMOVED_FROM_CART,
+  YOU_CART_IS_EMPTY,
 } from "../../common/constant/string/common.string";
 import WarrningModal from "../../common/component/warningModal";
 import CartProduct from "./cartProduct";
 import TotalEstimate from "./totalEstimate";
-import { BsBag } from "react-icons/bs";
 
 function Cart() {
   const dispatch = useDispatch();
   const [showWarrning, setShowWarrning] = useState(false);
   const [deleteShoeId, setDeleteShoeId] = useState();
   const [subtotal, setSubtotal] = useState(null);
+  const [useLoggedOut, setUserLoggedOut] = useState(false);
 
   const { userDetails } = useSelector((state) => state.userAuthReducer);
 
@@ -40,7 +42,14 @@ function Cart() {
   });
 
   useEffect(() => {
-    if (userDetails?.email) refetch();
+    if (userDetails?.email) {
+      refetch();
+      setUserLoggedOut(false);
+
+      return;
+    }
+    setUserLoggedOut(true);
+    dispatch({ type: "INITIAL_CART_ITEM", data: [] });
   }, [refetch, userDetails]);
 
   useMemo(() => {
@@ -107,36 +116,35 @@ function Cart() {
           onConfirm={deleteItemFromCart}
         />
       )}
-      <div id="cart_main_wrapper">
-        <div id="cart_container">
-          {!!data?.length &&
-            data?.map((shoe) => (
-              <CartProduct
-                shoe={shoe}
-                onClick={() => handleDelete(shoe.id)}
-                key={shoe.id}
-              />
-            ))}
-        </div>
 
-        {!!data?.length && (
+      {!!data?.length && !useLoggedOut && (
+        <div id="cart_main_wrapper">
+          <div id="cart_container">
+            {!!data?.length &&
+              data?.map((shoe) => (
+                <CartProduct
+                  shoe={shoe}
+                  onClick={() => handleDelete(shoe.id)}
+                  key={shoe.id}
+                />
+              ))}
+          </div>
           <div id="summary_details">
             <TotalEstimate subtotal={subtotal} />
             <button id="checkout_button">{CHECKOUT}</button>
           </div>
-        )}
-      </div>
-      {!data?.length && (
+        </div>
+      )}
+
+      {(!data?.length || useLoggedOut) && (
         <div id="empty_cart">
           <img
             id="empty_cart_image"
             src={require("../../common/image/empty cart.png")}
             alt={"logo"}
           />
-          <p id="empty_header">Your cart is empty !</p>
-          <p id="empty_message">
-            Looks like you heavn't added anything to your cart
-          </p>
+          <p id="empty_header">{YOU_CART_IS_EMPTY}</p>
+          <p id="empty_message">{LOOKS_HAVENOT_ADDED_ANYTING}</p>
         </div>
       )}
     </>

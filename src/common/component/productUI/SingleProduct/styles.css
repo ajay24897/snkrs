@@ -4,7 +4,7 @@
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  margin: 0 2rem;
+  margin: 0 1rem;
 }
 #wrapper #image {
   width: 600px;
@@ -21,6 +21,7 @@
   min-width: 300px;
   max-width: 500px;
   margin-left: 20px;
+  margin-top: 2.5rem;
 }
 @media (max-width: 667px) {
   #wrapper #product-info-wrapper {
@@ -34,25 +35,41 @@
 }
 #wrapper #product-info-wrapper .brand-name {
   font-weight: 500;
-  margin-top: 2rem;
+  font-size: 1.6rem;
 }
 #wrapper #product-info-wrapper .product-name {
   font-weight: 400;
+  font-size: 1.4rem;
+}
+#wrapper #product-info-wrapper .grey_text {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #757575;
 }
 #wrapper #product-info-wrapper .text-ellipsis {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+#wrapper #product-info-wrapper #error_text {
+  color: #cc0000;
+  align-self: center;
+}
 #wrapper #product-info-wrapper .price {
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  font-weight: 400;
+  margin: 0.5rem 0;
+  font-weight: 200;
 }
 #wrapper #product-info-wrapper .product-color {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
 #wrapper #product-info-wrapper .select {
   margin-top: 0.5rem;
+}
+#wrapper #product-info-wrapper #add_to_cart_button {
+  background-color: #000000;
+  letter-spacing: 0.1rem;
+}
+#wrapper #product-info-wrapper #add_to_cart_button:hover {
+  color: #808080;
 }/*# sourceMappingURL=styles.css.map */

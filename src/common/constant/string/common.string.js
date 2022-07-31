@@ -30,3 +30,12 @@ export const SUCCESS = "success";
 export const ERROR = "error";
 export const PRODUCT_REMOVED_FROM_CART =
   "Product removed from cart successfully";
+export const PLEASE_SIGN_UP_OR_LOGIN = "Please Sign up or Login";
+export const PLEASE_SELECT_SIZE_AND_QUANTITY =
+  "Please select Size and Quantity";
+export const PLEASE_SELECT_SIZE = "Please select Size";
+export const PLEASE_SELECT_QUANTITY = "Please select Quantity";
+export const PRODUCT_ADDED_SUCCESSFULLY = "Product added in cart successfully";
+export const YOU_CART_IS_EMPTY = "Your cart is empty!";
+export const LOOKS_HAVENOT_ADDED_ANYTING =
+  "  Looks like you heavn't added anything to your cart";

@@ -17,6 +17,8 @@ import { db } from "../firebase-config";
 
 const mensSnkrs = collection(db, "mens-snkrs");
 const cart = collection(db, "cart");
+const womensSnkrs = collection(db, "womens-snkrs");
+const unisexSnkrs = collection(db, "unisex-snkrs");
 
 export const mensApi = {
   addSnkr: (snkr) => addDoc(mensSnkrs, snkr),
@@ -41,6 +43,56 @@ export const mensApi = {
     getDocs(query(mensSnkrs, where("brand", "==", brand))),
   getPaginatedSnkrs: async (d) =>
     getDocs(query(mensSnkrs, orderBy("id"), startAfter(d), limit(12))),
+};
+
+export const womensApi = {
+  addSnkr: (snkr) => addDoc(womensSnkrs, snkr),
+  getAllSnkrs: () => getDocs(womensSnkrs),
+  getSnkrs: async () =>
+    getDocs(
+      query(
+        womensSnkrs,
+        where("title", "==", "adidas Gazelle Vintage Satta size? Exclusive"),
+        limit(2)
+      )
+    ),
+  deleteSnkr: (id) => {
+    const snkr = doc(db, "womens-snkrs", id);
+    return deleteDoc(snkr);
+  },
+  getSnkr: (id) => {
+    const snkr = doc(db, "womens-snkrs", id);
+    return getDoc(snkr);
+  },
+  getAllBrandSnkrs: async (brand) =>
+    getDocs(query(womensSnkrs, where("brand", "==", brand))),
+  getPaginatedSnkrs: async (d) =>
+    getDocs(query(womensSnkrs, orderBy("id"), startAfter(d), limit(12))),
+};
+
+export const unisexApi = {
+  addSnkr: (snkr) => addDoc(unisexSnkrs, snkr),
+  getAllSnkrs: () => getDocs(unisexSnkrs),
+  getSnkrs: async () =>
+    getDocs(
+      query(
+        unisexSnkrs,
+        where("title", "==", "adidas Gazelle Vintage Satta size? Exclusive"),
+        limit(2)
+      )
+    ),
+  deleteSnkr: (id) => {
+    const snkr = doc(db, "unisex-snkrs", id);
+    return deleteDoc(snkr);
+  },
+  getSnkr: (id) => {
+    const snkr = doc(db, "unisex-snkrs", id);
+    return getDoc(snkr);
+  },
+  getAllBrandSnkrs: async (brand) =>
+    getDocs(query(unisexSnkrs, where("brand", "==", brand))),
+  getPaginatedSnkrs: async (d) =>
+    getDocs(query(unisexSnkrs, orderBy("id"), startAfter(d), limit(12))),
 };
 
 export const cartApi = {

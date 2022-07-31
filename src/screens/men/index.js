@@ -13,6 +13,7 @@ function Men() {
   let [allData, setAllData] = useState([]);
   let [start, setStart] = useState(0);
   const [last, setLast] = useState();
+  const mens = [6, 7, 8, 9, 10];
 
   let getSnk = async (id) => {
     if (id)
@@ -77,7 +78,7 @@ function Men() {
         />
       )}
       {(isLoading || isFetching) && !id && <Loader showOverlay={!start} />}
-      {id && <GetProductUI product={ssData} />}
+      {id && <GetProductUI product={ssData} sizes={mens} />}
       {(ssLoading || ssIsFetching) && id && <Loader showOverlay={true} />}
     </>
   );

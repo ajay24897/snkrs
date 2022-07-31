@@ -4,7 +4,7 @@
   margin: 0rem;
   box-sizing: border-box;
   font-size: calc(14px + 0.1vw);
-  font-family: "Times New Roman";
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .page {
