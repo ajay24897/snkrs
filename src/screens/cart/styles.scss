@@ -77,9 +77,6 @@
             font-weight: 500;
             word-break: normal;
             margin-bottom: .2rem;
-            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-
-           
         }
         #shoe_Size{
             margin-right: 2rem;
@@ -176,7 +173,7 @@
         line-height: 1.75;
         font-weight: 500;
         word-break: normal;
-        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        
     }
 
     .total_cart_value{
@@ -186,7 +183,7 @@
         font-size: 2rem !important;
         line-height: 1.75;
         font-weight: 400;
-        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        
 
     }
     #checkout_button{
@@ -222,13 +219,10 @@
         margin-top: 1rem;
         margin-bottom: .5rem;
         font-size: 1.6rem;
-        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     }
 
     #empty_message{
-        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
         color: $grey
-
     }
 
   }

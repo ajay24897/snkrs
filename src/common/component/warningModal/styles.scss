@@ -37,16 +37,12 @@
             font-size: 1.4rem;
             margin: .5rem 0rem;   
             padding:0 1rem;
-            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-
         }
 
         #message {
             margin:0 1.5rem 1.5rem 1.5rem;
             font-size: 1rem;
-            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
             color: $grey;
-
         }
         #button_container{
             margin-bottom: 1.5rem;
@@ -60,16 +56,12 @@
                 background-color: transparent;
                 color: $black;
                 letter-spacing: .1rem;
-                font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-
             }
             #confirm{
                 background-color: transparent;
                 color: $white;
                 letter-spacing: .1rem;
-                background-color: $black;
-                font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
- 
+                background-color: $black; 
             }
             #confirm:hover , #cancle:hover {
                 color: $grey;

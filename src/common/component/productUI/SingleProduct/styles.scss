@@ -1,10 +1,12 @@
+@import "../../../sass/colors";
+
 #wrapper{
     display: flex;
     flex:1;
     flex-direction: row;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    margin: 0 2rem ;
+    margin: 0 1rem ;
 
     #image {
         width: 600px;
@@ -20,6 +22,7 @@
         min-width: 300px;
         max-width: 500px;
         margin-left: 20px;
+        margin-top: 2.5rem;
   
         @media (max-width: 667px) {
             min-width: 200px;
@@ -31,29 +34,45 @@
         }
         .brand-name{
             font-weight: 500;
-            margin-top: 2rem
+            font-size: 1.6rem;
         }
         .product-name{
             font-weight: 400;
+            font-size: 1.4rem;
+        }
+        .grey_text{
+            font-size: 1rem;
+            font-weight: 400;
+            color: $text_grey;
         }
         .text-ellipsis {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
+        #error_text{
+            color: $error;
+            align-self: center;
+        }
         .price{
-            margin-top: 1rem;
-            margin-bottom: 2rem;
-            font-weight: 400;
+            margin: .5rem 0;
+            font-weight: 200;
         }
         .product-color {
-            margin-top: 1rem;
+            margin-top: .5rem;
             margin-bottom: .5rem;
         }
 
         .select{
             margin-top: .5rem;
         }
+        #add_to_cart_button{
+            background-color: $black;
+             letter-spacing: .1rem;
+        }
+        #add_to_cart_button:hover{
+            color: $grey;
+        } 
        
     }
 

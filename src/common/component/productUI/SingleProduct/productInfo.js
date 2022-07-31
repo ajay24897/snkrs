@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useQuery } from "react-query";
@@ -8,20 +8,23 @@ import {
   SELECT_QUANTITY,
   SELECT_SIZE,
   UK,
+  PLEASE_SIGN_UP_OR_LOGIN,
+  PLEASE_SELECT_SIZE,
+  PLEASE_SELECT_SIZE_AND_QUANTITY,
+  PLEASE_SELECT_QUANTITY,
+  PRODUCT_ADDED_SUCCESSFULLY,
 } from "../../../constant/string/common.string";
 import {
   capitalizeFirstLetter,
   getShoeGenderTitle,
+  isSuccess,
   removeRrandNameFromTitle,
 } from "../../../function";
 import { cartApi } from "../../../../firebase/services/snkrs.services";
 import Loader from "../../loader";
+import { toast, ToastContainer } from "react-toastify";
 
-const womens = [3, 4, 5, 6, 7, 8];
-const mens = [6, 7, 8, 9, 10];
-
-function ProductInfo({ product }) {
-  console.log("product", product);
+function ProductInfo({ product, sizes }) {
   let { brand, title, retailPrice, gender, colorway } = product;
   const [size, setSize] = useState();
   const [quantity, setQuantity] = useState();
@@ -29,25 +32,30 @@ function ProductInfo({ product }) {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const { isLoading, data, isFetching, refetch } = useQuery(
-    "cart",
-    async () =>
-      await addSnkrInCart({
-        user: userDetails?.email,
-        shoeId: id,
-        size: +size,
-        quantity: +quantity,
-        media: product?.media,
-        retailPrice,
-        title,
-        colorway,
-        brand,
-        gender,
-      }),
-    {
-      enabled: false,
-    }
-  );
+  const { isLoading, data, isFetching, refetch, dataUpdatedAt, status } =
+    useQuery(
+      "cart",
+      async () =>
+        await addSnkrInCart({
+          user: userDetails?.email,
+          shoeId: id,
+          size: +size,
+          quantity: +quantity,
+          media: product?.media,
+          retailPrice,
+          title,
+          colorway,
+          brand,
+          gender,
+        }),
+      {
+        enabled: false,
+      }
+    );
+
+  useMemo(() => {
+    if (isSuccess(status)) toast.success(PRODUCT_ADDED_SUCCESSFULLY);
+  }, [dataUpdatedAt]);
 
   const { userDetails } = useSelector((state) => state.userAuthReducer);
 
@@ -64,15 +72,19 @@ function ProductInfo({ product }) {
   const addToCart = () => {
     setError(null);
     if (!size && !quantity) {
-      setError("please select size and quantity");
+      setError(PLEASE_SELECT_SIZE_AND_QUANTITY);
       return;
     }
     if (!size) {
-      setError("please select size");
+      setError(PLEASE_SELECT_SIZE);
       return;
     }
     if (!quantity) {
-      setError("please select quantity");
+      setError(PLEASE_SELECT_QUANTITY);
+    }
+
+    if (!userDetails?.email) {
+      toast.warn(PLEASE_SIGN_UP_OR_LOGIN);
       return;
     }
 
@@ -83,6 +95,16 @@ function ProductInfo({ product }) {
 
   return (
     <>
+      {
+        <ToastContainer
+          position="top-center"
+          closeButton={true}
+          closeOnClick
+          pauseOnHover
+          autoClose={2000}
+          limit={3}
+        />
+      }
       {isFetching && <Loader showOverlay={true} />}
       <div id="product-info-wrapper">
         <div className="short-product-details">
@@ -90,11 +112,12 @@ function ProductInfo({ product }) {
           <h6 className="product-name">
             {capitalizeFirstLetter(removeRrandNameFromTitle(title, brand))}
           </h6>
-          <p className="text-ellipsis product-name">
+
+          <p className="product-color grey_text">Color : {colorway}</p>
+          <p className="text-ellipsis grey_text">
             {getShoeGenderTitle(gender)}
           </p>
-          <p className=" product-color">Color : {colorway}</p>
-          {gender === "men" && (
+          {
             <select
               value={size}
               onChange={(e) => setSize(e.target.value)}
@@ -103,7 +126,7 @@ function ProductInfo({ product }) {
               <option value="" selected>
                 {SELECT_SIZE}
               </option>
-              {mens.map((data) => {
+              {sizes.map((data) => {
                 return (
                   <option value={data} key={data}>
                     {data} {UK}
@@ -111,7 +134,7 @@ function ProductInfo({ product }) {
                 );
               })}
             </select>
-          )}
+          }
           <select
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
@@ -129,16 +152,12 @@ function ProductInfo({ product }) {
             })}
           </select>
 
-          <h3 className="text-ellipsis price">
-            ${retailPrice < 50 ? 50 : retailPrice}
-          </h3>
+          <h3 className="text-ellipsis price">${retailPrice}</h3>
 
-          <text>{error}</text>
-          <button style={{ background: "#000" }} onClick={addToCart}>
+          <button id="add_to_cart_button" onClick={addToCart}>
             {ADD_TO_CART}
           </button>
-
-          {/* <h1 onClick={async () => await handleDelete(id)}>Delete </h1> */}
+          <text id="error_text">{error}</text>
         </div>
       </div>
     </>

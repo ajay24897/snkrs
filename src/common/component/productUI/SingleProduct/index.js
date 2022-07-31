@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import ProductInfo from "./productInfo";
 import "./styles.css";
 
-export const GetProductUI = ({ product }) => {
+export const GetProductUI = ({ product, sizes }) => {
+  console.log("product", product);
   const [coords, setCoords] = useState();
   const [showZoomImage, setShowZoomImage] = useState(false);
 
@@ -20,6 +21,7 @@ export const GetProductUI = ({ product }) => {
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
   const handleMouseMove = (event) => {
     if (windowSize >= 1024) {
       setCoords({
@@ -43,7 +45,7 @@ export const GetProductUI = ({ product }) => {
         alt={"shoe"}
       />
 
-      {product && <ProductInfo product={product} />}
+      {product && <ProductInfo product={product} sizes={sizes} />}
 
       {showZoomImage && windowSize >= 1024 && (
         <img
