@@ -10,8 +10,7 @@
 
 #cart_container{
     display: flex;
-    flex-direction: column;
-   
+    flex-direction: column
 }
 
 #cart_shoe_image{
@@ -98,9 +97,6 @@
                 word-break:normal;
                 max-width: 300px;
             }
-
-            
-
         }
         #shoe_gender_type{
             font-size: 1rem ;
@@ -119,26 +115,17 @@
                 margin-left: auto;
                 text-align: end;    
                 flex-direction: column;
-
-                  }
-
-                  #delete_item_icon{
+                }
+                #delete_item_icon{
                     align-self: flex-end;
                     @media (max-width: 500px) {
                         align-self: center;
-        
-                          }
+                        }
                   }
-
             #shoe_price_text{
                 font-size: 1.4rem ;
                 font-weight: 400;
             }
-            
-         
-         
-
- 
         }
     }
 }
@@ -175,7 +162,6 @@
         word-break: normal;
         
     }
-
     .total_cart_value{
         padding: .5rem 0;
     }
@@ -183,8 +169,6 @@
         font-size: 2rem !important;
         line-height: 1.75;
         font-weight: 400;
-        
-
     }
     #checkout_button{
         background: black;
@@ -194,6 +178,12 @@
         margin-top: 2rem;
         font-size: 1.4rem;
         width: 100%;
+    }
+    #min_order_msg{
+        font-size: 1rem ;
+        font-weight: 400;
+        word-break: normal;
+        color:$text_grey
     }
 }
 

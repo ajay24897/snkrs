@@ -1,6 +1,7 @@
 import React from "react";
 import {
   ESTIMATED_DELIVERY,
+  FREE_DELIVERY_APPIES_MSG,
   SUMMARY,
   TOTAL,
 } from "../../common/constant/string/common.string";
@@ -22,12 +23,14 @@ function TotalEstimate({ subtotal }) {
       <div className="flexRow spacing">
         <text className="cart_text">{ESTIMATED_DELIVERY}</text>
         <text className="cart_text">
-          $
-          {ammountInDecimal(
-            subtotal < MINIMUM_CART_VALUE ? DELIVERY_CHARGE : 0
-          )}
+          {subtotal <= MINIMUM_CART_VALUE
+            ? `${ammountInDecimal(DELIVERY_CHARGE)}`
+            : "Free"}
         </text>
       </div>
+      {subtotal < MINIMUM_CART_VALUE && (
+        <p id="min_order_msg">{FREE_DELIVERY_APPIES_MSG}</p>
+      )}
       <div className="bottom_border" />
       <div className="flexRow total_cart_value">
         <h6 className={"cart_text"}>{TOTAL}</h6>

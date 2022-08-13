@@ -38,4 +38,6 @@ export const PLEASE_SELECT_QUANTITY = "Please select Quantity";
 export const PRODUCT_ADDED_SUCCESSFULLY = "Product added in cart successfully";
 export const YOU_CART_IS_EMPTY = "Your cart is empty!";
 export const LOOKS_HAVENOT_ADDED_ANYTING =
-  "  Looks like you heavn't added anything to your cart";
+  "Looks like you heavn't added anything to your cart";
+export const FREE_DELIVERY_APPIES_MSG =
+  "Free delivery Applies to orders of ₹200 or more.";
