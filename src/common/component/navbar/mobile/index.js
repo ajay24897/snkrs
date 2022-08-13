@@ -109,7 +109,7 @@ function MobileNavigation() {
                 isActive ? "navlink active" : "navlink"
               }
               key={index}
-              onClick={() => setMenuOpen(!isMenuOpen)}
+              onClick={handelRotateHam}
             >
               {item.route}
             </NavLink>
