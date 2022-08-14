@@ -1,8 +1,8 @@
 const route = {
   home: "/snkrs",
-  men: "men",
-  women: "women",
-  unisex: "unisex",
+  men: "snkrs/men",
+  women: "snkrs/women",
+  unisex: "snkrs/unisex",
   cart: "cart",
   404: "*",
   authentication: "authentication",

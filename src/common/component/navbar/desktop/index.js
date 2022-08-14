@@ -71,14 +71,14 @@ DesktopNavigation.propTypes = {};
 const navbarItems = [
   {
     route: "Men",
-    to: "men",
+    to: "snkrs/men",
   },
   {
     route: "Women",
-    to: "women",
+    to: "snkrs/women",
   },
   {
     route: "Unisex",
-    to: "unisex",
+    to: "snkrs/unisex",
   },
 ];
