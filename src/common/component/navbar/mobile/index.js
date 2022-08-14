@@ -13,15 +13,15 @@ import { Auth } from "../../../../firebase/services/auth.services";
 const navbarItems = [
   {
     route: "Men",
-    to: "men",
+    to: "snkrs/men",
   },
   {
-    route: "Women",
-    to: "women",
+    route: "snkrs/Women",
+    to: "snkrs/women",
   },
   {
     route: "Unisex",
-    to: "unisex",
+    to: "snkrs/unisex",
   },
 ];
 function MobileNavigation() {

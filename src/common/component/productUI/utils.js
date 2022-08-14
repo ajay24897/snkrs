@@ -40,7 +40,7 @@ const SingleProduct = ({ product, page }) => {
       className="image-cnt cursor-pointer overflow-hidden "
       key={product.id}
       onClick={() => {
-        navigate(`/${page}/${product.id}`);
+        navigate(`/snkrs/${page}/${product.id}`);
       }}
     >
       <div className="flex-r-center">

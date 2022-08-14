@@ -1,8 +1,9 @@
 import React from "react";
+import Carousel from "../../common/component/carousel";
 // import { unisexApi } from "../../firebase/services/snkrs.services";
 
 function Home() {
-  return <p>H0me</p>;
+  return <Carousel />;
 }
 export default Home;
 

@@ -29,6 +29,8 @@ function ProductInfo({ product, sizes }) {
   const [size, setSize] = useState();
   const [quantity, setQuantity] = useState();
   const [error, setError] = useState(null);
+  const [hasClickedToCart, setHasClickedToCart] = useState(false);
+
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -54,8 +56,11 @@ function ProductInfo({ product, sizes }) {
     );
 
   useMemo(() => {
-    if (isSuccess(status)) toast.success(PRODUCT_ADDED_SUCCESSFULLY);
-  }, [dataUpdatedAt]);
+    if (isSuccess(status) && hasClickedToCart) {
+      toast.success(PRODUCT_ADDED_SUCCESSFULLY);
+      setHasClickedToCart(false);
+    }
+  }, [hasClickedToCart, status]);
 
   const { userDetails } = useSelector((state) => state.userAuthReducer);
 
@@ -90,6 +95,7 @@ function ProductInfo({ product, sizes }) {
 
     if (id && size && quantity) {
       refetch();
+      setHasClickedToCart(true);
     }
   };
 

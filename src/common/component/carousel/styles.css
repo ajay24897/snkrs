@@ -1,0 +1,22 @@
+.carousel-img {
+  /* width: 100vw; */
+  height: 600px;
+  flex-basis: 33.33%;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+@media screen and (max-width: 1010px) {
+  .carousel-img {
+    height: 300px !important;
+  }
+}
+@media screen and (max-width: 500px) {
+  .carousel-img {
+    height: 200px !important;
+  }
+}/*# sourceMappingURL=styles.css.map */
