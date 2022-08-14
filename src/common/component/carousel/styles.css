@@ -12,11 +12,11 @@
 
 @media screen and (max-width: 1010px) {
   .carousel-img {
-    height: 300px !important;
+    height: 400px !important;
   }
 }
 @media screen and (max-width: 500px) {
   .carousel-img {
-    height: 200px !important;
+    height: 400px !important;
   }
 }/*# sourceMappingURL=styles.css.map */
