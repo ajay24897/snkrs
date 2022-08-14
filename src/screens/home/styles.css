@@ -1,0 +1,114 @@
+#home-container {
+  margin: 1rem;
+}
+#home-container #top-brand {
+  color: rgba(0, 0, 0, 0.5019607843);
+  margin-top: 1rem;
+}
+#home-container #heading {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1rem;
+  background: #f7f7f7;
+  margin-bottom: 1rem;
+}
+@media screen and (min-width: 768px) {
+  #home-container #heading {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+}
+#home-container #heading .home-text {
+  padding: 0px;
+  margin: 0px;
+}
+#home-container #heading .sub-heading {
+  font-weight: 500;
+}
+#home-container #heading .line-header {
+  font-weight: 900;
+  font-size: 3.5rem;
+  line-height: 3.5rem;
+}
+@media screen and (max-width: 768px) {
+  #home-container #heading .line-header {
+    font-size: 2rem;
+    line-height: 2rem;
+  }
+}
+#home-container #heading #info-header {
+  margin: 2rem 2rem 0rem 2rem;
+}
+@media screen and (max-width: 768px) {
+  #home-container #heading #info-header {
+    margin: 2rem 0rem 0rem 0rem;
+  }
+}
+#home-container #home-background {
+  position: relative;
+  display: flex;
+  flex: 1;
+}
+#home-container #home-background #home-shadow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 5px 10px 10px 100vh rgba(0, 0, 0, 0.4) inset;
+  text-align: center;
+}
+#home-container #feature {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-basis: 33%;
+  background: #f7f7f7;
+  padding: 1rem 0rem;
+  margin: 1rem 0rem;
+}
+#home-container #feature .feature-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 3rem;
+}
+
+@-webkit-keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-120rem);
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-120rem);
+  }
+}
+#slider {
+  height: 250px;
+  overflow: hidden;
+  position: relative;
+  width: clac(100vw- 1rem);
+}
+#slider .slide-track {
+  -webkit-animation: scroll 10s linear infinite;
+          animation: scroll 10s linear infinite;
+  display: flex;
+  width: 240rem;
+}
+#slider .slides {
+  height: 20rem;
+  width: 20rem;
+}/*# sourceMappingURL=styles.css.map */

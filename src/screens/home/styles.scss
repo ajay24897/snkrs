@@ -1,0 +1,115 @@
+@import "../../common/sass/colors";
+
+#home-container{
+    margin: 1rem;
+ #top-brand{
+    color: $grey_500;
+    margin-top: 1rem;
+ }
+
+ #heading{
+        display: flex;
+        flex-direction: column;
+        padding: 2rem 1rem;
+        background: $mid_grey;
+        margin-bottom: 1rem;
+
+        @media screen and (min-width: 768px) {
+           justify-content: center;
+           align-items: center;
+           text-align: center;
+        }
+
+        .home-text {
+            padding: 0px;
+            margin:0px;
+        }
+        .sub-heading{
+            font-weight: 500;
+        }
+        .line-header{
+            font-weight: 900;
+            font-size: 3.5rem;
+            line-height: 3.5rem;
+            @media screen and (max-width: 768px) {
+                font-size: 2rem;
+                line-height: 2rem;
+            }
+        }
+        #info-header{
+            margin: 2rem 2rem 0rem 2rem;
+
+            @media screen and (max-width: 768px) {
+                margin: 2rem 0rem 0rem 0rem;
+            }
+        }
+    } 
+ 
+
+
+#home-background{
+   position: relative;
+    display: flex;
+    flex: 1;
+
+    #home-shadow{
+        position: absolute;
+        top:0;
+        bottom: 0;
+        left: 0;
+        right: 0;        
+        box-shadow:  5px 10px 10px 100vh rgba(0, 0, 0, .4) inset;
+        text-align: center; 
+    }
+}
+
+ #feature{
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-basis: 33%;
+    background: $mid_grey;;
+    padding: 1rem 0rem ;
+    margin: 1rem 0rem;
+
+
+    .feature-item{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        margin: 1rem 3rem;
+    }
+ }
+
+}
+$animationSpeed: 10s;
+
+// Animation
+@keyframes scroll {
+	0% { transform: translateX(0); }
+	100% { transform: translateX(calc(-20rem * 6))}
+}
+
+
+// Styling
+#slider {
+	// box-shadow: 0 10px 20px -5px $blackShadow;
+	height: 250px;
+	overflow:hidden;
+	position: relative;
+	width: clac(100vw- 1rem);
+	.slide-track {
+		animation: scroll $animationSpeed linear infinite;
+		display: flex;
+		width: calc(20rem * 12);
+	}
+	
+	.slides {
+		height: 20rem;
+		width: 20rem;
+	}
+}

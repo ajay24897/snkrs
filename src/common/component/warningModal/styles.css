@@ -48,14 +48,14 @@
 }
 #overlay #auth_container #button_container #cancle {
   background-color: transparent;
-  color: #000000;
+  color: rgba(0, 0, 0, 0.8);
   letter-spacing: 0.1rem;
 }
 #overlay #auth_container #button_container #confirm {
   background-color: transparent;
   color: #ffffff;
   letter-spacing: 0.1rem;
-  background-color: #000000;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 #overlay #auth_container #button_container #confirm:hover, #overlay #auth_container #button_container #cancle:hover {
   color: #808080;
