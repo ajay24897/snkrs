@@ -16,7 +16,7 @@ const navbarItems = [
     to: "snkrs/men",
   },
   {
-    route: "snkrs/Women",
+    route: "Women",
     to: "snkrs/women",
   },
   {
