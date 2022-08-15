@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/snkrs/static/css/main.34495edb.css",
-    "main.js": "/snkrs/static/js/main.064189b6.js",
-    "static/media/home-background.jpg": "/snkrs/static/media/home-background.b12d47364299de34ca7f.jpg",
+    "main.css": "/snkrs/static/css/main.46d5daae.css",
+    "main.js": "/snkrs/static/js/main.234ded6d.js",
     "static/media/1.jpeg": "/snkrs/static/media/1.11343f8ed12d019583ee.jpeg",
     "static/media/3.jpeg": "/snkrs/static/media/3.222e1ebafe4d5508f5f1.jpeg",
-    "static/media/2.jpeg": "/snkrs/static/media/2.e9a2a725972b8b7a56ef.jpeg",
+    "static/media/jordan.jpeg": "/snkrs/static/media/jordan.b045c0f0dd3e3b7165b6.jpeg",
     "static/media/jordan.png": "/snkrs/static/media/jordan.45c455b49c237d330ff4.png",
     "static/media/logo.png": "/snkrs/static/media/logo.171c85452422f652b1fc.png",
     "static/media/nike.png": "/snkrs/static/media/nike.8f88c11699ce4ea4870f.png",
     "static/media/nb.png": "/snkrs/static/media/nb.480ec7590078a0a90b38.png",
+    "static/media/2.webp": "/snkrs/static/media/2.2a00807a2f9026f0365f.webp",
     "static/media/puma.png": "/snkrs/static/media/puma.6339fc55ab216d56f084.png",
     "static/media/empty cart.png": "/snkrs/static/media/empty cart.e4e5428f87e9a0b51719.png",
     "static/media/adidas.png": "/snkrs/static/media/adidas.e81f9aede7de9de9c70b.png",
     "static/media/reebok.png": "/snkrs/static/media/reebok.bb131879d2abbb53e330.png",
     "index.html": "/snkrs/index.html",
-    "main.34495edb.css.map": "/snkrs/static/css/main.34495edb.css.map",
-    "main.064189b6.js.map": "/snkrs/static/js/main.064189b6.js.map"
+    "main.46d5daae.css.map": "/snkrs/static/css/main.46d5daae.css.map",
+    "main.234ded6d.js.map": "/snkrs/static/js/main.234ded6d.js.map"
   },
   "entrypoints": [
-    "static/css/main.34495edb.css",
-    "static/js/main.064189b6.js"
+    "static/css/main.46d5daae.css",
+    "static/js/main.234ded6d.js"
   ]
 }
