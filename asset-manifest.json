@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.css": "/snkrs/static/css/main.46d5daae.css",
-    "main.js": "/snkrs/static/js/main.234ded6d.js",
+    "main.css": "/snkrs/static/css/main.5a7cf0b1.css",
+    "main.js": "/snkrs/static/js/main.b2eb0ddc.js",
     "static/media/1.jpeg": "/snkrs/static/media/1.11343f8ed12d019583ee.jpeg",
     "static/media/3.jpeg": "/snkrs/static/media/3.222e1ebafe4d5508f5f1.jpeg",
-    "static/media/jordan.jpeg": "/snkrs/static/media/jordan.b045c0f0dd3e3b7165b6.jpeg",
     "static/media/jordan.png": "/snkrs/static/media/jordan.45c455b49c237d330ff4.png",
+    "static/media/jordan.jpeg": "/snkrs/static/media/jordan.f817a4a737c2bcddb336.jpeg",
     "static/media/logo.png": "/snkrs/static/media/logo.171c85452422f652b1fc.png",
     "static/media/nike.png": "/snkrs/static/media/nike.8f88c11699ce4ea4870f.png",
     "static/media/nb.png": "/snkrs/static/media/nb.480ec7590078a0a90b38.png",
@@ -15,11 +15,11 @@
     "static/media/adidas.png": "/snkrs/static/media/adidas.e81f9aede7de9de9c70b.png",
     "static/media/reebok.png": "/snkrs/static/media/reebok.bb131879d2abbb53e330.png",
     "index.html": "/snkrs/index.html",
-    "main.46d5daae.css.map": "/snkrs/static/css/main.46d5daae.css.map",
-    "main.234ded6d.js.map": "/snkrs/static/js/main.234ded6d.js.map"
+    "main.5a7cf0b1.css.map": "/snkrs/static/css/main.5a7cf0b1.css.map",
+    "main.b2eb0ddc.js.map": "/snkrs/static/js/main.b2eb0ddc.js.map"
   },
   "entrypoints": [
-    "static/css/main.46d5daae.css",
-    "static/js/main.234ded6d.js"
+    "static/css/main.5a7cf0b1.css",
+    "static/js/main.b2eb0ddc.js"
   ]
 }
