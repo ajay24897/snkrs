@@ -16,9 +16,10 @@ import {
   PRODUCT_REMOVED_FROM_CART,
   YOU_CART_IS_EMPTY,
 } from "../../common/constant/string/common.string";
-import WarrningModal from "../../common/component/warningModal";
+import WarrningModal from "./warningModal/index";
 import CartProduct from "./cartProduct";
 import TotalEstimate from "./totalEstimate";
+import CheckoutModal from "./checkoutModal";
 
 function Cart() {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function Cart() {
   const [deleteShoeId, setDeleteShoeId] = useState();
   const [subtotal, setSubtotal] = useState(null);
   const [useLoggedOut, setUserLoggedOut] = useState(false);
+  const [showCheckoutModal, setShowCheckoutModal] = useState(false);
 
   const { userDetails } = useSelector((state) => state.userAuthReducer);
 
@@ -54,7 +56,7 @@ function Cart() {
 
   useMemo(() => {
     if (isSuccess(deleteStatus) && deleteShoeId && dataUpdatedAt) {
-      closeWarningMoadel();
+      closeWarningModal();
       setDeleteShoeId();
       toast.success(PRODUCT_REMOVED_FROM_CART);
       refetch();
@@ -93,7 +95,7 @@ function Cart() {
     deleteCartItemApi();
   };
 
-  function closeWarningMoadel() {
+  function closeWarningModal() {
     setShowWarrning(false);
   }
   return (
@@ -110,7 +112,7 @@ function Cart() {
       {(isLoading(status) || isLoading(deleteStatus)) && <Loader showOverlay />}
       {showWarrning && (
         <WarrningModal
-          onCancle={closeWarningMoadel}
+          onCancle={closeWarningModal}
           title={DELET_CART_ITEM_TITLE}
           message={DELET_CART_ITEM_MESSAGE}
           onConfirm={deleteItemFromCart}
@@ -131,9 +133,21 @@ function Cart() {
           </div>
           <div id="summary_details">
             <TotalEstimate subtotal={subtotal} />
-            <button id="checkout_button">{CHECKOUT}</button>
+            <button
+              id="checkout_button"
+              onClick={() => setShowCheckoutModal(true)}
+            >
+              {CHECKOUT}
+            </button>
           </div>
         </div>
+      )}
+      {showCheckoutModal && (
+        <CheckoutModal
+          data={data}
+          onCancle={() => setShowCheckoutModal(false)}
+          subtotal={subtotal}
+        />
       )}
 
       {(!data?.length || useLoggedOut) && (
