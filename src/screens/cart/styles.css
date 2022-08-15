@@ -183,7 +183,7 @@
   font-weight: 400;
 }
 #summary_details #checkout_button {
-  background: black;
+  background-color: rgba(0, 0, 0, 0.8);
   padding-top: 1.2rem;
   padding-bottom: 1.2rem;
   border-radius: 3rem;

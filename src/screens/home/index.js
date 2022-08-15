@@ -6,15 +6,19 @@ import Adidas from "../../common/image/adidas.png";
 import Reebok from "../../common/image/reebok.png";
 import Puma from "../../common/image/puma.png";
 import Nb from "../../common/image/nb.png";
-import HomeGB from "../../common/image/home-background.jpg";
+import JordanNewArrival from "../../common/image/jordan.jpeg";
 
 import "./styles.css";
+import { useNavigate } from "react-router-dom";
 
 let data = [Jordan, Nike, Adidas, Reebok, Nb, Puma];
 
 function Home() {
+  const navigate = useNavigate();
+
   return (
     <div id="home-container">
+      <Carousel />
       <div id="heading">
         <p className="home-text sub-heading">This is SNKRS</p>
         <p className="home-text line-header">MADE FOR</p>
@@ -30,7 +34,24 @@ function Home() {
         <img src={HomeGB} width={"100%"} height={"80%"} />
         <div id="home-shadow"></div>
       </div> */}
-      <Carousel />
+      <h3>New Arrival</h3>
+      <div id={"new-arrival"}>
+        <img src={JordanNewArrival} id={"new-arrival-image"} />
+        <p id="new-arrival-heading">nike air trainer 1 chlorophyll</p>
+        <p id="info-description">
+          The original cross trainer from '87 now lets you cross between the
+          city centre and the suburbs without a glitch. Designed by Tinker
+          Hatfield, the OG 'Chlorophyll' colourway remains one of the sneaker's
+          most famous make-ups.
+        </p>
+        <button
+          id="button-shop"
+          onClick={() => navigate("men/6E7F68eXVwOgWqX6HGr1")}
+        >
+          Shop Now
+        </button>
+      </div>
+
       <div id="feature">
         <div class="feature-item">
           <h1>500+</h1>
@@ -42,11 +63,11 @@ function Home() {
         </div>
         <div class="feature-item">
           <h1>3 Months</h1>
-          <p>Warrenty</p>
+          <p>Warranty</p>
         </div>
       </div>
 
-      <h3 id="top-brand">Top Brands</h3>
+      <h3>Top Brands</h3>
       <div id="slider">
         <div class="slide-track">
           {[...data, ...data].map((image) => {

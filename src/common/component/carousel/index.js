@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import First from "./1.jpeg";
-import Second from "./2.jpeg";
+import Second from "./2.webp";
 import Third from "./3.jpeg";
 
 import "./styles.css";
 
 var imageData = [
   { img: First, route: "men/uVZ9pFn3H6253oWQ9cD1" },
-  { img: Second, route: "men/0TYLDOm0FAsVdj3NJXsn" },
+  { img: Second, route: "men/Gc6nBoPk475hripexwnZ" },
   { img: Third, route: "women/Y4BdOOEa8rPKzkkQ7l0W" },
 ];
 
@@ -20,8 +20,6 @@ function Carousel(props) {
     const carousel = document.querySelector(".carousel");
     const slider = document.querySelector(".slider");
 
-    const next = document.querySelector(".next");
-    const prev = document.querySelector(".prev");
     let direction;
     let imageSlide = setInterval(() => {
       direction = -1;
