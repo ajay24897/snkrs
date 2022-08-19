@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useMemo, useState } from "react";
+import React, { memo, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useQuery } from "react-query";
@@ -34,26 +34,25 @@ function ProductInfo({ product, sizes }) {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const { isLoading, data, isFetching, refetch, dataUpdatedAt, status } =
-    useQuery(
-      "cart",
-      async () =>
-        await addSnkrInCart({
-          user: userDetails?.email,
-          shoeId: id,
-          size: +size,
-          quantity: +quantity,
-          media: product?.media,
-          retailPrice,
-          title,
-          colorway,
-          brand,
-          gender,
-        }),
-      {
-        enabled: false,
-      }
-    );
+  const { isFetching, refetch, status } = useQuery(
+    "cart",
+    async () =>
+      await addSnkrInCart({
+        user: userDetails?.email,
+        shoeId: id,
+        size: +size,
+        quantity: +quantity,
+        media: product?.media,
+        retailPrice,
+        title,
+        colorway,
+        brand,
+        gender,
+      }),
+    {
+      enabled: false,
+    }
+  );
 
   useMemo(() => {
     if (isSuccess(status) && hasClickedToCart) {
