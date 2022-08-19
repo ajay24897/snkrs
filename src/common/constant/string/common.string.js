@@ -41,3 +41,23 @@ export const LOOKS_HAVENOT_ADDED_ANYTING =
   "Looks like you heavn't added anything to your cart";
 export const FREE_DELIVERY_APPIES_MSG =
   "Free delivery Applies to orders of ₹200 or more.";
+
+export const HOME = {
+  THIS_IS_SNKRS: "This is SNKRS",
+  MADE_FOR: "MADE FOR",
+  EVERYTING_YOU_ARE: "EVERYTING YOU ARE",
+  DESCRIPTION:
+    "The SNKRS collection is designed and tested by top designer. Giving you the freedom to move however you want to, throughout your entire journey.",
+  NEW_ARRIVAL: "New Arrival",
+  NEW_NIKE_SHOE: "nike air trainer 1 chlorophyll",
+  NIKE_SHO_INFO:
+    "The original cross trainer from '87 now lets you cross between the city centre and the suburbs without a glitch. Designed by Tinker Hatfield, the OG 'Chlorophyll' colourway remains one of the sneaker's most famous make-ups.",
+  SHOP_NOW: "Shop Now",
+  "500+": "500+",
+  SHOES: "Shoes",
+  GENUINE_PRODUCT: "Genuine product",
+  "3_Months": "3 Months",
+  WARRANTY: "Warranty",
+  "100%": "100%",
+  TOP_BRANDS: "Top Brands",
+};

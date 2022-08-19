@@ -10,6 +10,7 @@ import JordanNewArrival from "../../common/image/jordan.jpeg";
 
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
+import { HOME } from "../../common/constant/string/common.string";
 
 let data = [Jordan, Nike, Adidas, Reebok, Nb, Puma];
 
@@ -20,54 +21,45 @@ function Home() {
     <div id="home-container">
       <Carousel />
       <div id="heading">
-        <p className="home-text sub-heading">This is SNKRS</p>
-        <p className="home-text line-header">MADE FOR</p>
-        <p className="home-text line-header">EVERYTING YOU ARE</p>
-        <p id="info-header">
-          The SNKRS collection is designed and tested by top designer. Giving
-          you the freedom to move however you want to, throughout your entire
-          journey.
-        </p>
+        <p className="home-text sub-heading">{HOME.THIS_IS_SNKRS}</p>
+        <p className="home-text line-header">{HOME.MADE_FOR}</p>
+        <p className="home-text line-header">{HOME.EVERYTING_YOU_ARE}</p>
+        <p id="info-header">{HOME.DESCRIPTION}</p>
       </div>
 
       {/* <div id="home-background">
         <img src={HomeGB} width={"100%"} height={"80%"} />
         <div id="home-shadow"></div>
       </div> */}
-      <h3>New Arrival</h3>
+      <h3>{HOME.NEW_ARRIVAL}</h3>
       <div id={"new-arrival"}>
-        <img src={JordanNewArrival} id={"new-arrival-image"} />
-        <p id="new-arrival-heading">nike air trainer 1 chlorophyll</p>
-        <p id="info-description">
-          The original cross trainer from '87 now lets you cross between the
-          city centre and the suburbs without a glitch. Designed by Tinker
-          Hatfield, the OG 'Chlorophyll' colourway remains one of the sneaker's
-          most famous make-ups.
-        </p>
+        <img src={JordanNewArrival} id={"new-arrival-image"} alt={"jordan"} />
+        <p id="new-arrival-heading">{HOME.NEW_NIKE_SHOE}</p>
+        <p id="info-description">{HOME.NIKE_SHO_INFO}</p>
         <button
           id="button-shop"
           onClick={() => navigate("men/6E7F68eXVwOgWqX6HGr1")}
         >
-          Shop Now
+          {HOME.SHOP_NOW}
         </button>
       </div>
 
       <div id="feature">
         <div class="feature-item">
-          <h1>500+</h1>
-          <p>Shoes</p>
+          <h1>{HOME["500+"]}</h1>
+          <p>{HOME.SHOES}</p>
         </div>
         <div class="feature-item">
-          <h1>100%</h1>
-          <p>Genuine product</p>
+          <h1>{HOME["100%"]}</h1>
+          <p>{HOME.GENUINE_PRODUCT}</p>
         </div>
         <div class="feature-item">
-          <h1>3 Months</h1>
-          <p>Warranty</p>
+          <h1>{HOME["3_Months"]}</h1>
+          <p>{HOME.WARRANTY}</p>
         </div>
       </div>
 
-      <h3>Top Brands</h3>
+      <h3>{HOME.TOP_BRANDS}</h3>
       <div id="slider">
         <div class="slide-track">
           {[...data, ...data].map((image) => {
