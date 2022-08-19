@@ -41,14 +41,14 @@
   input[type="password"],
   select {
     width: -webkit-fill-available;
-    height: 35px;
-    padding: 0 10px;
-    margin: 10px 0;
+    height: 2rem;
+    padding: 0 .5rem;
+    margin: .5rem 0;
     border: 1px solid $blackShadow;
     outline: none;
     background: transparent;
     font-size: 16px;
-    border-radius: 5px;
+    border-radius: .5rem;
     display: flex;
     transition: all 0.5s linear;
   }
@@ -81,7 +81,7 @@
   ::-webkit-scrollbar {
     height: .2rem; /* height of horizontal scrollbar ← You're missing this */
     width: .2rem;
-    border-radius: 5px;
+    border-radius: .5rem;
   }
   ::-webkit-scrollbar-track {
     background-color: $grey;

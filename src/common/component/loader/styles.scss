@@ -13,6 +13,11 @@
     flex-direction: column;
     background: $overlay;
   }
+ 
+  #loader-image-wrapper{
+    display: flex 
+  }
+  
 #loader_message{
   margin-top: 1rem;
   color: $black;

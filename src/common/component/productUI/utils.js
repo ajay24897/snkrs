@@ -13,7 +13,9 @@ const getProductShortInfo = ({ brand, name, title, id, retailPrice }) => {
       <text className="text-ellipsis">
         {capitalizeFirstLetter(removeRrandNameFromTitle(title, brand))}
       </text>
-      <p className="text-ellipsis">${retailPrice < 50 ? 50 : retailPrice}</p>
+      <p className="text-ellipsis" id="shoe-price">
+        ${retailPrice < 50 ? 50 : retailPrice}
+      </p>
       {/* <h1 onClick={async () => await handleDelete(id)}>Delete </h1> */}
     </div>
   );
@@ -31,7 +33,7 @@ const SingleProduct = ({ product, page }) => {
       }}
     >
       <div className="flex-r-center">
-        <img src={product.media} className="productImg  image" />
+        <img src={product.media} className="productImg  image" alt="product" />
       </div>
       {getProductShortInfo(product)}
     </div>

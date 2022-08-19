@@ -10,3 +10,9 @@
     left: 50%;
     transform: translate(-50%, -50%)
 }
+
+@mixin hSpaceBetweenVcenter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

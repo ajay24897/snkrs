@@ -4,9 +4,8 @@
 @media (max-width: 768px) {
   #mob-container {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding: 0rem 1rem;
     width: 100%;
     height: 4rem;
@@ -18,28 +17,28 @@
   }
   #mob-container .navlink {
     text-decoration: none;
-    color: #000;
+    color: rgba(0, 0, 0, 0.8);
     height: 100%;
     transition: all 0.5s ease-in;
   }
   #mob-container .navlink:hover {
     text-decoration: underline;
-    color: grey;
-    -webkit-text-decoration-color: grey;
-            text-decoration-color: grey;
+    color: #808080;
+    -webkit-text-decoration-color: #808080;
+            text-decoration-color: #808080;
     text-underline-offset: 1rem;
   }
   #mob-container .active {
     text-decoration: underline;
-    -webkit-text-decoration-color: grey;
-            text-decoration-color: grey;
+    -webkit-text-decoration-color: #808080;
+            text-decoration-color: #808080;
     text-underline-offset: 1rem;
   }
   #mob-container .cart {
     position: relative;
     align-self: center;
     text-decoration: none;
-    color: #000;
+    color: rgba(0, 0, 0, 0.8);
   }
   #mob-container #cart-value {
     display: flex;
@@ -49,7 +48,7 @@
     transform: translate(-50%, -50%);
   }
   #mob-container .active-cart {
-    color: grey;
+    color: #808080;
   }
   #mob-container .container {
     display: flex;
