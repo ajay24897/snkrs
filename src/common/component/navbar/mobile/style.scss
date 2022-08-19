@@ -1,5 +1,6 @@
 @import "../../../sass/common";
 @import "../../../sass/colors";
+@import "../../../sass/constant";
 
 #mob-container {
     display: none;
@@ -52,7 +53,7 @@
                 align-items: center }
           }
           .zIndex {
-            z-index: 40;
+            z-index: $menuClose;
           }
  
           .navlink.rotate {

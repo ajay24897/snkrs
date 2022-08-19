@@ -13,6 +13,8 @@ import {
   PASSWORD,
   SIGN_UP,
 } from "../../common/constant/string/common.string";
+import { isLoading } from "../../common/function";
+import Loader from "../../common/component/loader";
 
 function Authentication() {
   const [email, setEmail] = useState("");
@@ -20,7 +22,7 @@ function Authentication() {
   const [error, setError] = useState("");
   const [hasSignUpForm, setHasSignUpForm] = useState(true);
 
-  const { userDetails, hasError } = useSelector(
+  const { userDetails, hasError, isLoading } = useSelector(
     (state) => state.userAuthReducer
   );
 
@@ -66,11 +68,9 @@ function Authentication() {
     <div className="overlay">
       <div className="auth_container">
         <GrClose
-          style={{ margin: "1rem 2rem 0 auto" }}
+          id={"close_icon"}
           onClick={() => dispatch({ type: "CLOSE_SIGN_UP_FORM" })}
         />
-        {/* {state?.email ?? "no user found"} looged in */}
-
         <h4 className="form_title">{hasSignUpForm ? "Sign Up" : "Log In"}</h4>
         <div className="form_content">
           <label className="label">{Email}</label>
@@ -113,6 +113,7 @@ function Authentication() {
 
         {error && <text className="errorText">{error}</text>}
       </div>
+      {isLoading && <Loader showOverlay={true} />}
     </div>
   );
 }

@@ -1,10 +1,11 @@
 @import "../../sass/colors";
+@import "../../sass/constant";
 
 #navbar_container{
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 20;
+      z-index: $navbar;
       background-color:$white;
 }

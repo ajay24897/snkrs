@@ -1,5 +1,6 @@
 @import "../../sass/colors";
 @import "../../sass/common";
+@import "../../sass/constant";
 
 #overlay_loader_cnt {
     @include displayFlexCenter;
@@ -9,7 +10,7 @@
     right: 0;
     bottom: 0;
     height: 100vh;
-    z-index: 20;
+    z-index: $loader;
     flex-direction: column;
     background: $overlay;
   }

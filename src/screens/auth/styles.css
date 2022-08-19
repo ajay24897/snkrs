@@ -17,6 +17,9 @@
     width: 90vw;
   }
 }
+.auth_container #close_icon {
+  margin: 1rem 2rem 0 auto;
+}
 .auth_container .form_title {
   margin: 0rem auto 2rem auto;
 }

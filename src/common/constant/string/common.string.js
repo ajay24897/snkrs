@@ -61,3 +61,9 @@ export const HOME = {
   "100%": "100%",
   TOP_BRANDS: "Top Brands",
 };
+
+export const SHOE_TYPE = {
+  MEN: "Men's Shoe",
+  WOMEN: "Womens's Shoe",
+  UNISEX: "Unisex Shoe",
+};

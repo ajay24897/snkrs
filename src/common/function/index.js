@@ -1,4 +1,9 @@
-import { ERROR, LOADING, SUCCESS } from "../constant/string/common.string";
+import {
+  ERROR,
+  LOADING,
+  SHOE_TYPE,
+  SUCCESS,
+} from "../constant/string/common.string";
 
 export const capitalizeFirstLetter = (str = "") => {
   return `${str[0]?.toUpperCase()}${str?.slice(1).toLowerCase()}` ?? "";
@@ -15,21 +20,21 @@ export const firebaseData = (res) => {
 };
 
 export const isLoading = (status) => {
-  return status.toLocaleLowerCase() === LOADING;
+  return status?.toLocaleLowerCase() === LOADING;
 };
 
 export const isSuccess = (status) => {
-  return status.toLocaleLowerCase() === SUCCESS;
+  return status?.toLocaleLowerCase() === SUCCESS;
 };
 
 export const isError = (status) => {
-  return status.toLocaleLowerCase() === ERROR;
+  return status?.toLocaleLowerCase() === ERROR;
 };
 
 export const getShoeGenderTitle = (title) => {
-  if (title === "men") return "Men's Shoe";
-  if (title === "women") return "Womens's Shoe";
-  return "Unisex Shoe";
+  if (title === "men") return SHOE_TYPE.MEN;
+  if (title === "women") return SHOE_TYPE.WOMEN;
+  return SHOE_TYPE.UNISEX;
 };
 
 export const ammountInDecimal = (value) => {
