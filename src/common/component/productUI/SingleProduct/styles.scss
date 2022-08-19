@@ -70,12 +70,8 @@
         }
         #add_to_cart_button{
             background-color: $black;
-             letter-spacing: .1rem;
+            width: "100%";
         }
-        #add_to_cart_button:hover{
-            color: $grey;
-        } 
-       
     }
 
 }
