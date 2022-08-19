@@ -3,7 +3,6 @@ import ProductInfo from "./productInfo";
 import "./styles.css";
 
 export const GetProductUI = ({ product, sizes }) => {
-  console.log("product", product);
   const [coords, setCoords] = useState();
   const [showZoomImage, setShowZoomImage] = useState(false);
 

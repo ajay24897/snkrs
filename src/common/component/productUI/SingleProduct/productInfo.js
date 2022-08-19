@@ -128,7 +128,7 @@ function ProductInfo({ product, sizes }) {
               onChange={(e) => setSize(e.target.value)}
               className={"select"}
             >
-              <option value="" selected>
+              <option value="" defaultValue>
                 {SELECT_SIZE}
               </option>
               {sizes.map((data) => {

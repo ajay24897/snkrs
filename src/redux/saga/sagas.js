@@ -11,8 +11,6 @@ export function* userLoginSaga(action) {
       let res = yield Auth.signIn(email, password);
       let cartItem = yield cartApi.getSnkr(email);
 
-      console.log("cartItem", email, cartItem);
-
       yield put({ type: "INITIAL_CART_ITEM", data: firebaseData(cartItem) });
       yield put({ type: "LOGIN_SUCCESS", data: res.user });
     } else {
