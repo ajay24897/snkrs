@@ -54,18 +54,12 @@
             #cancle{
                 background-color: transparent;
                 color: $black;
-                letter-spacing: .1rem;
             }
             #confirm{
                 background-color: transparent;
                 color: $white;
-                letter-spacing: .1rem;
                 background-color: $black; 
             }
-            #confirm:hover , #cancle:hover {
-                color: $grey;
-            }
-
         }
     }
 }

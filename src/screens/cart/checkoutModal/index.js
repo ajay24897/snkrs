@@ -4,7 +4,6 @@ import {} from "../../../common/function";
 import "./styles.css";
 
 function CheckoutModal({ onCancle, data }) {
-  console.log("data?.length", data);
   return (
     <div id="checkout-overlay">
       <div id="checkout-modal-container">

@@ -13,6 +13,10 @@
   background: rgba(68, 67, 67, 0.5);
 }
 
+#loader-image-wrapper {
+  display: flex;
+}
+
 #loader_message {
   margin-top: 1rem;
   color: rgba(0, 0, 0, 0.8);

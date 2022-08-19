@@ -21,7 +21,7 @@ function Women() {
         let doc = await womensApi.getSnkr(id);
         return { ...doc.data(), id: doc.id };
       } catch (err) {
-        console.log("ededdede", err);
+        // console.log("ededdede", err);
       }
   };
 
@@ -33,7 +33,7 @@ function Women() {
         setLast(lastVisible);
         return firebaseData(res);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     }
   };

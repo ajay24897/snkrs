@@ -1,5 +1,4 @@
 .carousel-img {
-  /* width: 100vw; */
   height: 600px;
   flex-basis: 33.33%;
   flex-shrink: 0;
@@ -8,6 +7,14 @@
   align-items: center;
   -o-object-fit: cover;
      object-fit: cover;
+  cursor: pointer;
+}
+
+.slider {
+  display: flex;
+  flex-shrink: 0;
+  transition: all 2s;
+  width: 300%;
 }
 
 @media screen and (max-width: 1010px) {

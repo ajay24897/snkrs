@@ -9,7 +9,6 @@ import {
 import "./styles.css";
 
 function CartProduct({ shoe, onClick }) {
-  console.log("shoe", shoe);
   return (
     <>
       <div id="cart_shoe_info_cnt">

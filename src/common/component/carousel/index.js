@@ -13,7 +13,7 @@ var imageData = [
   { img: Third, route: "women/Y4BdOOEa8rPKzkkQ7l0W" },
 ];
 
-function Carousel(props) {
+function Carousel() {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -49,24 +49,16 @@ function Carousel(props) {
   }, []);
   return (
     <div class="carousel overflow-hidden">
-      <div
-        className="slider"
-        style={{
-          display: "flex",
-          flexShrink: 0,
-          transition: "all 2s",
-          // overflow: "hidden",
-          width: "300%",
-        }}
-      >
+      <div className="slider">
         {imageData.map((image, index) => {
           return (
             <img
               src={image.img}
               className="carousel-img"
               width="100vw"
-              alt={"jebndjenb"}
+              alt={"carousel-product"}
               onClick={() => navigate(image.route)}
+              key={index}
             />
           );
         })}

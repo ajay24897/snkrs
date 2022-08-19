@@ -2,9 +2,7 @@
 @import "../../../sass/colors";
 
 #container {
-display: flex;
-flex-direction: row;
-justify-content: space-between;
+@include hSpaceBetweenVcenter();
 align-items: center;
 padding: 0rem 4rem;
 width: 100%;
@@ -32,19 +30,17 @@ align-self: center;
         color: $grey;
         text-decoration-color: $grey;
         text-underline-offset: 1rem;
-    
     }
 }
 
 .right_navelink{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include hSpaceBetweenVcenter()
 }
 .active-navlink{
     text-decoration: underline;
     text-decoration-color: $grey;
-    text-underline-offset: 1rem;}
+    text-underline-offset: 1rem;
+}
 .cart{
     text-decoration: none;
     color: $black;

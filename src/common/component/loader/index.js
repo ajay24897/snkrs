@@ -6,7 +6,7 @@ import "./styles.css";
 function Loader({ showOverlay, message }) {
   return (
     <div id={`${showOverlay ? "overlay_loader_cnt" : "loader_cnt"}`}>
-      <div style={{ display: "flex" }}>
+      <div id="loader-image-wrapper">
         <div className="loader_shoe" id={"shoe_1"} />
         <div className="loader_shoe" id={"shoe_2"} />
       </div>

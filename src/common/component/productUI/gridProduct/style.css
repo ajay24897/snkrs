@@ -26,7 +26,6 @@
   font-weight: bold;
   transition: all 0.3s ease-in-out;
   margin: auto 20px;
-  color: var(--black);
 }
 
 .product-grid {
@@ -48,9 +47,12 @@
   transition: all 0.3s linear;
 }
 
+#shoe-price {
+  margin-top: 0.5rem;
+}
+
 .image-cnt:hover {
   transform: scale(1.05) !important;
-  box-shadow: 0 2px 5px 4px rgba(64, 60, 67, 0.1607843137);
 }
 
 .productImg {
@@ -88,9 +90,6 @@
     max-width: 100%;
     -o-object-fit: contain;
        object-fit: contain;
-  }
-  .image-cnt:hove {
-    box-shadow: 0 2px 5px 3px rgba(64, 60, 67, 0.1607843137);
   }
 }
 .flex-r-center {
