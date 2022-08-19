@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/snkrs/static/css/main.5fc95a4b.css",
-    "main.js": "/snkrs/static/js/main.26b89e81.js",
+    "main.css": "/snkrs/static/css/main.23016500.css",
+    "main.js": "/snkrs/static/js/main.ca556c05.js",
     "static/media/1.jpeg": "/snkrs/static/media/1.11343f8ed12d019583ee.jpeg",
     "static/media/3.jpeg": "/snkrs/static/media/3.222e1ebafe4d5508f5f1.jpeg",
     "static/media/jordan.png": "/snkrs/static/media/jordan.45c455b49c237d330ff4.png",
@@ -15,11 +15,11 @@
     "static/media/adidas.png": "/snkrs/static/media/adidas.e81f9aede7de9de9c70b.png",
     "static/media/reebok.png": "/snkrs/static/media/reebok.bb131879d2abbb53e330.png",
     "index.html": "/snkrs/index.html",
-    "main.5fc95a4b.css.map": "/snkrs/static/css/main.5fc95a4b.css.map",
-    "main.26b89e81.js.map": "/snkrs/static/js/main.26b89e81.js.map"
+    "main.23016500.css.map": "/snkrs/static/css/main.23016500.css.map",
+    "main.ca556c05.js.map": "/snkrs/static/js/main.ca556c05.js.map"
   },
   "entrypoints": [
-    "static/css/main.5fc95a4b.css",
-    "static/js/main.26b89e81.js"
+    "static/css/main.23016500.css",
+    "static/js/main.ca556c05.js"
   ]
 }
