@@ -31,15 +31,12 @@ function App() {
     });
   }, [dispatch]);
   return (
-    <div>
+    <div style={{ width: "100vw", height: "100vh" }}>
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
           <Navbar />
-          <div
-            style={{
-              marginTop: "4rem",
-            }}
-          >
+          <div style={{ height: "4rem" }} />
+          <div>
             {showSignupForm && <Authentication />}
             <Routes>
               <Route path={route.home} element={<Home />} />

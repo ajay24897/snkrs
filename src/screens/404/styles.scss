@@ -1,0 +1,29 @@
+@import "../../common/sass/colors";
+
+#page_not_found{
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    align-items: center;
+    height: calc(100vh - 4rem);
+    text-align: center;
+    padding: 0rem 2rem;
+    flex-direction: column;
+    #heading{
+        font-size: 5rem;
+        letter-spacing: 1rem;
+        color: transparent;
+        -webkit-text-fill-color: $white;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: $black;
+    }
+
+    #sub_title{
+        color:$grey;
+        font-weight: 400;
+        margin-top: .5rem;
+    }
+    #home_button{
+        margin-top: 2rem;
+    }
+}
