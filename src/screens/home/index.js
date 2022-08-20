@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Carousel from "../../common/component/carousel";
 import Nike from "../../common/image/nike.png";
 import Jordan from "../../common/image/jordan.png";
@@ -11,20 +11,51 @@ import JordanNewArrival from "../../common/image/jordan.jpeg";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
 import { HOME } from "../../common/constant/string/common.string";
+import Footer from "../../common/component/footer";
 
 let data = [Jordan, Nike, Adidas, Reebok, Nb, Puma];
 
 function Home() {
   const navigate = useNavigate();
+  const p = useRef(null);
+
+  useEffect(() => {
+    let animatedText = setInterval(() => {
+      callme();
+    }, [12000]);
+
+    return () => clearInterval(animatedText);
+  }, []);
+
+  const callme = () => {
+    setTimeout(() => {
+      p.current.innerHTML = HOME.SPORT_SHOES;
+    }, [3000]);
+    setTimeout(() => {
+      p.current.innerHTML = HOME.RUNNING_SHOES;
+    }, [6000]);
+    setTimeout(() => {
+      p.current.innerHTML = HOME.CASUAL_SHOES;
+    }, [9000]);
+    setTimeout(() => {
+      p.current.innerHTML = HOME.SLIP_ON_SHOES;
+    }, [12000]);
+  };
 
   return (
     <div id="home-container">
-      <Carousel />
       <div id="heading">
         <p className="home-text sub-heading">{HOME.THIS_IS_SNKRS}</p>
         <p className="home-text line-header">{HOME.MADE_FOR}</p>
-        <p className="home-text line-header">{HOME.EVERYTING_YOU_ARE}</p>
+        <p className="home-text line-header">{HOME.EVERYTHING_YOU_ARE}</p>
         <p id="info-header">{HOME.DESCRIPTION}</p>
+      </div>
+      <Carousel />
+      <div id="animate-text">
+        <p id="tag-title">{HOME.WHAT_WE_HAVE_FOR_YOU}</p>
+        <p ref={p} id="tag">
+          Sneakers
+        </p>
       </div>
 
       {/* <div id="home-background">
@@ -71,6 +102,7 @@ function Home() {
           })}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

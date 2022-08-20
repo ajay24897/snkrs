@@ -1,7 +1,55 @@
 @import "../../common/sass/colors";
 
+@keyframes animate {
+
+    0%{
+        left:0
+    }
+    40%{
+        left: 100%;
+    }
+    90%{
+        left: 0%;
+    }
+}
+
 #home-container{
     margin: 1rem;
+    
+#animate-text{
+    background-color: $mid_grey;
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+
+    #tag-title{
+    font-weight: 500; 
+    }
+
+
+ #tag{
+    position: relative;
+    background-color: $mid_grey;
+    display: inline-block;
+    margin-top: .5rem;
+    font-size: 2rem;
+
+    &::before{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: $mid_grey;
+        border-left: 1px solid $black;
+        animation: animate 3s infinite;
+    }
+}
+
+
+ }   
  #top-brand{
     color: $grey_500;
     margin-top: 1rem;
@@ -22,6 +70,7 @@
         .home-text {
             padding: 0px;
             margin:0px;
+            align-self: center;
         }
         .sub-heading{
             font-weight: 500;

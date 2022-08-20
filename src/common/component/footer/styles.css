@@ -1,0 +1,13 @@
+#footer_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#footer_container #copyright_text {
+  margin: 0.5rem 0rem;
+}
+
+#icons {
+  margin: 0rem 0.5rem;
+}/*# sourceMappingURL=styles.css.map */

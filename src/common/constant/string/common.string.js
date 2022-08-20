@@ -45,7 +45,7 @@ export const FREE_DELIVERY_APPIES_MSG =
 export const HOME = {
   THIS_IS_SNKRS: "This is SNKRS",
   MADE_FOR: "MADE FOR",
-  EVERYTING_YOU_ARE: "EVERYTING YOU ARE",
+  EVERYTHING_YOU_ARE: "EVERYTHING YOU ARE",
   DESCRIPTION:
     "The SNKRS collection is designed and tested by top designer. Giving you the freedom to move however you want to, throughout your entire journey.",
   NEW_ARRIVAL: "New Arrival",
@@ -60,10 +60,19 @@ export const HOME = {
   WARRANTY: "Warranty",
   "100%": "100%",
   TOP_BRANDS: "Top Brands",
+  WHAT_WE_HAVE_FOR_YOU: "What we have for you?",
+  SPORT_SHOES: "Sport shoes",
+  RUNNING_SHOES: "Running Shoes",
+  CASUAL_SHOES: "Casual Shoes",
+  SLIP_ON_SHOES: "Slip-on Shoes",
 };
 
 export const SHOE_TYPE = {
   MEN: "Men's Shoe",
   WOMEN: "Womens's Shoe",
   UNISEX: "Unisex Shoe",
+};
+
+export const FOOTER = {
+  COPY_RIGHT: "© 2022 SNKRS, All rights reserved",
 };
