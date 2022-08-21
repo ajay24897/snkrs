@@ -46,6 +46,7 @@ p {
 input[type=text],
 input[type=number],
 input[type=password],
+input[type=tel],
 select {
   width: -webkit-fill-available;
   height: 2.5rem;
