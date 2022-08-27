@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { GrClose } from "react-icons/gr";
 import BillingDetails from "./billingDetails";
 import Payment from "./payment";
 import "./styles.css";
 
-function CheckoutModal({ onCancle, data }) {
+function CheckoutModal({ onCancle, subtotal }) {
   const [hasAddress, setHasAddress] = useState(false);
 
   return (
@@ -25,7 +25,7 @@ function CheckoutModal({ onCancle, data }) {
           id="main"
         >
           <BillingDetails setHasAddress={setHasAddress} />
-          {hasAddress && <Payment />}
+          {hasAddress && <Payment subtotal={subtotal} />}
         </div>
       </div>
     </div>

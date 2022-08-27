@@ -101,6 +101,10 @@
   letter-spacing: 2rem;
   font-size: 2.5rem;
 }
+#payment_container #pay_amount {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
 #payment_container #head_captcha {
   padding: 1rem 0rem;
   margin-bottom: 1rem;
