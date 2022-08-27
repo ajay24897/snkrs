@@ -4,9 +4,10 @@ import BillingDetails from "./billingDetails";
 import Payment from "./payment";
 import "./styles.css";
 
-function CheckoutModal({ onCancle, subtotal }) {
+function CheckoutModal({ onCancle, subtotal, data }) {
   const [hasAddress, setHasAddress] = useState(false);
 
+  console.log(data);
   return (
     <div id="checkout-overlay">
       <div id="checkout-modal-container">
@@ -25,7 +26,9 @@ function CheckoutModal({ onCancle, subtotal }) {
           id="main"
         >
           <BillingDetails setHasAddress={setHasAddress} />
-          {hasAddress && <Payment subtotal={subtotal} userInfo={hasAddress} />}
+          {hasAddress && (
+            <Payment subtotal={subtotal} userInfo={hasAddress} data={data} />
+          )}
         </div>
       </div>
     </div>

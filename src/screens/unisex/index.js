@@ -7,6 +7,7 @@ import GridProductUI from "../../common/component/productUI/gridProduct";
 import { GetProductUI } from "../../common/component/productUI/singleProduct";
 import { firebaseData } from "../../common/function";
 import { unisexApi } from "../../firebase/services/snkrs.services";
+import NotFound from "../404";
 
 function Unisex() {
   let { id } = useParams();
@@ -78,7 +79,18 @@ function Unisex() {
         />
       )}
       {(isLoading || isFetching) && !id && <Loader showOverlay={!start} />}
-      {id && <GetProductUI product={ssData} sizes={unisex} />}
+      {!ssLoading &&
+        id &&
+        (ssData?.retailPrice ? (
+          <GetProductUI product={ssData} sizes={unisex} />
+        ) : (
+          <NotFound
+            heading={"OOP'S"}
+            title={"Product not found"}
+            subtitle={"We couldn't find the product you were looking for."}
+            goback={true}
+          />
+        ))}
       {(ssLoading || ssIsFetching) && id && <Loader showOverlay={true} />}
     </>
   );
