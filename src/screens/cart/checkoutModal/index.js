@@ -7,7 +7,6 @@ import "./styles.css";
 function CheckoutModal({ onCancle, subtotal, data }) {
   const [hasAddress, setHasAddress] = useState(false);
 
-  console.log(data);
   return (
     <div id="checkout-overlay">
       <div id="checkout-modal-container">
@@ -15,15 +14,10 @@ function CheckoutModal({ onCancle, subtotal, data }) {
         <h3 id="checkout-header">Billing Details</h3>
         <div
           style={{
-            display: "flex",
-            flexDirection: "row",
-            overflowX: "hidden",
-            gap: "2rem",
-            width: "200%",
-            transform: hasAddress ? "translateX(-51%)" : "translateX(1%)",
-            transition: "all 2s",
+            transform: hasAddress ? "translateX(-52%)" : "translateX(0.5%)",
           }}
           id="main"
+          className="containerSwipe"
         >
           <BillingDetails setHasAddress={setHasAddress} />
           {hasAddress && (

@@ -5,6 +5,7 @@ import { Input } from "./billingDetails";
 import { cartApi } from "../../../firebase/services/snkrs.services";
 
 import { toast } from "react-toastify";
+import { PAYMENT } from "../../../common/constant/string/common.string";
 
 function Payment({ subtotal, userInfo, data }) {
   const [cardDetails, setCardDetail] = useState({
@@ -32,22 +33,22 @@ function Payment({ subtotal, userInfo, data }) {
     let errors = {};
 
     if (!cardNumber.trim()) {
-      errors.cardNumber = "Please enter the Card number";
+      errors.cardNumber = PAYMENT.validation.cardNumber;
     }
     if (!expiryDate.trim()) {
-      errors.expiryDate = "Please enter the Expiry date";
+      errors.expiryDate = PAYMENT.validation.expiryDate;
     }
     if (!cvv.trim()) {
-      errors.cvv = "Please enter the CVV";
+      errors.cvv = PAYMENT.validation.cvv;
     }
     if (!cardHolderName.trim()) {
-      errors.cardHolderName = "Please enter the Card holder's name";
+      errors.cardHolderName = PAYMENT.validation.cardHoldersName;
     }
 
     if (!captcha.trim()) {
-      errors.captcha = "Please enter the Captcha";
+      errors.captcha = PAYMENT.validation.captcha;
     } else if (captcha.trim() !== captchaCode) {
-      errors.captcha = "Inccorect captcha";
+      errors.captcha = PAYMENT.validation.inccorectCaptcha;
     }
     if (!Object.values(errors)?.length) {
       await placeOrder();
@@ -64,19 +65,18 @@ function Payment({ subtotal, userInfo, data }) {
   };
 
   const placeOrder = async () => {
-    await data.map(({ id }) => {
-      deleteSnk(id);
-    });
-    toast.success("Order placed Successfully, Thank you");
+    await data.map(({ id }) => deleteSnk(id));
+    toast.success(PAYMENT.toast.orderPlacedSuccessfully);
     setTimeout(() => {
       window.location.reload();
     }, 4000);
   };
+
   return (
     <>
       <div id="payment_container">
         {Input(
-          "Card Holder's Name",
+          PAYMENT.inputLabel.cardHoldersName,
           true,
           "text",
           "checkout-input",
@@ -88,7 +88,7 @@ function Payment({ subtotal, userInfo, data }) {
         )}
 
         {Input(
-          "Card Number",
+          PAYMENT.inputLabel.cardNumber,
           true,
           "text",
           "checkout-input",
@@ -103,7 +103,7 @@ function Payment({ subtotal, userInfo, data }) {
         <div className="half_width_input">
           <div className="flex1">
             {Input(
-              "Expiry Date",
+              PAYMENT.inputLabel.expiryDate,
               true,
               "text",
               "checkout-input",
@@ -118,7 +118,7 @@ function Payment({ subtotal, userInfo, data }) {
 
           <div className="flex1">
             {Input(
-              "CVV",
+              PAYMENT.inputLabel.cvv,
               true,
               "text",
               "checkout-input",
@@ -129,8 +129,13 @@ function Payment({ subtotal, userInfo, data }) {
             {!!error.cvv && <p className="error_text">{error.cvv}</p>}
           </div>
         </div>
-        {Input("Captcha", true, "text", "checkout-input", captcha, (e) =>
-          setCaptcha(e.target.value)
+        {Input(
+          PAYMENT.inputLabel.captcha,
+          true,
+          "text",
+          "checkout-input",
+          captcha,
+          (e) => setCaptcha(e.target.value)
         )}
         {!!error.captcha && <p className="error_text">{error.captcha}</p>}
 
@@ -141,10 +146,11 @@ function Payment({ subtotal, userInfo, data }) {
         </text>
 
         <h3 id="pay_amount">
-          Pay Amount : ${subtotal < 200 ? subtotal + 100 : subtotal}
+          {PAYMENT.common.payAmount} : $
+          {subtotal < 200 ? subtotal + 100 : subtotal}
         </h3>
 
-        <button onClick={handleClick}>Place Order</button>
+        <button onClick={handleClick}>{PAYMENT.common.placeOrder}</button>
       </div>
     </>
   );

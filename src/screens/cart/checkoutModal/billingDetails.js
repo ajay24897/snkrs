@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
+
+import {
+  BIILING_INFO,
+  REGEX,
+} from "../../../common/constant/string/common.string";
 import "./styles.css";
 
 function BillingDetails({ setHasAddress }) {
-  console.log("data");
   const [userDetails, setUserDetails] = useState({
     name: "",
     email: "",
@@ -14,10 +18,11 @@ function BillingDetails({ setHasAddress }) {
     pincode: "",
   });
   const [error, setError] = useState({});
-
   const [checked, setChecked] = useState(false);
+
   const { name, mobile, email, address, state, country, pincode, landmark } =
     userDetails;
+  const { validation, inputLabel, buttonText } = BIILING_INFO;
 
   useEffect(() => {
     if (localStorage.getItem("userInfo"))
@@ -32,47 +37,38 @@ function BillingDetails({ setHasAddress }) {
     setError({});
     let errors = {};
     if (!name?.trim()) {
-      errors.name = "Please enter the Name";
+      errors.name = validation.name;
     }
 
     if (!email?.trim()) {
-      errors.email = "Please enter the Email";
-    } else if (
-      !email
-        .trim()
-        .match(
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        )
-    ) {
-      errors.email = "Please enter the valid Email";
+      errors.email = validation.email;
+    } else if (!email.trim().match(REGEX.email)) {
+      errors.email = validation.vaidEmail;
     }
 
     if (!mobile?.trim()) {
-      errors.mobile = "Please enter the Mobile number";
-    } else if (!mobile.trim().match(/^[7-9][0-9]{9}$/)) {
-      errors.mobile = "Please enter valid Mobile number";
+      errors.mobile = validation.mobile;
+    } else if (!mobile.trim().match(REGEX.mobile)) {
+      errors.mobile = validation.validMobile;
     }
 
     if (!address?.trim()) {
-      errors.address = "Please enter the Address";
+      errors.address = validation.address;
     }
 
     if (!pincode?.trim()) {
-      errors.pincode = "Please enter the Pin code";
-    } else if (!pincode?.trim().match(/^[0-9]{6}$/)) {
-      errors.pincode = "Please enter the valid Pin code";
+      errors.pincode = validation.pincode;
+    } else if (!pincode?.trim().match(REGEX.pincode)) {
+      errors.pincode = validation.validPinCode;
     }
     if (!state?.trim()) {
-      errors.state = "Please enter the State";
+      errors.state = validation.state;
     }
     if (!country?.trim()) {
-      errors.country = "Please enter the Country";
+      errors.country = validation.country;
     }
-    if (!address?.trim()) {
-      errors.landmark = "Please enter the Address";
-    }
+
     if (!Object.values(errors)?.length) {
-      console.log("every thing is fine");
       setHasAddress(userDetails);
       if (checked) {
         localStorage.setItem("userInfo", JSON.stringify(userDetails));
@@ -85,19 +81,20 @@ function BillingDetails({ setHasAddress }) {
       setError(errors);
     }
   };
+
   const handleInput = (key, value) => {
     setUserDetails({ ...userDetails, [key]: value });
   };
 
   return (
     <div id="billing-info-container">
-      {Input("Name", true, "text", "checkout-input", name, (e) =>
+      {Input(inputLabel.name, true, "text", "checkout-input", name, (e) =>
         handleInput("name", e.target.value)
       )}
       {!!error.name && <p className="error_text">{error.name}</p>}
       <div className="half_width_input">
         <div className="flex1">
-          {Input("Email", true, "text", "checkout-input", email, (e) =>
+          {Input(inputLabel.email, true, "text", "checkout-input", email, (e) =>
             handleInput("email", e.target.value)
           )}
           {!!error.email && <p className="error_text">{error.email}</p>}
@@ -105,7 +102,7 @@ function BillingDetails({ setHasAddress }) {
 
         <div className="flex1">
           {Input(
-            "Mobile Number",
+            inputLabel.mobile,
             true,
             "text",
             "checkout-input",
@@ -117,22 +114,27 @@ function BillingDetails({ setHasAddress }) {
         </div>
       </div>
 
-      {Input("Address", true, "text", "checkout-input", address, (e) =>
+      {Input(inputLabel.address, true, "text", "checkout-input", address, (e) =>
         handleInput("address", e.target.value)
       )}
       {!!error.address && <p className="error_text">{error.address}</p>}
 
       <div className="half_width_input">
         <div className="flex1">
-          {Input("State", true, "text", "checkout-input", state, (e) =>
+          {Input(inputLabel.state, true, "text", "checkout-input", state, (e) =>
             handleInput("state", e.target.value)
           )}
           {!!error.state && <p className="error_text">{error.state}</p>}
         </div>
 
         <div className="flex1">
-          {Input("Country", true, "text", "checkout-input", country, (e) =>
-            handleInput("country", e.target.value)
+          {Input(
+            inputLabel.country,
+            true,
+            "text",
+            "checkout-input",
+            country,
+            (e) => handleInput("country", e.target.value)
           )}
           {!!error.country && <p className="error_text">{error.country}</p>}
         </div>
@@ -140,7 +142,7 @@ function BillingDetails({ setHasAddress }) {
       <div className="half_width_input">
         <div className="flex1">
           {Input(
-            "Pin code",
+            inputLabel.pincode,
             true,
             "text",
             "checkout-input",
@@ -152,8 +154,13 @@ function BillingDetails({ setHasAddress }) {
         </div>
 
         <div className="flex1">
-          {Input("Landmark", false, "text", "checkout-input", landmark, (e) =>
-            handleInput("landmark", e.target.value)
+          {Input(
+            inputLabel.landmark,
+            false,
+            "text",
+            "checkout-input",
+            landmark,
+            (e) => handleInput("landmark", e.target.value)
           )}
         </div>
       </div>
@@ -163,10 +170,10 @@ function BillingDetails({ setHasAddress }) {
           checked={checked}
           onChange={() => setChecked((prev) => !prev)}
         />
-        Remember information
+        {inputLabel.rememberInfo}
       </div>
       <button id="proceed_button" onClick={handleClick}>
-        Proceed with the payment
+        {buttonText.proceed}
       </button>
     </div>
   );
