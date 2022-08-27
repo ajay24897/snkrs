@@ -24,11 +24,8 @@
   margin: 0rem auto 2rem auto;
 }
 .auth_container .form_content {
-  margin: 0 4rem;
+  margin: 0 2rem;
   text-align: start;
-}
-.auth_container #input {
-  width: 95%;
 }
 .auth_container .errorText {
   color: #cc0000;

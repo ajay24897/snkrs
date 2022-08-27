@@ -10,15 +10,15 @@ import "./style.css";
 function DesktopNavigation() {
   let { hasLoggedIn } = useSelector((state) => state.userAuthReducer);
   let { totalItems } = useSelector((state) => state.cartDetailsReducer);
+
   const dispatch = useDispatch();
+  const handleSignUpClick = () => dispatch({ type: "OPEN_SIGN_UP_FORM" });
 
   const handleLogOut = () => {
     Auth.signOut();
     dispatch({ type: "LOG_OUT_REQUEST" });
     dispatch({ type: "CLEAR_CART_ITEM" });
   };
-
-  const handleSignUpClick = () => dispatch({ type: "OPEN_SIGN_UP_FORM" });
 
   return (
     <div id="container">

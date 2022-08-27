@@ -21,7 +21,7 @@ function Payment({ subtotal, userInfo, data }) {
     []
   );
 
-  const [captcha, setCaptcha] = useState(captchaCode);
+  const [captcha, setCaptcha] = useState();
 
   const { cardNumber, expiryDate, cvv, cardHolderName } = cardDetails;
   const handleInput = (key, value) => {
