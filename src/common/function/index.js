@@ -38,6 +38,6 @@ export const getShoeGenderTitle = (title) => {
 };
 
 export const ammountInDecimal = (value) => {
-  if (!value) return value;
+  if (!value) return 0.0;
   return parseFloat(value).toFixed(2);
 };

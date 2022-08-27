@@ -30,12 +30,13 @@ function App() {
         });
     });
   }, [dispatch]);
+
   return (
-    <div style={{ width: "100vw", height: "100vh" }}>
+    <div id="main-app-container">
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
           <Navbar />
-          <div style={{ height: "4rem" }} />
+          <div id="footer-spacing" />
           <div>
             {showSignupForm && <Authentication />}
             <Routes>
@@ -43,7 +44,6 @@ function App() {
               <Route path={route.men}>
                 <Route index element={<Men />} />
                 <Route path=":id" element={<Men />} />
-                <Route path=":id/:hd" element={<Men />} />
               </Route>
               <Route path={route.women}>
                 <Route index element={<Women />} />

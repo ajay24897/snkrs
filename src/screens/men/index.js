@@ -7,6 +7,7 @@ import GridProductUI from "../../common/component/productUI/gridProduct";
 import { GetProductUI } from "../../common/component/productUI/singleProduct";
 import { firebaseData } from "../../common/function";
 import { mensApi } from "../../firebase/services/snkrs.services";
+import NotFound from "../404";
 
 function Men() {
   let { id } = useParams();
@@ -78,7 +79,18 @@ function Men() {
         />
       )}
       {(isLoading || isFetching) && !id && <Loader showOverlay={!start} />}
-      {id && <GetProductUI product={ssData} sizes={mens} />}
+      {!ssLoading &&
+        id &&
+        (ssData?.retailPrice ? (
+          <GetProductUI product={ssData} sizes={mens} />
+        ) : (
+          <NotFound
+            heading={"OOP'S"}
+            title={"Product not found"}
+            subtitle={"We couldn't find the product you were looking for."}
+            goback={true}
+          />
+        ))}
       {(ssLoading || ssIsFetching) && id && <Loader showOverlay={true} />}
     </>
   );

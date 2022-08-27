@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import First from "./1.jpeg";
 import Second from "./2.webp";
 import Third from "./3.jpeg";
-
 import "./styles.css";
 
 var imageData = [
@@ -47,6 +46,7 @@ function Carousel() {
       clearInterval(imageSlide);
     };
   }, []);
+
   return (
     <div class="carousel overflow-hidden">
       <div className="slider">

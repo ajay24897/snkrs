@@ -13,7 +13,6 @@ import {
   PASSWORD,
   SIGN_UP,
 } from "../../common/constant/string/common.string";
-import { isLoading } from "../../common/function";
 import Loader from "../../common/component/loader";
 
 function Authentication() {
@@ -64,6 +63,24 @@ function Authentication() {
     setHasSignUpForm((prev) => !prev);
   };
 
+  const handleError = (errorMSG) => {
+    console.log("error", errorMSG);
+    if (errorMSG.includes("email-already-in-use"))
+      return "Email is already registered, try with different email.";
+
+    if (errorMSG.includes("Password should be at least 6 characters"))
+      return "Password should be at least 6 characters long.";
+
+    if (errorMSG.includes("auth/invalid-email"))
+      return "Invalid email, please enter valid email.";
+
+    if (errorMSG.includes("wrong-password)"))
+      return "Incorrect password, please enter correct password.";
+
+    if (errorMSG.includes("auth/user-not-found")) return "User not found.";
+    return errorMSG;
+  };
+
   return (
     <div className="overlay">
       <div className="auth_container">
@@ -111,7 +128,7 @@ function Authentication() {
           </text>
         )}
 
-        {error && <text className="errorText">{error}</text>}
+        {!!error && <text className="errorText">{handleError(error)}</text>}
       </div>
       {isLoading && <Loader showOverlay={true} />}
     </div>

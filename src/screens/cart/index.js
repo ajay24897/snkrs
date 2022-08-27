@@ -150,7 +150,7 @@ function Cart() {
         />
       )}
 
-      {(!data?.length || useLoggedOut) && (
+      {(!data?.length || useLoggedOut) && !isLoading(status) && (
         <div id="empty_cart">
           <img
             id="empty_cart_image"

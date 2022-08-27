@@ -76,3 +76,64 @@ export const SHOE_TYPE = {
 export const FOOTER = {
   COPY_RIGHT: "© 2022 SNKRS, All rights reserved",
 };
+export const BIILING_INFO = {
+  validation: {
+    name: "Please enter the Name",
+    email: "Please enter the Email",
+    vaidEmail: "Please enter the valid Email",
+    mobile: "Please enter the Mobile number",
+    validMobile: "Please enter valid Mobile number",
+    address: "Please enter the Address",
+    pincode: "Please enter the Pin code",
+    validPinCode: "Please enter the valid Pin code",
+    state: "Please enter the State",
+    country: "Please enter the Country",
+  },
+  inputLabel: {
+    rememberInfo: "Remember information",
+    name: "Name",
+    landmark: "Landmark",
+    pincode: "Pin code",
+    country: "Country",
+    state: "State",
+    address: "Address",
+    mobile: "Mobile Number",
+    email: "Email",
+  },
+  buttonText: {
+    proceed: "Proceed with the payment",
+  },
+};
+
+export const PAYMENT = {
+  inputLabel: {
+    cardHoldersName: "Card Holder's Name",
+    cardNumber: "Card Number",
+    expiryDate: "Expiry Date",
+    cvv: "CVV",
+    captcha: "Captcha",
+  },
+
+  validation: {
+    cardNumber: "Please enter the Card number",
+    expiryDate: "Please enter the Expiry date",
+    cvv: "Please enter the CVV",
+    cardHoldersName: "Please enter the Card holder's name",
+    captcha: "Please enter the Captcha",
+    inccorectCaptcha: "Inccorect captcha",
+  },
+  toast: {
+    orderPlacedSuccessfully: "Order placed Successfully, Thank you",
+  },
+  common: {
+    placeOrder: "Place Order",
+    payAmount: "Pay amount",
+  },
+};
+
+export const REGEX = {
+  email:
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+  mobile: /^[6-9][0-9]{9}$/,
+  pincode: /^[0-9]{6}$/,
+};

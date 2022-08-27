@@ -7,6 +7,7 @@ import GridProductUI from "../../common/component/productUI/gridProduct";
 import { GetProductUI } from "../../common/component/productUI/singleProduct";
 import { firebaseData } from "../../common/function";
 import { womensApi } from "../../firebase/services/snkrs.services";
+import NotFound from "../404";
 
 function Women() {
   let { id } = useParams();
@@ -33,7 +34,7 @@ function Women() {
         setLast(lastVisible);
         return firebaseData(res);
       } catch (err) {
-        // console.log(err);
+        console.log(err);
       }
     }
   };
@@ -68,6 +69,8 @@ function Women() {
     if (!id) allRefetch();
   }, [refetch, start, id]);
 
+  console.log(ssData);
+
   return (
     <>
       {!id && !isLoading && (
@@ -78,7 +81,18 @@ function Women() {
         />
       )}
       {(isLoading || isFetching) && !id && <Loader showOverlay={!start} />}
-      {id && <GetProductUI product={ssData} sizes={womens} />}
+      {!ssLoading &&
+        id &&
+        (ssData?.retailPrice ? (
+          <GetProductUI product={ssData} sizes={womens} />
+        ) : (
+          <NotFound
+            heading={"OOP'S"}
+            title={"Product not found"}
+            subtitle={"We couldn't find the product you were looking for."}
+            goback={true}
+          />
+        ))}
       {(ssLoading || ssIsFetching) && id && <Loader showOverlay={true} />}
     </>
   );

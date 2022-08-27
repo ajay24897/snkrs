@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { GrClose } from "react-icons/gr";
 import BillingDetails from "./billingDetails";
 import Payment from "./payment";
 import "./styles.css";
 
-function CheckoutModal({ onCancle, data }) {
+function CheckoutModal({ onCancle, subtotal, data }) {
   const [hasAddress, setHasAddress] = useState(false);
 
   return (
@@ -14,18 +14,15 @@ function CheckoutModal({ onCancle, data }) {
         <h3 id="checkout-header">Billing Details</h3>
         <div
           style={{
-            display: "flex",
-            flexDirection: "row",
-            overflowX: "hidden",
-            gap: "2rem",
-            width: "200%",
-            transform: hasAddress ? "translateX(-51%)" : "translateX(1%)",
-            transition: "all 2s",
+            transform: hasAddress ? "translateX(-52%)" : "translateX(0.5%)",
           }}
           id="main"
+          className="containerSwipe"
         >
           <BillingDetails setHasAddress={setHasAddress} />
-          {hasAddress && <Payment />}
+          {hasAddress && (
+            <Payment subtotal={subtotal} userInfo={hasAddress} data={data} />
+          )}
         </div>
       </div>
     </div>

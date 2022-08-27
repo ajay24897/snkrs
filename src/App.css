@@ -103,4 +103,13 @@ button:hover {
 ::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 0.5rem;
+}
+
+#footer-spacing {
+  height: 3rem;
+}
+
+#main-app-container {
+  width: 100vw;
+  height: 100vh;
 }/*# sourceMappingURL=App.css.map */
