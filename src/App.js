@@ -44,7 +44,6 @@ function App() {
               <Route path={route.men}>
                 <Route index element={<Men />} />
                 <Route path=":id" element={<Men />} />
-                <Route path=":id/:hd" element={<Men />} />
               </Route>
               <Route path={route.women}>
                 <Route index element={<Women />} />
