@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import "./styles.css";
 
 import { Input } from "./billingDetails";
 
-function Payment({ subtotal }) {
+function Payment({ subtotal, userInfo }) {
   const [cardDetails, setCardDetail] = useState({
     cardNumber: "",
     expiryDate: "",
@@ -122,7 +122,7 @@ function Payment({ subtotal }) {
         Pay Amount : ${subtotal < 200 ? subtotal + 100 : subtotal}
       </h3>
 
-      <button onClick={handleClick}>Make Payment & Place Order</button>
+      <button onClick={handleClick}>Place Order & Download Invoice</button>
     </div>
   );
 }

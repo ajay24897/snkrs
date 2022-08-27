@@ -25,7 +25,7 @@ function CheckoutModal({ onCancle, subtotal }) {
           id="main"
         >
           <BillingDetails setHasAddress={setHasAddress} />
-          {hasAddress && <Payment subtotal={subtotal} />}
+          {hasAddress && <Payment subtotal={subtotal} userInfo={hasAddress} />}
         </div>
       </div>
     </div>

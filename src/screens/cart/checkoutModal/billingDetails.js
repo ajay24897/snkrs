@@ -73,7 +73,7 @@ function BillingDetails({ setHasAddress }) {
     }
     if (!Object.values(errors)?.length) {
       console.log("every thing is fine");
-      setHasAddress(true);
+      setHasAddress(userDetails);
       if (checked) {
         localStorage.setItem("userInfo", JSON.stringify(userDetails));
         localStorage.setItem("remember", "true");
