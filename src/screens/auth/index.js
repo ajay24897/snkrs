@@ -64,7 +64,6 @@ function Authentication() {
   };
 
   const handleError = (errorMSG) => {
-    console.log("error", errorMSG);
     if (errorMSG.includes("email-already-in-use"))
       return "Email is already registered, try with different email.";
 

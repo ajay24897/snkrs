@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,11 +15,14 @@ import Unisex from "./screens/unisex";
 import Women from "./screens/women";
 import Authentication from "./screens/auth";
 import "./App.css";
+import OfflineModal from "./common/component/offlineModal";
 
 function App() {
   const dispatch = useDispatch();
   const { showSignupForm } = useSelector((state) => state.userAuthReducer);
   const queryClient = new QueryClient();
+
+  const [isOnline, setIsOnline] = useState(window.navigator.onLine);
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
@@ -31,6 +34,22 @@ function App() {
     });
   }, [dispatch]);
 
+  useEffect(() => {
+    window.addEventListener("offline", function (e) {
+      setIsOnline(false);
+    });
+
+    window.addEventListener("online", function (e) {
+      setIsOnline(true);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!isOnline) {
+      setIsOnline(false);
+    }
+  }, [isOnline]);
+
   return (
     <div id="main-app-container">
       <BrowserRouter>
@@ -39,6 +58,8 @@ function App() {
           <div id="footer-spacing" />
           <div>
             {showSignupForm && <Authentication />}
+            {!isOnline && <OfflineModal />}
+
             <Routes>
               <Route path={route.home} element={<Home />} />
               <Route path={route.men}>
