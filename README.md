@@ -1,7 +1,7 @@
 # SNKRS - Shoes e-commerce webapp
 
-Frontend - React
-Backend Storage - Google firestore
+- Frontend - React
+- Backend Storage - Google firestore
 
 ### `Live Demo`
 
