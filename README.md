@@ -13,7 +13,7 @@ React, Google firestore and SASS
 
 ### `Features`
 
-- Google firetore Live database
+- Google firestore Live database
 - Product listing with Scrolled pagination
 - User Login and Sign up
 - Add or remove product from the cart
