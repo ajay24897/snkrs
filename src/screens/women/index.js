@@ -34,7 +34,7 @@ function Women() {
         setLast(lastVisible);
         return firebaseData(res);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     }
   };
@@ -65,11 +65,10 @@ function Women() {
   useEffect(() => {
     if (id) refetch();
   }, [refetch, id]);
+
   useEffect(() => {
     if (!id) allRefetch();
   }, [refetch, start, id]);
-
-  console.log(ssData);
 
   return (
     <>

@@ -60,7 +60,7 @@ function Payment({ subtotal, userInfo, data }) {
     try {
       cartApi.deleteSnkr(id);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

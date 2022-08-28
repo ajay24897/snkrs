@@ -1,0 +1,79 @@
+@import "../../sass//colors";
+
+#offline_container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: $white;
+    width: 50vw;
+    height: 50vh;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 1rem;
+    z-index: 65;
+    text-align: center;
+
+    @media screen  and (max-width : 500px){
+        width: 70vw;
+        height: 50vh;
+    }
+}
+#offline_overlay{
+    background-color: rgba($color: $black, $alpha: 0.3);
+    position: fixed;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: 0; 
+    z-index: 50;
+
+}
+#no_internet{
+    font-size: 2rem;
+    letter-spacing: .5rem;
+    font-weight: 400;
+    // color:$grey;
+    // color: transparent;
+    // -webkit-text-fill-color: $white;
+    // -webkit-text-stroke-width: 1px;
+    // -webkit-text-stroke-color: $black;
+}
+
+#sub_title{
+    color:$grey;
+    font-weight: 400;
+    margin-top: .5rem;
+    font-size: 1rem;
+}
+#home_button{
+    margin-top: 2rem;
+}
+
+#rocket{
+    animation: offline 2s infinite alternate;
+}
+
+@keyframes offline{
+    0%{
+        transform: translateY(-1rem);
+    }
+    20%{
+        transform: translateY(0rem);
+    }
+    40%{
+        transform: translateY(-1rem);
+    }
+    60%{
+        transform: translateY(0rem);
+    }
+    80%{
+        transform: translateY(-1rem);
+    }
+    100%{
+        transform: translateY(0rem);
+    }
+}
