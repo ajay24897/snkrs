@@ -7,7 +7,7 @@ import { cartApi } from "../../../firebase/services/snkrs.services";
 import { toast } from "react-toastify";
 import { PAYMENT } from "../../../common/constant/string/common.string";
 
-function Payment({ subtotal, userInfo, data }) {
+function Payment({ subtotal, userInfo, data, onCancle, refetch }) {
   const [cardDetails, setCardDetail] = useState({
     cardNumber: "",
     expiryDate: "",
@@ -67,9 +67,11 @@ function Payment({ subtotal, userInfo, data }) {
   const placeOrder = async () => {
     await data.map(({ id }) => deleteSnk(id));
     toast.success(PAYMENT.toast.orderPlacedSuccessfully);
+
     setTimeout(() => {
-      window.location.reload();
-    }, 4000);
+      onCancle();
+      refetch();
+    }, 3000);
   };
 
   return (

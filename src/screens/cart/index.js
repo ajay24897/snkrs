@@ -147,6 +147,7 @@ function Cart() {
           data={data}
           onCancle={() => setShowCheckoutModal(false)}
           subtotal={subtotal}
+          refetch={refetch}
         />
       )}
 

@@ -4,7 +4,7 @@ import BillingDetails from "./billingDetails";
 import Payment from "./payment";
 import "./styles.css";
 
-function CheckoutModal({ onCancle, subtotal, data }) {
+function CheckoutModal({ onCancle, subtotal, data, refetch }) {
   const [hasAddress, setHasAddress] = useState(false);
 
   return (
@@ -21,7 +21,13 @@ function CheckoutModal({ onCancle, subtotal, data }) {
         >
           <BillingDetails setHasAddress={setHasAddress} />
           {hasAddress && (
-            <Payment subtotal={subtotal} userInfo={hasAddress} data={data} />
+            <Payment
+              subtotal={subtotal}
+              userInfo={hasAddress}
+              data={data}
+              onCancle={onCancle}
+              refetch={refetch}
+            />
           )}
         </div>
       </div>
