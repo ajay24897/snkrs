@@ -23,7 +23,7 @@ function TotalEstimate({ subtotal }) {
       <div className="flexRow spacing">
         <text className="cart_text">{ESTIMATED_DELIVERY}</text>
         <text className="cart_text">
-          {subtotal <= MINIMUM_CART_VALUE
+          {subtotal < MINIMUM_CART_VALUE
             ? `${ammountInDecimal(DELIVERY_CHARGE)}`
             : "Free"}
         </text>
