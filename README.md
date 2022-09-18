@@ -17,6 +17,6 @@ React, Google firestore and SASS
 - Product listing with Scrolled pagination
 - User Login and Sign up
 - Add or remove product from the cart
-- Place older (inprogress)
+- Checkout (inprogress)
 - Atracktive and Responsive design (inprogress)
 - Local storage to store user address information
