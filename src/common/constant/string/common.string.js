@@ -40,7 +40,7 @@ export const YOU_CART_IS_EMPTY = "Your cart is empty!";
 export const LOOKS_HAVENOT_ADDED_ANYTING =
   "Looks like you haven't added anything to your cart";
 export const FREE_DELIVERY_APPIES_MSG =
-  "Free delivery Applies to orders of ₹200 or more.";
+  "Free delivery Applies to orders of $200 or more.";
 
 export const HOME = {
   THIS_IS_SNKRS: "This is SNKRS",
