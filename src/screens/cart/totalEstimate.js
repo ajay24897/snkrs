@@ -24,7 +24,7 @@ function TotalEstimate({ subtotal }) {
         <text className="cart_text">{ESTIMATED_DELIVERY}</text>
         <text className="cart_text">
           {subtotal < MINIMUM_CART_VALUE
-            ? `${ammountInDecimal(DELIVERY_CHARGE)}`
+            ? `${"$" + ammountInDecimal(DELIVERY_CHARGE)}`
             : "Free"}
         </text>
       </div>
