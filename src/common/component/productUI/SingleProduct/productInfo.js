@@ -22,6 +22,7 @@ import {
 } from "../../../function";
 import { cartApi } from "../../../../firebase/services/snkrs.services";
 import Loader from "../../loader";
+import { MdDownloadForOffline } from "react-icons/md";
 import { toast, ToastContainer } from "react-toastify";
 
 function ProductInfo({ product, sizes }) {
@@ -117,7 +118,6 @@ function ProductInfo({ product, sizes }) {
           <h6 className="product-name">
             {capitalizeFirstLetter(removeRrandNameFromTitle(title, brand))}
           </h6>
-
           <p className="product-color grey_text">Color : {colorway}</p>
           <p className="text-ellipsis grey_text">
             {getShoeGenderTitle(gender)}
@@ -156,12 +156,20 @@ function ProductInfo({ product, sizes }) {
               );
             })}
           </select>
-
           <h3 className="text-ellipsis price">${retailPrice}</h3>
 
           <button id="add_to_cart_button" onClick={addToCart}>
             {ADD_TO_CART}
           </button>
+
+          <a
+            download={product.title + ".webp"}
+            href={product?.media}
+            id="download-button"
+          >
+            <MdDownloadForOffline color="#000" size={30} />
+          </a>
+
           <text id="error_text">{error}</text>
         </div>
       </div>
