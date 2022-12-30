@@ -73,12 +73,18 @@
             background-color: $black;
             width: "100%";
         }
+
         #download-button{
             position: absolute;
             top: 0;
             right:0;
+            #whatsapp-button{
+                margin: 0;
+                margin-right: .5rem;
+            }
 
         }
+
     }
 
 }

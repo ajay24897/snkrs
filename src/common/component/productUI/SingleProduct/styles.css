@@ -76,4 +76,8 @@
   position: absolute;
   top: 0;
   right: 0;
+}
+#wrapper #product-info-wrapper #download-button #whatsapp-button {
+  margin: 0;
+  margin-right: 0.5rem;
 }/*# sourceMappingURL=styles.css.map */
