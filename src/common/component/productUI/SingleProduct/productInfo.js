@@ -24,6 +24,7 @@ import { cartApi } from "../../../../firebase/services/snkrs.services";
 import Loader from "../../loader";
 import { MdDownloadForOffline } from "react-icons/md";
 import { toast, ToastContainer } from "react-toastify";
+import { WhatsappShareButton, WhatsappIcon } from "react-share";
 
 function ProductInfo({ product, sizes }) {
   let { brand, title, retailPrice, gender, colorway } = product;
@@ -161,14 +162,17 @@ function ProductInfo({ product, sizes }) {
           <button id="add_to_cart_button" onClick={addToCart}>
             {ADD_TO_CART}
           </button>
-
-          <a
-            download={product.title + ".webp"}
-            href={product?.media}
-            id="download-button"
-          >
-            <MdDownloadForOffline color="#000" size={30} />
-          </a>
+          <div id="download-button">
+            <WhatsappShareButton
+              url={window.location.href}
+              id="whatsapp-button"
+            >
+              <WhatsappIcon size={27} round={true} />
+            </WhatsappShareButton>
+            <a download={product.title + ".webp"} href={product?.media}>
+              <MdDownloadForOffline color="#000" size={30} />
+            </a>
+          </div>
 
           <text id="error_text">{error}</text>
         </div>
