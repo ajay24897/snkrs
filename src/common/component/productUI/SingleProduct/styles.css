@@ -22,6 +22,7 @@
   max-width: 500px;
   margin-left: 20px;
   margin-top: 2.5rem;
+  position: relative;
 }
 @media (max-width: 667px) {
   #wrapper #product-info-wrapper {
@@ -70,4 +71,9 @@
 #wrapper #product-info-wrapper #add_to_cart_button {
   background-color: rgba(0, 0, 0, 0.8);
   width: "100%";
+}
+#wrapper #product-info-wrapper #download-button {
+  position: absolute;
+  top: 0;
+  right: 0;
 }/*# sourceMappingURL=styles.css.map */
