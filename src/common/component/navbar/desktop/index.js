@@ -6,6 +6,7 @@ import { BsBag } from "react-icons/bs";
 import { Auth } from "../../../../firebase/services/auth.services";
 import { LOG_OUT, SIGN_UP } from "../../../constant/string/common.string";
 import "./style.css";
+import route from "../../../constant/string/route.string";
 
 function DesktopNavigation() {
   let { hasLoggedIn } = useSelector((state) => state.userAuthReducer);
@@ -22,7 +23,7 @@ function DesktopNavigation() {
 
   return (
     <div id="container">
-      <NavLink to={"/snkrs"}>
+      <NavLink to={route.home}>
         <img id="logo" src={require("../../../image/logo.png")} alt={"logo"} />
       </NavLink>
 
@@ -53,7 +54,7 @@ function DesktopNavigation() {
         )}
 
         <NavLink
-          to="cart"
+          to={route.cart}
           className={({ isActive }) => (isActive ? "cart active-cart" : "cart")}
         >
           <text id={"cart-value"}>{totalItems}</text>
@@ -71,14 +72,14 @@ DesktopNavigation.propTypes = {};
 const navbarItems = [
   {
     route: "Men",
-    to: "snkrs/men",
+    to: route.men,
   },
   {
     route: "Women",
-    to: "snkrs/women",
+    to: route.women,
   },
   {
     route: "Unisex",
-    to: "snkrs/unisex",
+    to: route.unisex,
   },
 ];

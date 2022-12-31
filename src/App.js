@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
@@ -52,7 +52,7 @@ function App() {
 
   return (
     <div id="main-app-container">
-      <BrowserRouter>
+      <HashRouter>
         <QueryClientProvider client={queryClient}>
           <Navbar />
           <div id="footer-spacing" />
@@ -61,7 +61,7 @@ function App() {
             {!isOnline && <OfflineModal />}
 
             <Routes>
-              <Route path={route.home} element={<Home />} />
+              <Route path={route.home} index element={<Home />} />
               <Route path={route.men}>
                 <Route index element={<Men />} />
                 <Route path=":id" element={<Men />} />
@@ -79,7 +79,7 @@ function App() {
             </Routes>
           </div>
         </QueryClientProvider>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }

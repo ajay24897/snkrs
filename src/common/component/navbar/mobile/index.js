@@ -9,19 +9,20 @@ import { useSelector, useDispatch } from "react-redux";
 import "./style.css";
 import { LOG_OUT, SIGN_UP } from "../../../constant/string/common.string";
 import { Auth } from "../../../../firebase/services/auth.services";
+import route from "../../../constant/string/route.string";
 
 const navbarItems = [
   {
     route: "Men",
-    to: "snkrs/men",
+    to: route.men,
   },
   {
     route: "Women",
-    to: "snkrs/women",
+    to: route.women,
   },
   {
     route: "Unisex",
-    to: "snkrs/unisex",
+    to: route.unisex,
   },
 ];
 function MobileNavigation() {
@@ -61,7 +62,7 @@ function MobileNavigation() {
   return (
     <>
       <div id="mob-container">
-        <NavLink to={"/snkrs"} onClick={() => setMenuOpen(false)}>
+        <NavLink to={route.home} onClick={() => setMenuOpen(false)}>
           <img
             id="logo"
             src={require("../../../image/logo.png")}
@@ -80,7 +81,7 @@ function MobileNavigation() {
             </text>
           )}
           <NavLink
-            to="cart"
+            to={route.cart}
             onClick={() => setMenuOpen(false)}
             className={({ isActive }) =>
               isActive ? "cart active-cart" : "cart"
