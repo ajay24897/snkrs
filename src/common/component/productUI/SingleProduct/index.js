@@ -21,6 +21,13 @@ export const GetProductUI = ({ product, sizes }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    document.head.children.namedItem("description").content = product.title;
+    document.title = "SNKRS : " + product.title;
+  }, [product.title]);
+
+  useEffect(() => () => (document.title = "SNKRS"), []);
+
   const handleMouseMove = (event) => {
     if (windowSize >= 1024) {
       setCoords({
