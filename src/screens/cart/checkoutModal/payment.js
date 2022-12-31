@@ -111,7 +111,7 @@ function Payment({ subtotal, userInfo, data, onCancle, refetch }) {
               "checkout-input",
               expiryDate,
               (e) => handleInput("expiryDate", e.target.value.trim()),
-              { maxLength: "7", placeHolder: "MM / DD" }
+              { maxLength: "5", placeHolder: "MM/YY" }
             )}
             {!!error.expiryDate && (
               <p className="error_text">{error.expiryDate}</p>
