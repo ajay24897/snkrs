@@ -118,6 +118,7 @@ export const PAYMENT = {
     cardNumber: "Please enter the Card number",
     expiryDate: "Please enter the Expiry date",
     cvv: "Please enter the CVV",
+    invalidExpiryDate: "Please enter valid Expiry date",
     cardHoldersName: "Please enter the Card holder's name",
     captcha: "Please enter the Captcha",
     inccorectCaptcha: "Inccorect captcha",
@@ -136,4 +137,5 @@ export const REGEX = {
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
   mobile: /^[6-9][0-9]{9}$/,
   pincode: /^[0-9]{6}$/,
+  expiryDate: /^(0[1-9]|1[0-2])\/?([0-9]{2})$/,
 };

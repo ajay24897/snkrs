@@ -5,7 +5,7 @@ import { Input } from "./billingDetails";
 import { cartApi } from "../../../firebase/services/snkrs.services";
 
 import { toast } from "react-toastify";
-import { PAYMENT } from "../../../common/constant/string/common.string";
+import { PAYMENT, REGEX } from "../../../common/constant/string/common.string";
 
 function Payment({ subtotal, userInfo, data, onCancle, refetch }) {
   const [cardDetails, setCardDetail] = useState({
@@ -21,10 +21,13 @@ function Payment({ subtotal, userInfo, data, onCancle, refetch }) {
     []
   );
 
-  const [captcha, setCaptcha] = useState();
+  const [captcha, setCaptcha] = useState("");
 
   const { cardNumber, expiryDate, cvv, cardHolderName } = cardDetails;
-  const handleInput = (key, value) => {
+  const handleInput = (key, value, isNumberInput = false) => {
+    if (isNumberInput && (value.indexOf(" ") >= 0 || isNaN(value))) {
+      return;
+    }
     setCardDetail({ ...cardDetails, [key]: value });
   };
 
@@ -37,6 +40,8 @@ function Payment({ subtotal, userInfo, data, onCancle, refetch }) {
     }
     if (!expiryDate.trim()) {
       errors.expiryDate = PAYMENT.validation.expiryDate;
+    } else if (!expiryDate?.match(REGEX.expiryDate)) {
+      errors.expiryDate = PAYMENT.validation.invalidExpiryDate;
     }
     if (!cvv.trim()) {
       errors.cvv = PAYMENT.validation.cvv;
@@ -96,7 +101,7 @@ function Payment({ subtotal, userInfo, data, onCancle, refetch }) {
           "checkout-input",
           cardNumber,
           (e) => {
-            handleInput("cardNumber", e.target.value);
+            handleInput("cardNumber", e.target.value, true);
           },
           { maxLength: "16" }
         )}
@@ -125,7 +130,7 @@ function Payment({ subtotal, userInfo, data, onCancle, refetch }) {
               "text",
               "checkout-input",
               cvv,
-              (e) => handleInput("cvv", e.target.value),
+              (e) => handleInput("cvv", e.target.value, true),
               { placeHolder: "XXX", maxLength: 3 }
             )}
             {!!error.cvv && <p className="error_text">{error.cvv}</p>}

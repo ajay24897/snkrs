@@ -82,7 +82,10 @@ function BillingDetails({ setHasAddress }) {
     }
   };
 
-  const handleInput = (key, value) => {
+  const handleInput = (key, value, isNumberInput = false) => {
+    if (isNumberInput && (value.indexOf(" ") >= 0 || isNaN(value))) {
+      return;
+    }
     setUserDetails({ ...userDetails, [key]: value });
   };
 
@@ -107,7 +110,7 @@ function BillingDetails({ setHasAddress }) {
             "text",
             "checkout-input",
             mobile,
-            (e) => handleInput("mobile", e.target.value),
+            (e) => handleInput("mobile", e.target.value, true),
             { maxlength: "10" }
           )}
           {!!error.mobile && <p className="error_text">{error.mobile}</p>}
@@ -147,7 +150,7 @@ function BillingDetails({ setHasAddress }) {
             "text",
             "checkout-input",
             pincode,
-            (e) => handleInput("pincode", e.target.value),
+            (e) => handleInput("pincode", e.target.value, true),
             { maxlength: "6" }
           )}
           {!!error.pincode && <p className="error_text">{error.pincode}</p>}
