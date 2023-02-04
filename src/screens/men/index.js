@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 import Loader from "../../common/component/loader";
 import GridProductUI from "../../common/component/productUI/gridProduct";
-import { GetProductUI } from "../../common/component/productUI/singleProduct";
+import { GetProductUI } from "../../common/component/productUI/GetProductUI";
 import { firebaseData } from "../../common/function";
 import { mensApi } from "../../firebase/services/snkrs.services";
 import NotFound from "../404";
